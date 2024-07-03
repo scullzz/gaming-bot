@@ -12,6 +12,7 @@
   display: flex;
   width: 100%;
   &__avatar {
+    object-fit: cover;
     margin-right: 9px;
     width: 60px;
     height: 60px;

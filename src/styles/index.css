@@ -5,9 +5,14 @@
 * {
   font-family: "Roboto", sans-serif;
 }
+p {
+  margin: 0;
+}
 html {
+  --menu-color: #f2f2f2;
   --line-color: #c6c6c866;
   --main-color: white;
+  --menu-text: #959595;
   --text-color: #000000;
   --btn-text-color: #007aff;
   --secondary-color: #eeeeef;

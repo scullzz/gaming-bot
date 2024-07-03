@@ -1,0 +1,28 @@
+.btn {
+  background-color: var(--secondary-color);
+  color: var(--btn-text-color);
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  padding: 5px;
+  padding-inline: 15px;
+  border-radius: 30px;
+}
+.attention-btn {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  border-radius: 6px;
+  background-color: var(--btn-text-color);
+  color: var(--main-color);
+}
+.social-btn {
+  display: flex;
+  flex-direction: column;
+  color: var(--btn-text-color);
+  background-color: var(--main-color);
+  border-radius: 10px;
+}

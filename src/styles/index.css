@@ -1,0 +1,33 @@
+@import url("./bootstrap-reboot.min.css");
+@import url("./fonts/stylesheet.css");
+@import url("./btn.scss");
+@import url("./text.scss");
+* {
+  font-family: "Roboto", sans-serif;
+}
+html {
+  --line-color: #c6c6c866;
+  --main-color: white;
+  --text-color: #000000;
+  --btn-text-color: #007aff;
+  --secondary-color: #eeeeef;
+  --txt-2ry-color: #8a8a8e;
+  --live-color: #eb0400;
+}
+.section {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 10px;
+}
+.live-cicrcle {
+  background-color: var(--live-color);
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+}
+.line {
+  background-color: var(--line-color);
+  width: 100%;
+  height: 1px;
+}

@@ -1,7 +1,8 @@
 import { StreamerView } from "../StreamerView/StreamerView";
+import { WithMenu } from "../withMenu/withMenu";
 import ".//Streamers.scss";
-export const Streamers = () => {
-  const streamers = [1, 2, 3, 4, 5, 6];
+const StreamersView = () => {
+  const streamers = [1, 2, 3, 4, 5, 6, 434, 43, 43, 4343, 434, 343];
   return (
     <div className="section streamers">
       <p className="header-text">Стримеры</p>
@@ -14,5 +15,13 @@ export const Streamers = () => {
         <StreamerView></StreamerView>
       ))}
     </div>
+  );
+};
+
+export const Streamers = () => {
+  return (
+    <WithMenu>
+      <StreamersView></StreamersView>
+    </WithMenu>
   );
 };

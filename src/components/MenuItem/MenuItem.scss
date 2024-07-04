@@ -1,0 +1,14 @@
+.menu-item {
+  background-color: var(--menu-color);
+  width: 50%;
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  &__icon {
+    width: 34px;
+    height: 20px;
+    object-fit: cover;
+  }
+}

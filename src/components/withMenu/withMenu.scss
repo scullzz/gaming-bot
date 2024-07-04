@@ -1,0 +1,11 @@
+.layout {
+  height: 100vh;
+  position: relative;
+  &-wrapper {
+    height: calc(100% - 60px);
+    overflow-y: auto;
+  }
+  .menu {
+    height: 60px;
+  }
+}

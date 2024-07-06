@@ -1,0 +1,24 @@
+.social-item {
+  padding: 12px;
+  padding-inline: 14px;
+  width: 25%;
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--main-color);
+  &__icon {
+    width: 25px;
+    height: 17px;
+    object-fit: contain;
+  }
+  &__text {
+    text-transform: uppercase;
+    font-size: 8px;
+    font-weight: 700;
+    margin-top: 5px;
+    line-height: 20px;
+    color: var(--btn-text-color);
+    text-align: center;
+  }
+}

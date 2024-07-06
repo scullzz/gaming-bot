@@ -1,0 +1,21 @@
+.streamer {
+  &__management {
+    display: flex;
+    margin-top: 20px;
+    column-gap: 14px;
+    button {
+      width: 50%;
+    }
+    &-user {
+      align-items: center;
+      row-gap: 8px;
+      flex-direction: column;
+      .details-text {
+        margin-inline: 9px;
+      }
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+.streamer {
+  &__broadcast {
+    padding-top: 14px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 14px;
+    .header-text {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 20px;
+      margin-inline: 10px;
+    }
+    &-wrapper {
+      position: relative;
+      width: 100%;
+      .avatar__is-live {
+        bottom: unset;
+        top: 8px;
+        transform: unset;
+        right: 5px;
+        left: unset;
+      }
+    }
+  }
+}

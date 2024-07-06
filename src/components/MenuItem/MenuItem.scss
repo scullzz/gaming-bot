@@ -7,8 +7,18 @@
   align-items: center;
   flex-direction: column;
   &__icon {
-    width: 34px;
-    height: 20px;
+    width: 27px;
+    height: 27px;
+    border-radius: 100%;
     object-fit: cover;
+    position: relative;
+  }
+  &__text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 0.7rem;
+    color: var(--main-color);
   }
 }

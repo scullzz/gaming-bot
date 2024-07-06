@@ -10,7 +10,7 @@
     width: 27px;
     height: 27px;
     border-radius: 100%;
-    object-fit: cover;
+    object-fit: contain;
     position: relative;
   }
   &__text {

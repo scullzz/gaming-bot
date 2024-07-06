@@ -10,10 +10,6 @@ const StreamersView = () => {
   return (
     <div className="section streamers" ref={streamersRef}>
       <p className="header-text">Стримеры</p>
-      <p className="details-text">
-        Подпишитесь на стримера, чтобы участвовать в его розыгрышах и получать
-        уведомления от него
-      </p>
 
       {streamers.map((s) => (
         <StreamerView></StreamerView>

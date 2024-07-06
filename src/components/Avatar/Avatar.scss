@@ -17,9 +17,11 @@
     font-weight: 700;
     text-transform: uppercase;
     line-height: 15px;
+    width: auto;
+    min-width: 70px;
     text-align: center;
     padding: 2px;
-    width: 70px;
+    padding-inline: 6px;
     background-color: var(--live-color);
     color: var(--main-color);
   }

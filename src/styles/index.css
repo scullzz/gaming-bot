@@ -19,11 +19,13 @@ html {
   --secondary-color: #eeeeef;
   --txt-2ry-color: #8a8a8e;
   --page-color: #efeff3;
+  --btn-opacity: #e6f1ff;
   --green-color: #35c759;
 
   --live-color: #eb0400;
 }
 .section {
+  overflow-y: auto;
   overflow-x: hidden;
   display: flex;
   width: 100%;

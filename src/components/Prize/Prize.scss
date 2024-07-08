@@ -1,4 +1,5 @@
 .prize {
+  margin-top: 10px;
   &__available-time {
     min-height: 18px;
     bottom: unset;
@@ -64,14 +65,17 @@
   &__conditions {
     width: 100%;
     margin-top: 8px;
+
     li {
       text-align: left;
       padding: 0;
+
       margin: 0;
       margin-top: 7px;
     }
     margin: 0;
     padding: 0;
+    padding-left: 22px;
     display: flex;
     flex-direction: column;
   }

@@ -1,8 +1,15 @@
 import { useRef } from "react";
 import { useStickyScroll } from "../../functions/useStickyScroll";
-import { StreamerView } from "../StreamerView/StreamerView";
+import { IUserViewProps, UserView } from "../UserView/UserView";
 import { WithMenu } from "../withMenu/withMenu";
 import ".//Streamers.scss";
+
+const template: IUserViewProps = {
+  name: "Mellstroy",
+  details: "666 ПОДПИСЧИКОВ",
+  isStreamer: true,
+};
+
 const StreamersView = () => {
   const streamers = [1, 2, 3, 4, 5, 6, 434, 43, 43, 4343, 434, 343];
   const streamersRef = useRef<HTMLDivElement | null>(null);
@@ -12,7 +19,7 @@ const StreamersView = () => {
       <p className="header-text">Стримеры</p>
 
       {streamers.map((s) => (
-        <StreamerView></StreamerView>
+        <UserView {...template}></UserView>
       ))}
     </div>
   );

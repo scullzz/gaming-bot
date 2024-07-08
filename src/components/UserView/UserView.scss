@@ -9,10 +9,17 @@
   }
   .line {
     margin-top: 24px;
+    &-user {
+      margin-top: 10px;
+    }
   }
   display: flex;
   width: 100%;
   &__avatar {
+    &-user {
+      width: 40px;
+      height: 40px;
+    }
     object-fit: cover;
     margin-right: 9px;
     width: 60px;

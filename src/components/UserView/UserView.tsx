@@ -1,21 +1,26 @@
+import { HTMLAttributes } from "react";
 import "./UserView.scss";
 import cover from "/cover.png";
-export interface IUserViewProps {
-  img?: string;
-  name: string;
-  details: string;
+import { GetSubscriberDto } from "../../types/getSubscriberDto";
+export interface IUserViewProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "id">,
+    GetSubscriberDto {
   isStreamer?: boolean;
+  withLine?: boolean;
 }
 export const UserView = ({
   isStreamer,
-  img,
-  name,
-  details,
+  firstName,
+  id,
+  subscribeTime,
+  withLine = true,
+  className,
+  ...rest
 }: IUserViewProps) => {
   return (
-    <div className="streamer-view">
+    <div className={`streamer-view ${className || ""}`} {...rest} key={id}>
       <img
-        src={img || cover}
+        src={cover}
         alt="Изображение"
         className={`streamer-view__avatar ${
           !isStreamer && "streamer-view__avatar-user"
@@ -25,13 +30,15 @@ export const UserView = ({
         <div className="streamer-view__info-header">
           <div className="streamer-view__info-header-description">
             <div className="streamer-view__name">
-              <span className="label-text">{name}</span>
+              <span className="label-text">{firstName}</span>
             </div>
-            <span className="details-text">{details}</span>
+            <span className="details-text">{subscribeTime}</span>
           </div>
           {isStreamer && <div className="btn">Открыть</div>}
         </div>
-        <div className={`line ${!isStreamer && "line-user"}`}></div>
+        {withLine && (
+          <div className={`line ${!isStreamer && "line-user"}`}></div>
+        )}
       </div>
     </div>
   );

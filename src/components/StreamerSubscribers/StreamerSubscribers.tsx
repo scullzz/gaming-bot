@@ -1,11 +1,28 @@
-import { IUserViewProps, UserView } from "../UserView/UserView";
+import { tg } from "../../App";
+import { subscribersAdapter, useGetSubscribersQuery } from "../../features/api";
+import { useScrollPagination } from "../../functions/useScrollPagination";
+import { UserView } from "../UserView/UserView";
 import "./StreamerSubscribers.scss";
-const template: IUserViewProps = {
-  name: "Колян",
-  details: "Подписан с 22 февраля 2024 г.",
-};
 export const StreamerSubscribers = () => {
-  const users = [1, 3, 35, 35, 3, 53];
+  const { page, pageSize, handleScroll } = useScrollPagination();
+  const id = tg.initDataUnsafe.user?.id.toString() || "";
+  const {
+    subscribers,
+    isLoading,
+    error: subscribersError,
+  } = useGetSubscribersQuery(
+    { page, pageSize, id },
+    {
+      refetchOnMountOrArgChange: true,
+      pollingInterval: 5000,
+      selectFromResult: ({ data, ...other }) => ({
+        subscribers: subscribersAdapter
+          .getSelectors()
+          .selectAll(data ?? subscribersAdapter.getInitialState()),
+        ...other,
+      }),
+    }
+  );
   return (
     <div className="streamer__subscribers">
       <span className="streamer__subscribers-header">Подписчики</span>
@@ -16,9 +33,16 @@ export const StreamerSubscribers = () => {
         >
           Скачать
         </button>
-        <div className="streamer__subscribers-users">
-          {users.map((t) => (
-            <UserView {...template}></UserView>
+        <div
+          className="streamer__subscribers-users"
+          onScroll={
+            isLoading || subscribers.length % pageSize !== 0
+              ? () => {}
+              : handleScroll
+          }
+        >
+          {subscribers.map((t) => (
+            <UserView {...t}></UserView>
           ))}
         </div>
       </div>

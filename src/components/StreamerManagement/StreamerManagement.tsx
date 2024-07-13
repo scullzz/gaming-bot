@@ -15,7 +15,7 @@ export const StreamerManagement = () => {
       ) : (
         <>
           <button className="attention-btn">Подписаться</button>
-          <span className="details-text">
+          <span className="details-text details-text_add">
             Подпишитесь на стримера, чтобы участвовать в его розыгрышах и
             получать уведомления от него
           </span>

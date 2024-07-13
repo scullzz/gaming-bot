@@ -1,0 +1,19 @@
+.streamer {
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 15px;
+    }
+    .details-text {
+      margin-top: 12px;
+    }
+    .header-text {
+      margin-top: 15px;
+    }
+  }
+}

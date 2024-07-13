@@ -1,0 +1,14 @@
+.streamer {
+  &-edit__admins {
+    margin-top: 24px;
+    &-header {
+      text-transform: uppercase;
+    }
+    &-body {
+      margin-top: 7px;
+      padding-bottom: 10px;
+      background-color: var(--main-color);
+      border-radius: 14px;
+    }
+  }
+}

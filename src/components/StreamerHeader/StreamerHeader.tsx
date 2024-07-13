@@ -1,10 +1,14 @@
-import { Avatar } from "../Avatar/Avatar";
 import { SocialItem, SocialItemProps } from "../SocialItem/SocialItem";
 import "./StreamerHeader.scss";
 import youtube from "/youtube.png";
 import telegram from "/telegram.png";
 import exit from "/exit.png";
 import burger from "/burger.png";
+import { StreamerPreview } from "../StreamerPreview/StreamerPreview";
+import { useGetStreamerQuery } from "../../features/api";
+import { tg } from "../../App";
+import { Information } from "../Information/Information";
+import { handleError } from "../../functions/handleError";
 const SOCIALS: SocialItemProps[] = [
   {
     text: "youtube",
@@ -29,13 +33,27 @@ const SOCIALS: SocialItemProps[] = [
 ];
 
 export const StreamerHeader = () => {
+  const tgId = tg.initDataUnsafe.user?.id.toString() || "";
+  const {
+    data: streamer,
+    isLoading,
+    error: streamerError,
+  } = useGetStreamerQuery(tgId);
+  const streamerErrorText = handleError(streamerError);
+  if ((!streamer && isLoading) || streamerErrorText || !streamer)
+    return (
+      <Information
+        isLoading={isLoading}
+        error={streamerErrorText}
+      ></Information>
+    );
   return (
     <div className="streamer__header">
-      <div className="streamer__info">
-        <Avatar isLive></Avatar>
-        <span className="header-text">Mellstroy</span>
-        <span className="details-text">666 подписчиков</span>
-      </div>
+      <StreamerPreview
+        name={streamer?.name}
+        details={`${streamer?.amountOfSubscribers} подписчиков`}
+        isLive={streamer.isLive}
+      ></StreamerPreview>
       <div className="streamer__socials">
         {SOCIALS.map((item) => (
           <SocialItem {...item}></SocialItem>

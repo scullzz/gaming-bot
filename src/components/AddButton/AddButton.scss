@@ -1,0 +1,11 @@
+.add-button {
+  border: none;
+  display: flex;
+  padding: 10px 23px;
+  align-items: center;
+  background-color: unset;
+  &__text {
+    margin-left: 12px;
+    color: var(--btn-text-color);
+  }
+}

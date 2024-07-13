@@ -1,0 +1,15 @@
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  &-form {
+    background-color: var(--main-color);
+    width: 80%;
+    border-radius: 7px;
+    max-height: 80%;
+    padding: 10px;
+  }
+}

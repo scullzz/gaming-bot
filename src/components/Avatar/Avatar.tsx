@@ -1,7 +1,7 @@
 import cover from "/cover.png";
 import "./Avatar.scss";
 import { IsLive } from "../IsLive/IsLive";
-interface AvatarProps {
+export interface AvatarProps {
   url?: string;
   isLive?: boolean;
 }

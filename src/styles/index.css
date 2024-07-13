@@ -2,18 +2,26 @@
 @import url("./fonts/stylesheet.css");
 @import url("./btn.scss");
 @import url("./text.scss");
+@import url("./input.scss");
 * {
   font-family: "Roboto", sans-serif;
 }
 p {
   margin: 0;
 }
+#root,
+body {
+  height: 100vh;
+}
+
 html {
   --menu-border-color: #b2b2b233;
   --menu-color: #f2f2f2;
   --line-color: #c6c6c866;
   --main-color: white;
   --menu-text: #959595;
+  --input-color: #c8c8cd;
+
   --text-color: #000000;
   --btn-text-color: #007aff;
   --secondary-color: #eeeeef;
@@ -25,6 +33,7 @@ html {
   --live-color: #eb0400;
 }
 .section {
+  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;

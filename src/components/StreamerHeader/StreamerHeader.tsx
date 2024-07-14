@@ -1,36 +1,11 @@
-import { SocialItem, SocialItemProps } from "../SocialItem/SocialItem";
+import { SocialItem } from "../SocialItem/SocialItem";
 import "./StreamerHeader.scss";
-import youtube from "/youtube.png";
-import telegram from "/telegram.png";
-import exit from "/exit.png";
-import burger from "/burger.png";
 import { StreamerPreview } from "../StreamerPreview/StreamerPreview";
 import { useGetStreamerQuery } from "../../features/api";
 import { tg } from "../../App";
-import { Information } from "../Information/Information";
-import { handleError } from "../../functions/handleError";
-const SOCIALS: SocialItemProps[] = [
-  {
-    text: "youtube",
-    url: youtube,
-    onClick: () => {},
-  },
-  {
-    text: "telegram",
-    url: telegram,
-    onClick: () => {},
-  },
-  {
-    text: "отписаться",
-    url: exit,
-    onClick: () => {},
-  },
-  {
-    text: "ещё",
-    url: burger,
-    onClick: () => {},
-  },
-];
+import { Details } from "../Details/Details";
+import { useQueryError } from "../../functions/useQueryError";
+import { getSocials } from "../../functions/getSocials";
 
 export const StreamerHeader = () => {
   const tgId = tg.initDataUnsafe.user?.id.toString() || "";
@@ -39,24 +14,25 @@ export const StreamerHeader = () => {
     isLoading,
     error: streamerError,
   } = useGetStreamerQuery(tgId);
-  const streamerErrorText = handleError(streamerError);
-  if ((!streamer && isLoading) || streamerErrorText || !streamer)
-    return (
-      <Information
-        isLoading={isLoading}
-        error={streamerErrorText}
-      ></Information>
-    );
+  const { errorText, setErrorText } = useQueryError(streamerError);
+  const socials = getSocials(streamer?.socials || [], true);
   return (
     <div className="streamer__header">
+      {
+        <Details
+          isLoading={!streamer && isLoading}
+          error={errorText}
+          onClose={() => setErrorText(undefined)}
+        ></Details>
+      }
       <StreamerPreview
-        name={streamer?.name}
-        details={`${streamer?.amountOfSubscribers} подписчиков`}
-        isLive={streamer.isLive}
+        name={streamer?.name || "Стример"}
+        details={`${streamer?.amountOfSubscribers || 0} подписчиков`}
+        isLive={streamer?.isLive || false}
       ></StreamerPreview>
       <div className="streamer__socials">
-        {SOCIALS.map((item) => (
-          <SocialItem {...item}></SocialItem>
+        {socials.map((item) => (
+          <SocialItem {...item} key={item.url}></SocialItem>
         ))}
       </div>
     </div>

@@ -18,7 +18,6 @@ export const StreamerSubscribers = () => {
     { page, pageSize, id },
     {
       refetchOnMountOrArgChange: true,
-      pollingInterval: 5000,
       selectFromResult: ({ data, ...other }) => ({
         subscribers: subscribersAdapter
           .getSelectors()

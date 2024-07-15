@@ -1,5 +1,6 @@
 import { RaffleResultPreview } from "../RaffleResultPreview/RaffleResultPreview";
 import { RaffleResultWinnerGenerator } from "../RaffleResultWinnerGenerator/RaffleResultWinnerGenerator";
+import { RaffleResultWinners } from "../RaffleResultWinners/RaffleResultWinners";
 import "./RaffleResult.scss";
 
 export const RaffleResult = () => {
@@ -19,6 +20,13 @@ export const RaffleResult = () => {
         Сгенерировать новых победителей
       </div>
       <RaffleResultWinnerGenerator></RaffleResultWinnerGenerator>
+      <div className="raffle-result__subs-header">
+        <div className="raffle-result__header" style={{ marginBottom: 0 }}>
+          Победили:
+        </div>
+        <div className="raffle-result__time">12 мая 2024 в 23:59</div>
+      </div>
+      <RaffleResultWinners></RaffleResultWinners>
     </div>
   );
 };

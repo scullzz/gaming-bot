@@ -1,7 +1,19 @@
 .raffle-result {
+  &__subs-header {
+    margin-top: 30px;
+    margin-bottom: 13px;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__time {
+    font-size: 14px;
+    font-weight: 400;
+    color: #8a8a8e;
+  }
   display: flex;
   flex-direction: column;
   background-color: #efeff3;
+  padding-bottom: 30px;
   &__header {
     margin-bottom: 20px;
     font-size: 16px;

@@ -1,5 +1,4 @@
 import { useGetAdminsQuery } from "../../features/api";
-import { mapAdminsDtoToUserView } from "../../functions/mapAdminsDtoToUserView";
 import { useQueryError } from "../../functions/useQueryError";
 import { AddButton } from "../AddButton/AddButton";
 import { Details } from "../Details/Details";
@@ -15,7 +14,6 @@ const template = {
 export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
   const { data: admins, isLoading, error } = useGetAdminsQuery(id);
   const { errorText, setErrorText } = useQueryError(error);
-  console.log(error);
   return (
     <div className="streamer-edit__admins">
       {

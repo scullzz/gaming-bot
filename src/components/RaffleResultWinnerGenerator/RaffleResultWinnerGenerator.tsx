@@ -1,0 +1,109 @@
+import ReactSlider from "react-slider";
+import "./RaffleResultWinnerGenerator.scss";
+import { useState } from "react";
+import Switch from "react-switch";
+export const RaffleResultWinnerGenerator = () => {
+  const [sliderValue, setSliderValue] = useState(50);
+  const marks = [1, 10, 20, 30, 40, 50];
+  const [checked, setChecked] = useState(false);
+
+  const handleChange = (nextChecked: boolean) => {
+    setChecked(nextChecked);
+  };
+
+  return (
+    <div className="raffle-result__winner-generator">
+      <div className="raffle-result__winner-generator__header">
+        Победителей:{" "}
+        {
+          <span className="raffle-result__winner-generator__header_count">
+            4
+          </span>
+        }
+      </div>
+
+      <ReactSlider
+        className="horizontal-slider"
+        thumbClassName="example-thumb"
+        trackClassName="example-track"
+        value={sliderValue}
+        onChange={(value) => setSliderValue(value)}
+        renderThumb={(props) => <div {...props}></div>}
+        renderTrack={(props, state) => (
+          <div
+            {...props}
+            className={`example-track ${
+              state.index === 0 ? "filled-track" : ""
+            }`}
+          ></div>
+        )}
+        min={1}
+        max={50}
+        marks={marks} // Преобразуем массив в объект для корректного отображения меток
+        renderMark={(props) => {
+          const { key, style } = props;
+          const markPosition = Number(key);
+          const isBeforeThumb = markPosition <= sliderValue;
+
+          return (
+            <div
+              className="slider-mark"
+              style={{
+                ...style,
+                top: "-45px",
+                position: "absolute",
+                height: "auto",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <span className="mark-text">{markPosition}</span>
+              <span
+                style={{
+                  backgroundColor: isBeforeThumb ? "#007bff" : "#ddd",
+                  height: "12px",
+                  width: "3px",
+                }}
+                className="mark"
+              />
+            </div>
+          );
+        }}
+      />
+      <span className="details-text raffle-result__winner-generator__details">
+        Выберите, сколько победителей должно быть определено в розыгрыше.
+      </span>
+      <div className="line" style={{ marginTop: "20px" }}></div>
+      <div className="raffle-result__winner-generator-slider">
+        <span>Исключить повторения:</span>
+        <Switch
+          onChange={handleChange}
+          checked={checked}
+          onColor="#35C759"
+          offColor="#B0B0B0"
+          onHandleColor="var(--main-color)"
+          offHandleColor="var(--main-color)"
+          handleDiameter={15}
+          uncheckedIcon={false}
+          checkedIcon={false}
+          height={28}
+          width={56}
+          className="react-switch"
+          activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+          borderRadius={20}
+        />
+      </div>
+      <span
+        className="details-text raffle-result__winner-generator__details"
+        style={{ marginTop: "6px" }}
+      >
+        Включите, если хотите чтобы уже победившие в этом розыгрыше участники
+        больше не побеждали.
+      </span>
+      <button className="raffle-result__winner-generator__button">
+        Сгенерировать
+      </button>
+    </div>
+  );
+};

@@ -1,0 +1,12 @@
+.raffle-result {
+  display: flex;
+  flex-direction: column;
+  background-color: #efeff3;
+  &__header {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+  }
+}

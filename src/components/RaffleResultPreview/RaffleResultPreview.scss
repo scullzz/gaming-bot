@@ -1,0 +1,51 @@
+.raffle-result {
+  width: 100%;
+  border-radius: 14px;
+  padding: 19px;
+  &__details {
+    .header {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 20px;
+      text-align: left;
+    }
+    .details {
+      margin-top: 5px;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      text-align: left;
+    }
+    .label {
+      color: #8a8a8e;
+
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 18.75px;
+      text-align: left;
+    }
+    display: flex;
+    flex-direction: column;
+  }
+  &__preview {
+    padding: 20px;
+    border-radius: 14px;
+    background-color: var(--main-color);
+    display: flex;
+    flex-direction: column;
+    &-info {
+      display: flex;
+      column-gap: 31px;
+    }
+  }
+  &__button {
+    margin-top: 21px;
+    background-color: #e6f1ff;
+    padding: 10px;
+    color: var(--btn-text-color);
+    width: 100%;
+    border-radius: 6px;
+    font-weight: 700;
+  }
+}

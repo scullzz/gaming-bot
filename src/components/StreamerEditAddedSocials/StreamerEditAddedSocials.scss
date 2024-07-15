@@ -1,0 +1,10 @@
+.streamer-edit__added-socials {
+  padding-top: 30px;
+  &-body {
+    margin-top: 7px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+  }
+  padding-bottom: 30px;
+}

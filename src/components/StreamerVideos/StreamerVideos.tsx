@@ -1,11 +1,11 @@
-import { tg } from "../../App";
 import { useGetStreamerQuery } from "../../features/api";
 import { useQueryError } from "../../functions/useQueryError";
 import { Details } from "../Details/Details";
+import { IStreamerDetailsViewer } from "../StreamerPage/StreamerPage";
 import { StreamerVideo } from "../StreamerVideo/StreamerVideo";
 import "./StreamerVideo.scss";
-export const StreamerVideos = () => {
-  const tgId = tg.initDataUnsafe.user?.id.toString() || "";
+export const StreamerVideos = ({ id }: IStreamerDetailsViewer) => {
+  const tgId = id;
   const {
     data: streamer,
     isLoading,

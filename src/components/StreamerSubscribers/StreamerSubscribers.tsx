@@ -1,15 +1,16 @@
-import { tg } from "../../App";
 import { subscribersAdapter, useGetSubscribersQuery } from "../../features/api";
+import { mapSubscriberToUserView } from "../../functions/mapSubscriberToUserView";
+import { useCheckStreamerYourself } from "../../functions/useCheckStreamerYourself";
 import { useQueryError } from "../../functions/useQueryError";
 import { useScrollPagination } from "../../functions/useScrollPagination";
 import { Details } from "../Details/Details";
 import { NotAvailable } from "../NotAvailable.tsx/NotAvailable";
+import { IStreamerDetailsViewer } from "../StreamerPage/StreamerPage";
 import { UserView } from "../UserView/UserView";
 import "./StreamerSubscribers.scss";
-export const StreamerSubscribers = () => {
+export const StreamerSubscribers = ({ id }: IStreamerDetailsViewer) => {
   const { page, pageSize, handleScroll } = useScrollPagination();
-  const id = tg.initDataUnsafe.user?.id.toString() || "";
-
+  const isStreamerYourself = useCheckStreamerYourself(id);
   const {
     subscribers,
     isLoading,
@@ -38,12 +39,15 @@ export const StreamerSubscribers = () => {
       }
       <span className="streamer__subscribers-header">Подписчики</span>
       <div className="streamer__subscribers-body">
-        <button
-          className="attention-opacity-btn"
-          style={{ width: "100%", marginBottom: "7px" }}
-        >
-          Скачать
-        </button>
+        {isStreamerYourself && (
+          <button
+            className="attention-opacity-btn"
+            style={{ width: "100%", marginBottom: "7px" }}
+          >
+            Скачать
+          </button>
+        )}
+
         <div
           className="streamer__subscribers-users"
           onScroll={
@@ -54,7 +58,7 @@ export const StreamerSubscribers = () => {
         >
           {<NotAvailable available={subscribers.length !== 0}></NotAvailable>}
           {subscribers.map((t) => (
-            <UserView {...t}></UserView>
+            <UserView {...mapSubscriberToUserView(t)}></UserView>
           ))}
         </div>
       </div>

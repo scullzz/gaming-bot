@@ -5,8 +5,9 @@ import { WithMenu } from "../withMenu/withMenu";
 import ".//Streamers.scss";
 
 const template: IUserViewProps = {
+  id: 5,
   name: "Mellstroy",
-  details: "666 ПОДПИСЧИКОВ",
+  detailsText: "666 ПОДПИСЧИКОВ",
   isStreamer: true,
 };
 

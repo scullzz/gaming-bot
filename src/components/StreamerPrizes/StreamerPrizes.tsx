@@ -3,14 +3,13 @@ import { rafflesAdapter, useGetRafflesQuery } from "../../features/api";
 import { useScrollPagination } from "../../functions/useScrollPagination";
 import { Prize } from "../Prize/Prize";
 import "./StreamerPrizes.scss";
-import { tg } from "../../App";
 import { useQueryError } from "../../functions/useQueryError";
 import { NotAvailable } from "../NotAvailable.tsx/NotAvailable";
 import { Details } from "../Details/Details";
+import { IStreamerDetailsViewer } from "../StreamerPage/StreamerPage";
 
-export const StreamerPrizes = () => {
+export const StreamerPrizes = ({ id }: IStreamerDetailsViewer) => {
   const { page, pageSize, handleScroll } = useScrollPagination();
-  const id = tg.initDataUnsafe.user?.id.toString() || "";
   const [type, setType] = useState("active");
   const { raffles, isLoading, error } = useGetRafflesQuery(
     { page, pageSize, type, id },

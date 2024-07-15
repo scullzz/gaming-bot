@@ -1,4 +1,6 @@
 .streamer-socials-adding {
+  display: flex;
+  flex-direction: column;
   margin-top: 20px;
   &__form {
     &-btn {

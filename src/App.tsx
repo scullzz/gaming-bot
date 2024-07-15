@@ -19,11 +19,11 @@ export const App = () => {
             index
           ></Route>
           <Route
-            path="/streamer"
+            path="/streamer/:id"
             element={<StreamerPage></StreamerPage>}
           ></Route>
           <Route
-            path="/streamer-edit"
+            path="/streamer-edit/:id"
             element={<StreamerEditPage></StreamerEditPage>}
           ></Route>
         </Routes>

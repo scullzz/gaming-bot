@@ -1,4 +1,5 @@
 .streamer-view {
+  overflow-x: hidden;
   margin-top: 8px;
   .details-text {
     margin-top: 7px;
@@ -27,6 +28,7 @@
     border-radius: 100%;
   }
   &__info {
+    overflow-x: hidden;
     width: 100%;
     display: flex;
     flex-direction: column;

@@ -4,7 +4,7 @@ export const StreamerSocialsAdding = () => {
     <div className="streamer-socials-adding">
       <span
         className="details-text details-text_add"
-        style={{ textTransform: "uppercase" }}
+        style={{ textTransform: "uppercase", marginInline: "20px" }}
       >
         Ссылки на соцсети
       </span>

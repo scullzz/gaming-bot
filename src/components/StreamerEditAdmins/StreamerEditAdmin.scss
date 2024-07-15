@@ -1,10 +1,12 @@
 .streamer {
   &-edit__admins {
-    margin-top: 24px;
+    margin-top: 20px;
     &-header {
       text-transform: uppercase;
     }
     &-body {
+      overflow-x: hidden;
+      width: 100%;
       margin-top: 7px;
       padding-bottom: 10px;
       background-color: var(--main-color);

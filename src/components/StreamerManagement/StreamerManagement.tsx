@@ -1,13 +1,17 @@
 import "./StreamerManagement.scss";
-export const StreamerManagement = () => {
-  const isStreamer = false;
+
+import { IStreamerDetailsViewer } from "../StreamerPage/StreamerPage";
+import { useCheckStreamerYourself } from "../../functions/useCheckStreamerYourself";
+export const StreamerManagement = ({ id }: IStreamerDetailsViewer) => {
+  const isStreamerYourself = useCheckStreamerYourself(id);
+
   return (
     <div
       className={`streamer__management ${
-        !isStreamer && "streamer__management-user"
+        !isStreamerYourself && "streamer__management-user"
       }`}
     >
-      {isStreamer ? (
+      {isStreamerYourself ? (
         <>
           <button className="attention-btn">Создать розыгрыш</button>
           <button className="attention-btn">Создать пост</button>

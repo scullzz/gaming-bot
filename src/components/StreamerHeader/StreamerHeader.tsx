@@ -6,8 +6,9 @@ import { tg } from "../../App";
 import { Details } from "../Details/Details";
 import { useQueryError } from "../../functions/useQueryError";
 import { getSocials } from "../../functions/getSocials";
+import { IStreamerDetailsViewer } from "../StreamerPage/StreamerPage";
 
-export const StreamerHeader = () => {
+export const StreamerHeader = ({ id }: IStreamerDetailsViewer) => {
   const tgId = tg.initDataUnsafe.user?.id.toString() || "";
   const {
     data: streamer,

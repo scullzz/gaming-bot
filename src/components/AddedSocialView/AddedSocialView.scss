@@ -1,0 +1,29 @@
+.added-social {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 14px;
+  position: relative;
+  align-items: center;
+  background-color: var(--main-color);
+  padding-inline: 44px 24px;
+  padding-top: 9px;
+  padding-bottom: 13px;
+  &__info {
+    row-gap: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px 0px 0px 14px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #8a8a8e;
+    width: 24px;
+    height: 100%;
+    padding: 20px 8px;
+  }
+}

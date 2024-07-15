@@ -6,6 +6,7 @@ import { GetSubscriberDto } from "../types/getSubscriberDto";
 import { GetSubscribersRequest } from "../types/getSubscribersRequest";
 import { GetRaffleDto } from "../types/getRaffleDto";
 import { GetRafflesRequest } from "../types/getRafflesRequest";
+import { GetAdminDto } from "../types/getAdminDto";
 
 export const subscribersAdapter = createEntityAdapter<GetSubscriberDto>();
 
@@ -79,6 +80,9 @@ export const api = createApi({
         );
       },
     }),
+    getAdmins: builder.query<GetAdminDto[], string>({
+      query: (req) => `streamer/${req}/admins`,
+    }),
   }),
 });
 
@@ -88,4 +92,5 @@ export const {
   useGetStreamerQuery,
   useGetSubscribersQuery,
   useGetRafflesQuery,
+  useGetAdminsQuery,
 } = api;

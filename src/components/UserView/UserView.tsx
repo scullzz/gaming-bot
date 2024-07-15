@@ -1,18 +1,20 @@
 import { HTMLAttributes } from "react";
 import "./UserView.scss";
 import cover from "/cover.png";
-import { GetSubscriberDto } from "../../types/getSubscriberDto";
+
 export interface IUserViewProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "id">,
-    GetSubscriberDto {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "id"> {
   isStreamer?: boolean;
   withLine?: boolean;
+  name: string;
+  id: string | number;
+  detailsText?: string;
 }
 export const UserView = ({
   isStreamer,
-  firstName,
+  name,
   id,
-  subscribeTime,
+  detailsText,
   withLine = true,
   className,
   ...rest
@@ -30,9 +32,9 @@ export const UserView = ({
         <div className="streamer-view__info-header">
           <div className="streamer-view__info-header-description">
             <div className="streamer-view__name">
-              <span className="label-text">{firstName}</span>
+              <span className="label-text">{name}</span>
             </div>
-            <span className="details-text">{subscribeTime}</span>
+            {detailsText && <span className="details-text">{detailsText}</span>}
           </div>
           {isStreamer && <div className="btn">Открыть</div>}
         </div>

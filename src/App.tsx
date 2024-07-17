@@ -7,6 +7,8 @@ import { Provider } from "react-redux";
 import { store } from "./features/store";
 import { AuthChecker } from "./components/AuthChecker/AuthChecker";
 import { RaffleResult } from "./components/RaffleResult/RaffleResult";
+import { CreateRaffle } from "./components/CreateRaffle/CreateRaffle";
+import { RafflePreview } from "./components/RafflePreview/RafflePreview";
 export const tg = Telegram.WebApp;
 export const App = () => {
   return (
@@ -28,6 +30,14 @@ export const App = () => {
             element={<StreamerEditPage></StreamerEditPage>}
           ></Route>
           <Route path="/raffle" element={<RaffleResult></RaffleResult>}></Route>
+          <Route
+            path="/create-raffle"
+            element={<CreateRaffle></CreateRaffle>}
+          ></Route>
+          <Route
+            path="/raffle-preview"
+            element={<RafflePreview></RafflePreview>}
+          ></Route>
         </Routes>
       </Router>
     </Provider>

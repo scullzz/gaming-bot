@@ -1,12 +1,17 @@
 import { RaffleResultPreview } from "../RaffleResultPreview/RaffleResultPreview";
 import { RaffleResultWinnerGenerator } from "../RaffleResultWinnerGenerator/RaffleResultWinnerGenerator";
 import { RaffleResultWinners } from "../RaffleResultWinners/RaffleResultWinners";
+import { SectionHeader } from "../SectionHeader/SectionHeader";
 import "./RaffleResult.scss";
 
 export const RaffleResult = () => {
   return (
     <div className="section raffle-result">
-      <div className="raffle-result__header">Результаты розыгрыша</div>
+      <SectionHeader
+        center="Результаты розыгрыша"
+        left="Закрыть"
+      ></SectionHeader>
+      <div className="mt" style={{ minHeight: "21px" }}></div>
       <RaffleResultPreview></RaffleResultPreview>
       <div
         className="raffle-result__header"

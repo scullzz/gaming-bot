@@ -1,0 +1,15 @@
+.create-raffle {
+  &__winner-count {
+    .wrapper {
+      margin-top: 10px;
+      background-color: var(--main-color);
+      padding: 10px 20px;
+      border-radius: 14px;
+    }
+    margin-top: 25px;
+    &__header {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

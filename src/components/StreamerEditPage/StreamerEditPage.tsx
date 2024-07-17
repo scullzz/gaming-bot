@@ -5,6 +5,7 @@ import { StreamerSocialsAdding } from "../StreamerSocialsAdding/StreamerSocialsA
 import "./StreamerEditPage.scss";
 import { StreamerEditAddedSocials } from "../StreamerEditAddedSocials/StreamerEditAddedSocials";
 import { ParticipiantErrorModal } from "../ParticipiantModalError/ParticipiantErrorModal";
+import { SectionHeader } from "../SectionHeader/SectionHeader";
 
 export const StreamerEditPage = () => {
   const { id } = useParams();
@@ -19,6 +20,12 @@ export const StreamerEditPage = () => {
         onClose={() => {}}
         onBlank={() => {}}
       ></ParticipiantErrorModal> */}
+      <SectionHeader
+        center="Профиль"
+        right="Готово"
+        left="Отмена"
+      ></SectionHeader>
+      <div className="mt" style={{ minHeight: "31px" }}></div>
       <StreamerPreview name="Mellstroy" isLive={false}></StreamerPreview>
       <StreamerEditAdmins id={id}></StreamerEditAdmins>
       <StreamerSocialsAdding></StreamerSocialsAdding>

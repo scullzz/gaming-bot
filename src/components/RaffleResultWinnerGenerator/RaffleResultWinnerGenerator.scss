@@ -33,52 +33,5 @@
     background-color: var(--main-color);
     padding: 14px 18px;
     border-radius: 14px;
-    .horizontal-slider {
-      width: 100%;
-      height: 4px;
-      margin: 20px 0;
-      margin-top: 56px;
-      position: relative;
-    }
-    .mark {
-      margin-top: 21px;
-      &-text {
-        font-size: 13px;
-        font-weight: 400;
-        color: #8a8a8e;
-        text-align: center;
-      }
-    }
-
-    .example-thumb {
-      height: 26px; /* Высота кружка ползунка */
-      width: 26px; /* Ширина кружка ползунка */
-      background-color: var(--main-color); /* Цвет фона кружка */
-      cursor: grab;
-      border-radius: 50%; /* Круглый кружок */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      position: absolute;
-      top: 50%; /* Центрирование по вертикали */
-      transform: translate(-50%, -50%); /* Центрирование по горизонтали */
-    }
-
-    .example-track {
-      top: 50%; /* Центрирование по вертикали */
-      transform: translateY(-50%); /* Центрирование по вертикали */
-      height: 4px; /* Высота дорожки */
-      background: #e9e9ea;
-      border-radius: 999px;
-    }
-
-    .filled-track {
-      background: #007aff;
-    }
-    .slider-mark {
-      display: flex;
-      flex-direction: column;
-    }
   }
 }

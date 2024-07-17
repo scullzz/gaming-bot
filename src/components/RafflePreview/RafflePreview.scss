@@ -1,0 +1,12 @@
+.raffle-preview {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: #efeff3;
+  &__header {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    margin-inline: auto;
+    margin-bottom: 10px;
+  }
+}

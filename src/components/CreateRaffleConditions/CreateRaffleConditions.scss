@@ -1,0 +1,47 @@
+.create-raffle {
+  &__conditions {
+    background-color: var(--main-color);
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    padding-left: 20px;
+    margin-top: 10px;
+    border-radius: 14px;
+    li {
+      .line {
+        margin-top: 10px;
+        width: calc(100% - 45px);
+        margin-left: 45px;
+        height: 1px;
+      }
+      padding: 10px 0px;
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      .main {
+        .text {
+          font-size: 16px;
+          font-weight: 400;
+        }
+        display: flex;
+        align-items: center;
+        column-gap: 20px;
+        .checker {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 25px;
+          height: 25px;
+          border-radius: 100%;
+          border: 2px solid #c7c7cb;
+          &_checked {
+            border: none;
+            background-color: #007aff;
+          }
+        }
+      }
+    }
+  }
+}

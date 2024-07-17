@@ -1,0 +1,27 @@
+.subscriber-profile {
+  &__raffles-stats {
+    padding-inline: 20px 15px;
+    height: auto;
+    padding-top: 8px;
+    row-gap: 15px;
+    display: flex;
+    flex-direction: column;
+
+    .header,
+    .footer-stats {
+      column-gap: 5px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 9fr 1fr 2fr;
+      grid-auto-rows: auto;
+      .amount {
+        color: var(--text-color);
+      }
+      span {
+        font-size: 12px;
+        font-weight: 400;
+        color: #6d6d71;
+      }
+    }
+  }
+}

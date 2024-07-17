@@ -1,0 +1,52 @@
+.subscriber-profile-raffles-participant {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  background-color: var(--main-color);
+  margin: 0;
+  margin-top: 10px;
+  border-radius: 14px;
+  flex-direction: column;
+  padding-left: 20px;
+  li {
+    padding: 12px;
+    padding-bottom: 0;
+    padding-left: 0;
+    .line {
+      margin-top: 10px;
+      height: 1px;
+      width: 100%;
+    }
+    display: flex;
+    flex-direction: column;
+    .header {
+      padding-right: 15px;
+      display: flex;
+      justify-content: space-between;
+      .label {
+        font-size: 16px;
+        font-weight: 400;
+      }
+      .extensions {
+        .date {
+          font-size: 14px;
+          font-weight: 400;
+          color: #6d6d71;
+        }
+        .status {
+          padding: 2px;
+          background-color: #eb0400;
+          color: var(--main-color);
+          font-family: Roboto;
+          font-size: 12px;
+          border-radius: 4px;
+          font-weight: 700;
+          padding-inline: 5px;
+        }
+        display: flex;
+        column-gap: 10px;
+        align-items: center;
+      }
+    }
+  }
+}

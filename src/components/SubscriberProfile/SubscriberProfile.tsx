@@ -1,6 +1,8 @@
 import { SectionHeader } from "../SectionHeader/SectionHeader";
 import { StreamerPreview } from "../StreamerPreview/StreamerPreview";
 import { SubscriberProfileInfo } from "../SubscriberProfileInfo/SubscriberProfileInfo";
+import { SubscriberRafflesParticipant } from "../SubscriberRafflesParticipant/SubscriberRafflesParticipant";
+import { SubscriberRafflesStats } from "../SubscriberRafflesStats/SubscriberRafflesStats";
 import "./SubscriberProfile.scss";
 interface UserInfoProps {
   TelegramId: string;
@@ -49,6 +51,11 @@ export const SubscriberProfile = () => {
       <SubscriberProfileInfo
         obj={{ TetherTRC20: [false, "423432432"] }}
       ></SubscriberProfileInfo>
+      <div className="subscriber-profile__header" style={{ marginTop: "20px" }}>
+        Участник розыгрышей
+      </div>
+      <SubscriberRafflesParticipant></SubscriberRafflesParticipant>
+      <SubscriberRafflesStats></SubscriberRafflesStats>
     </div>
   );
 };

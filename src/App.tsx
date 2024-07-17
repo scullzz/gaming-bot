@@ -10,6 +10,8 @@ import { RaffleResult } from "./components/RaffleResult/RaffleResult";
 import { CreateRaffle } from "./components/CreateRaffle/CreateRaffle";
 import { RafflePreview } from "./components/RafflePreview/RafflePreview";
 import { CreatePost } from "./components/CreatePost/CreatePost";
+import { UserProfile } from "./components/UserProfile/UserProfile";
+import { SubscriberProfile } from "./components/SubscriberProfile/SubscriberProfile";
 export const tg = Telegram.WebApp;
 export const App = () => {
   return (
@@ -42,6 +44,14 @@ export const App = () => {
           <Route
             path="/create-post"
             element={<CreatePost></CreatePost>}
+          ></Route>
+          <Route
+            path="user-profile"
+            element={<UserProfile></UserProfile>}
+          ></Route>
+          <Route
+            path="subscriber-profile"
+            element={<SubscriberProfile></SubscriberProfile>}
           ></Route>
         </Routes>
       </Router>

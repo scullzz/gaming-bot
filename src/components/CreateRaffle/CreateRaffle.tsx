@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { CreateRaffleEndPicker } from "../CreateRaffleEndPicker/CreateRaffleEndPicker";
 import { Checker } from "../Checker/Checker";
 import { SectionHeader } from "../SectionHeader/SectionHeader";
-import { useState } from "react";
+
 import { useCreateRaffleMutation } from "../../features/api";
 import { handleError } from "../../functions/handleError";
 import { combineDateTimeToUTC } from "../../functions/combineDateAndTimeInUTC";
@@ -15,6 +15,9 @@ import { getNameId } from "../../functions/getValueFromJwt";
 import { useNavigate } from "react-router-dom";
 import { Details } from "../Details/Details";
 import { GetRaffleDto } from "../../types/getRaffleDto";
+import { useMemoryState } from "../../functions/useMemoryState";
+import { useEffect } from "react";
+import { distinct } from "../../functions/distinct";
 
 export interface IParameterPickerElementProps {
   value: any;
@@ -22,18 +25,35 @@ export interface IParameterPickerElementProps {
 }
 
 export const CreateRaffle = () => {
-  const [amountOfWinners, setAmountOfWinners] = useState(4);
-  const [showWinners, setShowWinners] = useState(false);
   const id = getNameId();
-  const [raffleConditions, setRaffleConditions] = useState<string[]>([]);
-  const [shouldNotifyUsers, setShouldNotifyUsers] = useState(false);
 
-  const [description, setDescription] = useState<string | null>(null);
+  const [amountOfWinners, setAmountOfWinners] = useMemoryState(
+    4,
+    "amountOfWinners"
+  );
+  const [showWinners, setShowWinners] = useMemoryState(false, "showWinners");
 
-  const [time, setTime] = useState("12:00");
-  const [date, setDate] = useState(new Date());
+  const [raffleConditions, setRaffleConditions] = useMemoryState<string[]>(
+    [],
+    "raffleConditions"
+  );
+  const [shouldNotifyUsers, setShouldNotifyUsers] = useMemoryState(
+    false,
+    "shouldNotifyUsers"
+  );
+
+  const [description, setDescription] = useMemoryState<string | null>(
+    null,
+    "description"
+  );
+
+  const [time, setTime] = useMemoryState("12:00", "time");
+  const [date, setDate] = useMemoryState(new Date(), "date");
 
   const navigate = useNavigate();
+  useEffect(() => {
+    setRaffleConditions((prev) => distinct(prev));
+  }, [raffleConditions]);
   const [
     createRaffle,
     { isLoading: raffleCreating, error: raffleError, reset: resetRaffleError },

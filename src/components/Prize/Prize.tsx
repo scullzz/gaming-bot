@@ -7,6 +7,7 @@ import { formatRaffleDate } from "../../functions/formatRaffleDate";
 import { formatRaffleTimeRemaining } from "../../functions/formatRaffleTimeRemaining";
 import { GetRaffleConditionDto } from "../../types/getRaffleConditionDto";
 import correct from "/corrrect-green.png";
+import { NotAvailable } from "../NotAvailable.tsx/NotAvailable";
 
 export interface IPrizeProps extends GetRaffleDto {
   onClick: () => void;
@@ -24,20 +25,37 @@ export const Prize = ({
   const available = new Date(endTime) > new Date();
   return (
     <div className="prize">
-      <div className="prize__partipiciant-count">
-        Участников: {amountOfParticipants}
-      </div>
-      <div className="avatar__is-live prize__available-time">
-        {formatRaffleTimeRemaining(endTime)}
-      </div>
+      {isParticipant && (
+        <div className="prize__partipiciant-count">
+          Участников: {amountOfParticipants}
+        </div>
+      )}
+      {available && (
+        <div className="avatar__is-live prize__available-time">
+          {formatRaffleTimeRemaining(endTime)}
+        </div>
+      )}
+
       <div className="prize__wrapper">
         <div className="prize__winner-count">X{amountOfWinners}</div>
         <img src={prize} alt="Изображение приза" className="prize__img" />
       </div>
       <span className="header-text">Розыгрыш</span>
-      <span className="details-text">{description}</span>
+      <span className="details-text">
+        {
+          <NotAvailable
+            available={description !== ""}
+            text="Нет описания"
+          ></NotAvailable>
+        }
+        {description}
+      </span>
       <span className="header-text">Для участия:</span>
       <ul className="prize__conditions">
+        <NotAvailable
+          available={raffleConditions.length !== 0}
+          text="Нет специальных условий"
+        ></NotAvailable>
         {raffleConditions.map((t, i) => (
           <PrizeCondition {...t} key={i}></PrizeCondition>
         ))}

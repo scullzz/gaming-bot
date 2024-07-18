@@ -45,6 +45,18 @@ export const UserProfile = () => {
         соответствующем розыгрыше. Эта информация будет доступна стримеру, на
         которого вы подписаны.
       </span>
+      <div className="user-profile__header-label" style={{ marginTop: "24px" }}>
+        Контактные данные
+      </div>
+      <form action="" className="user-profile__form">
+        <div className="form__cell">
+          <div className="info">
+            <input type="text" placeholder="Email" />
+            <img src={question} alt="" className="icon" />
+          </div>
+          <div className="line"></div>
+        </div>
+      </form>
     </div>
   );
 };

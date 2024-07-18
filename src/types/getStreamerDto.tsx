@@ -6,5 +6,6 @@ export interface GetStreamerDto {
   name: string;
   tgId: string;
   isLive: boolean;
+  isSubscribed: boolean;
   socials: Social[];
 }

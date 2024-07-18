@@ -12,9 +12,12 @@ export const subscribersAdapter = createEntityAdapter<GetSubscriberDto>();
 
 export const rafflesAdapter = createEntityAdapter<GetRaffleDto>();
 
+export const streamersAdapter = createEntityAdapter<GetStreamerDto>();
+
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: "/api/" }),
+  tagTypes: ["streamers"],
   endpoints: (builder) => ({
     checkAuth: builder.query<void, void>({
       query: () => `auth`,
@@ -22,8 +25,42 @@ export const api = createApi({
     getAuth: builder.mutation<void, TelegramAuthDateDto>({
       query: (req) => ({ url: "auth", method: "POST", body: req }),
     }),
-    getStreamer: builder.query<GetStreamerDto, string>({
-      query: (req) => `streamer/${req}`,
+    getStreamers: builder.query<
+      EntityState<GetStreamerDto, number>,
+      { page: number; pageSize: number; userId: string }
+    >({
+      query: (req) =>
+        `streamer?pageSize=${req.pageSize}&page=${req.page}&userId=${req.userId}`,
+      transformResponse: (res: GetStreamerDto[]) => {
+        return streamersAdapter.addMany(
+          streamersAdapter.getInitialState(),
+          res
+        );
+      },
+      providesTags: [{ type: "streamers", id: "LIST" } as const],
+      keepUnusedDataFor: 1,
+      forceRefetch: ({ currentArg, previousArg }) => {
+        return (
+          currentArg?.page != previousArg?.page ||
+          currentArg?.pageSize != previousArg?.pageSize ||
+          currentArg?.userId != previousArg?.userId
+        );
+      },
+      serializeQueryArgs: ({ queryArgs, endpointName }) => {
+        return `${endpointName}-${queryArgs.pageSize}-${queryArgs.userId}`;
+      },
+      merge: (current, incoming) => {
+        streamersAdapter.addMany(
+          current,
+          streamersAdapter.getSelectors().selectAll(incoming)
+        );
+      },
+    }),
+    getStreamer: builder.query<
+      GetStreamerDto,
+      { tgId: string; userId: string }
+    >({
+      query: (req) => `streamer/${req.tgId}?userId=${req.userId}`,
     }),
     getSubscribers: builder.query<
       EntityState<GetSubscriberDto, number>,
@@ -54,12 +91,40 @@ export const api = createApi({
         );
       },
     }),
+    getAvailableSocials: builder.query<string[], void>({
+      query: () => "streamer/socials",
+    }),
+    subscribeToStreamer: builder.mutation<
+      void,
+      { userId: string; streamerId: string }
+    >({
+      query: (req) => ({
+        url: `streamer/${req.streamerId}/subscribers/${req.userId}`,
+        method: "PUT",
+      }),
+      invalidatesTags: (res, error, { streamerId }) => [
+        { type: "streamers", id: "LIST" },
+        { type: "streamers", id: streamerId },
+      ],
+    }),
+    unSubFromStreamer: builder.mutation<
+      void,
+      { userId: string; streamerId: string }
+    >({
+      query: (req) => ({
+        url: `streamer/${req.streamerId}/subscribers/${req.userId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: (res, error, { streamerId }) => [
+        { type: "streamers", id: streamerId },
+      ],
+    }),
     getRaffles: builder.query<
       EntityState<GetRaffleDto, number>,
       GetRafflesRequest
     >({
       query: (req) =>
-        `streamer/${req.id}/raffles?page=${req.page}&pageSize=${req.pageSize}&type=${req.type}`,
+        `streamer/${req.id}/raffles?page=${req.page}&pageSize=${req.pageSize}&type=${req.type}&userId=${req.userId}`,
       transformResponse: (res: GetRaffleDto[]) => {
         return rafflesAdapter.addMany(rafflesAdapter.getInitialState(), res);
       },
@@ -93,4 +158,8 @@ export const {
   useGetSubscribersQuery,
   useGetRafflesQuery,
   useGetAdminsQuery,
+  useGetStreamersQuery,
+  useSubscribeToStreamerMutation,
+  useGetAvailableSocialsQuery,
+  useUnSubFromStreamerMutation,
 } = api;

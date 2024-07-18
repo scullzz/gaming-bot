@@ -15,7 +15,7 @@ export const StreamerPreview = ({
   return (
     <div className="streamer__info">
       <Avatar {...rest} isLive={isLive}></Avatar>
-      <span className="header-text">{name}y</span>
+      <span className="header-text">{name}</span>
       {details && <span className="details-text">{details}</span>}
     </div>
   );

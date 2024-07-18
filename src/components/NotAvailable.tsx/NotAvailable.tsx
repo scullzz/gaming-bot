@@ -1,9 +1,15 @@
-export const NotAvailable = ({ available }: { available: boolean }) => {
+export const NotAvailable = ({
+  available,
+  text,
+}: {
+  available: boolean;
+  text: string;
+}) => {
   return (
     <>
-      {available && (
+      {!available && (
         <span className="details-text" style={{ textAlign: "center" }}>
-          Пока нет доступных розыгрышей
+          {text}
         </span>
       )}
     </>

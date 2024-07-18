@@ -1,4 +1,9 @@
 .prize {
+  &__condition {
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+  }
   margin-top: 10px;
   &__available-time {
     min-height: 18px;

@@ -1,6 +1,7 @@
 import { GetSubscriberDto } from "../types/getSubscriberDto";
 import { IUserViewProps } from "../components/UserView/UserView";
 import { getFullName } from "./getNameFromTgName";
+import { formatRaffleDate } from "./formatRaffleDate";
 
 export const mapSubscriberToUserView = (
   sub: GetSubscriberDto
@@ -8,7 +9,7 @@ export const mapSubscriberToUserView = (
   return {
     name: getFullName(sub.firstName, sub.lastName),
     id: sub.tgId,
-    detailsText: sub.subscribeTime,
+    detailsText: `Подписан с ${formatRaffleDate(sub.subscribeTime)}`,
     withLine: false,
   };
 };

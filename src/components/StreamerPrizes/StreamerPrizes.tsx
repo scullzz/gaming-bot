@@ -7,12 +7,14 @@ import { useQueryError } from "../../functions/useQueryError";
 import { NotAvailable } from "../NotAvailable.tsx/NotAvailable";
 import { Details } from "../Details/Details";
 import { IStreamerDetailsViewer } from "../StreamerPage/StreamerPage";
+import { getNameId } from "../../functions/getValueFromJwt";
 
 export const StreamerPrizes = ({ id }: IStreamerDetailsViewer) => {
   const { page, pageSize, handleScroll } = useScrollPagination();
+  const userId = getNameId();
   const [type, setType] = useState("active");
   const { raffles, isLoading, error } = useGetRafflesQuery(
-    { page, pageSize, type, id },
+    { page, pageSize, type, id, userId },
     {
       refetchOnMountOrArgChange: true,
       pollingInterval: 5000,
@@ -54,7 +56,14 @@ export const StreamerPrizes = ({ id }: IStreamerDetailsViewer) => {
           isLoading || raffles.length % pageSize !== 0 ? () => {} : handleScroll
         }
       >
-        {<NotAvailable available={raffles.length !== 0}></NotAvailable>}
+        {
+          <div style={{ marginLeft: "15px" }}>
+            <NotAvailable
+              available={raffles.length !== 0}
+              text="Нет доступных розыгрышей"
+            ></NotAvailable>
+          </div>
+        }
         {raffles.map((t) => (
           <Prize {...t}></Prize>
         ))}

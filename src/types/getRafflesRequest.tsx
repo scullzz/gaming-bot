@@ -3,4 +3,5 @@ export interface GetRafflesRequest {
   pageSize: number;
   type: string;
   id: string;
+  userId: string;
 }

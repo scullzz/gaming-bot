@@ -6,21 +6,32 @@ export interface IUserViewProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "id"> {
   isStreamer?: boolean;
   withLine?: boolean;
+  isSubscribed?: boolean;
   name: string;
+  onButtonClick?: () => void;
   id: string | number;
   detailsText?: string;
+  onClick?: () => void;
 }
 export const UserView = ({
   isStreamer,
   name,
   id,
+  onButtonClick,
   detailsText,
+  onClick,
+  isSubscribed,
   withLine = true,
   className,
   ...rest
 }: IUserViewProps) => {
   return (
-    <div className={`streamer-view ${className || ""}`} {...rest} key={id}>
+    <div
+      className={`streamer-view ${className || ""}`}
+      {...rest}
+      key={id}
+      onClick={onClick}
+    >
       <img
         src={cover}
         alt="Изображение"
@@ -36,7 +47,11 @@ export const UserView = ({
             </div>
             {detailsText && <span className="details-text">{detailsText}</span>}
           </div>
-          {isStreamer && <div className="btn">Открыть</div>}
+          {isStreamer && (
+            <div className="btn" onClick={onButtonClick}>
+              {isSubscribed ? "Открыть" : "Подписаться"}
+            </div>
+          )}
         </div>
         {withLine && (
           <div className={`line ${!isStreamer && "line-user"}`}></div>

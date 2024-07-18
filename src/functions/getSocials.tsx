@@ -3,7 +3,6 @@ import { Social } from "../types/social";
 import exit from "/exit.png";
 import burger from "/burger.png";
 import { tg } from "../App";
-export const resolvedSocials = ["YouTube", "Twitch", "Instagram", "TikTok"];
 const removeSocialsDuplicates = (items: Social[]): Social[] => {
   const seen = new Set<string>();
   return items.filter((item) => {
@@ -17,7 +16,8 @@ const removeSocialsDuplicates = (items: Social[]): Social[] => {
 };
 export const getSocials = (
   socials: Social[],
-  showUnsubscribe: boolean
+  onExtend: () => void,
+  unsunscribe?: () => void
 ): SocialItemProps[] => {
   socials = removeSocialsDuplicates(socials);
   const preview = socials.slice(0, 2);
@@ -27,7 +27,7 @@ export const getSocials = (
     ...preview.map((t) => ({
       text: t.name,
       url: `/${t.name.toLowerCase()}.png`,
-      onClick: () => tg.openLink(t.link),
+      onClick: () => tg.openLink(`https://${t.link}`),
     })),
   ];
 
@@ -39,19 +39,19 @@ export const getSocials = (
     });
   }
 
-  if (showUnsubscribe) {
+  if (unsunscribe) {
     result.push({
       text: "Отписаться",
       url: exit,
-      onClick: () => {},
+      onClick: unsunscribe,
     });
   }
 
-  if (socials.length > 2 && showUnsubscribe) {
+  if (socials.length > 2 && unsunscribe) {
     result.push({
       text: "Ещё",
       url: burger,
-      onClick: () => {},
+      onClick: onExtend,
     });
   }
 

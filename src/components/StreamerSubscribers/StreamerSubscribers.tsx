@@ -18,6 +18,7 @@ export const StreamerSubscribers = ({ id }: IStreamerDetailsViewer) => {
   } = useGetSubscribersQuery(
     { page, pageSize, id },
     {
+      pollingInterval: 10000,
       refetchOnMountOrArgChange: true,
       selectFromResult: ({ data, ...other }) => ({
         subscribers: subscribersAdapter
@@ -56,7 +57,12 @@ export const StreamerSubscribers = ({ id }: IStreamerDetailsViewer) => {
               : handleScroll
           }
         >
-          {<NotAvailable available={subscribers.length !== 0}></NotAvailable>}
+          {
+            <NotAvailable
+              available={subscribers.length !== 0}
+              text="Нет подписчиков"
+            ></NotAvailable>
+          }
           {subscribers.map((t) => (
             <UserView {...mapSubscriberToUserView(t)}></UserView>
           ))}

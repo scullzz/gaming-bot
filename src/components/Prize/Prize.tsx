@@ -1,14 +1,18 @@
 import prize from "/prize.png";
 import "./Prize.scss";
+import Done from "/corrrect-green.png";
+import notDone from "/cross-red.png";
 import { GetRaffleDto } from "../../types/getRaffleDto";
 import { formatRaffleDate } from "../../functions/formatRaffleDate";
 import { formatRaffleTimeRemaining } from "../../functions/formatRaffleTimeRemaining";
+import { GetRaffleConditionDto } from "../../types/getRaffleConditionDto";
 
 interface IPrizeProps extends GetRaffleDto {}
 export const Prize = ({
   description,
   amountOfWinners,
   amountOfParticipants,
+  raffleConditions,
   endTime,
 }: IPrizeProps) => {
   return (
@@ -27,9 +31,9 @@ export const Prize = ({
       <span className="details-text">{description}</span>
       <span className="header-text">Для участия:</span>
       <ul className="prize__conditions">
-        <li className="details-text">заполнить email от VAVADA</li>
-        <li className="details-text">заполнить email от VAVADA</li>
-        <li className="details-text">заполнить email от VAVADA</li>
+        {raffleConditions.map((t, i) => (
+          <PrizeCondition {...t} key={i}></PrizeCondition>
+        ))}
       </ul>
       <div className="header-text">Дата окончания</div>
       <span className="details-text" style={{ textAlign: "center" }}>
@@ -37,5 +41,15 @@ export const Prize = ({
       </span>
       <button className="attention-btn">Участвовать</button>
     </div>
+  );
+};
+
+interface IPrizeConditionProps extends GetRaffleConditionDto {}
+const PrizeCondition = ({ isDone, description }: IPrizeConditionProps) => {
+  return (
+    <li className="prize__condition">
+      <img src={isDone ? Done : notDone} className="icon" />
+      <span className="details-text">{description}</span>
+    </li>
   );
 };

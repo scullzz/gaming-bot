@@ -16,7 +16,7 @@ export const Information = ({
     <div className="info">
       {isLoading && (
         <ModalWindow style={{ backgroundColor: "var(--main-color)" }}>
-          <Spinner></Spinner>
+          <Spinner style={{ marginInline: "auto", display: "block" }}></Spinner>
         </ModalWindow>
       )}
       {error && (

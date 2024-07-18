@@ -1,22 +1,19 @@
-import { useState } from "react";
 import Switch from "react-switch";
+import { IParameterPickerElementProps } from "../CreateRaffle/CreateRaffle";
 
-export const Checker = () => {
-  const [checked, setChecked] = useState(false);
+interface ICheckerProps extends IParameterPickerElementProps {}
 
-  const handleChange = (nextChecked: boolean) => {
-    setChecked(nextChecked);
-  };
+export const Checker = ({ value, onChange }: ICheckerProps) => {
   return (
     <div className="create-raffle__winner-generator-slider">
       <span>Показывать победителей:</span>
       <Switch
-        onChange={handleChange}
-        checked={checked}
+        onChange={onChange}
+        checked={value}
         onColor="#35C759"
         offColor="#B0B0B0"
-        onHandleColor="var(--main-color)"
-        offHandleColor="var(--main-color)"
+        onHandleColor="#fff"
+        offHandleColor="#fff"
         handleDiameter={15}
         uncheckedIcon={false}
         checkedIcon={false}

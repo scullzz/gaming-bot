@@ -7,4 +7,6 @@ export interface GetRaffleDto {
   description: string;
   endTime: string;
   amountOfParticipants: number;
+  isParticipant: boolean;
+  isCreator: boolean;
 }

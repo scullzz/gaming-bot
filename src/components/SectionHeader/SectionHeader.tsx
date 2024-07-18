@@ -1,16 +1,16 @@
 import "./SectionHeader.scss";
 interface IHeaderProps {
-  left?: string;
-  center?: string;
-  right?: string;
+  left?: React.ReactNode;
+  center?: React.ReactNode;
+  right?: React.ReactNode;
 }
 
 export const SectionHeader = ({ center, left, right }: IHeaderProps) => {
   return (
     <div className="section-header">
-      <span className="left">{left}</span>
-      <span className="center">{center}</span>
-      <span className="right">{right}</span>
+      {left}
+      {center}
+      {right}
     </div>
   );
 };

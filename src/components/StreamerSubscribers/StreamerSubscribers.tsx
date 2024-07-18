@@ -1,4 +1,9 @@
-import { subscribersAdapter, useGetSubscribersQuery } from "../../features/api";
+import {
+  subscribersAdapter,
+  useGetAdminsQuery,
+  useGetSubscribersQuery,
+} from "../../features/api";
+
 import { mapSubscriberToUserView } from "../../functions/mapSubscriberToUserView";
 import { useCheckStreamerYourself } from "../../functions/useCheckStreamerYourself";
 import { useQueryError } from "../../functions/useQueryError";
@@ -10,7 +15,15 @@ import { UserView } from "../UserView/UserView";
 import "./StreamerSubscribers.scss";
 export const StreamerSubscribers = ({ id }: IStreamerDetailsViewer) => {
   const { page, pageSize, handleScroll } = useScrollPagination();
-  const isStreamerYourself = useCheckStreamerYourself(id);
+
+  const {
+    data: admins,
+    isLoading: adminsLoading,
+    error: adminsError,
+  } = useGetAdminsQuery(id);
+  const isStreamerYourself = useCheckStreamerYourself(id, admins);
+  const { errorText: adminErrorText, setErrorText: setAdminErrorText } =
+    useQueryError(adminsError);
   const {
     subscribers,
     isLoading,
@@ -33,9 +46,12 @@ export const StreamerSubscribers = ({ id }: IStreamerDetailsViewer) => {
     <div className="streamer__subscribers">
       {
         <Details
-          isLoading={subscribers.length === 0 && isLoading}
-          error={errorText}
-          onClose={() => setErrorText(undefined)}
+          isLoading={(subscribers.length === 0 && isLoading) || adminsLoading}
+          error={errorText || adminErrorText}
+          onClose={() => {
+            setErrorText(undefined);
+            setAdminErrorText(undefined);
+          }}
         ></Details>
       }
       <span className="streamer__subscribers-header">Подписчики</span>

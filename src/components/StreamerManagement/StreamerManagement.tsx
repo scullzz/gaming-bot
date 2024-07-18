@@ -6,10 +6,12 @@ import { useGetAdminsQuery, useGetStreamerQuery } from "../../features/api";
 import { useQueryError } from "../../functions/useQueryError";
 import { Details } from "../Details/Details";
 import { getNameId } from "../../functions/getValueFromJwt";
+import { useNavigate } from "react-router-dom";
 export const StreamerManagement = ({ id }: IStreamerDetailsViewer) => {
   const { data: admins, isLoading, error } = useGetAdminsQuery(id);
   const isStreamerYourself = useCheckStreamerYourself(id, admins);
   const userId = getNameId();
+  const navigate = useNavigate();
   const {
     data: streamer,
     isLoading: streamerLoading,
@@ -36,7 +38,12 @@ export const StreamerManagement = ({ id }: IStreamerDetailsViewer) => {
       }
       {isStreamerYourself ? (
         <>
-          <button className="attention-btn">Создать розыгрыш</button>
+          <button
+            className="attention-btn"
+            onClick={() => navigate("/create-raffle")}
+          >
+            Создать розыгрыш
+          </button>
           <button className="attention-btn">Создать пост</button>
         </>
       ) : streamer?.isSubscribed ? (

@@ -1,23 +1,28 @@
 import ReactSlider from "react-slider";
 import "./CreateRaffleWinnerCount.scss";
-import { useState } from "react";
-export const CreateRaffleWinnerCount = () => {
-  const [sliderValue, setSliderValue] = useState(50);
+import { IParameterPickerElementProps } from "../CreateRaffle/CreateRaffle";
+
+interface ICreateRaffleWinnerCountProps extends IParameterPickerElementProps {}
+
+export const CreateRaffleWinnerCount = ({
+  value,
+  onChange,
+}: ICreateRaffleWinnerCountProps) => {
   const marks = [1, 10, 20, 30, 40, 50];
 
   return (
     <div className="create-raffle__winner-count">
       <div className="create-raffle__winner-count__header">
         <span className="create-raffle__header-label">Количество</span>
-        <span className="create-raffle__header-label">4 победителя</span>
+        <span className="create-raffle__header-label">{value} победителя</span>
       </div>
       <div className="wrapper">
         <ReactSlider
           className="horizontal-slider"
           thumbClassName="example-thumb"
           trackClassName="example-track"
-          value={sliderValue}
-          onChange={(value) => setSliderValue(value)}
+          value={value}
+          onChange={onChange}
           renderThumb={(props) => <div {...props}></div>}
           renderTrack={(props, state) => (
             <div
@@ -33,7 +38,7 @@ export const CreateRaffleWinnerCount = () => {
           renderMark={(props) => {
             const { key, style } = props;
             const markPosition = Number(key);
-            const isBeforeThumb = markPosition <= sliderValue;
+            const isBeforeThumb = markPosition <= value;
 
             return (
               <div

@@ -7,6 +7,7 @@ import { GetSubscribersRequest } from "../types/getSubscribersRequest";
 import { GetRaffleDto } from "../types/getRaffleDto";
 import { GetRafflesRequest } from "../types/getRafflesRequest";
 import { GetAdminDto } from "../types/getAdminDto";
+import { CreateRaffleRequest } from "../types/CreateRaffleRequest";
 
 export const subscribersAdapter = createEntityAdapter<GetSubscriberDto>();
 
@@ -17,7 +18,7 @@ export const streamersAdapter = createEntityAdapter<GetStreamerDto>();
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: "/api/" }),
-  tagTypes: ["streamers"],
+  tagTypes: ["streamers", "raffles", "subscribers"],
   endpoints: (builder) => ({
     checkAuth: builder.query<void, void>({
       query: () => `auth`,
@@ -74,6 +75,7 @@ export const api = createApi({
           res
         );
       },
+      providesTags: ["subscribers"],
       keepUnusedDataFor: 1,
       forceRefetch: ({ currentArg, previousArg }) => {
         return (
@@ -105,6 +107,7 @@ export const api = createApi({
       invalidatesTags: (res, error, { streamerId }) => [
         { type: "streamers", id: "LIST" },
         { type: "streamers", id: streamerId },
+        { type: "subscribers", id: "LIST" },
       ],
     }),
     unSubFromStreamer: builder.mutation<
@@ -117,6 +120,7 @@ export const api = createApi({
       }),
       invalidatesTags: (res, error, { streamerId }) => [
         { type: "streamers", id: streamerId },
+        { type: "subscribers", id: "LIST" },
       ],
     }),
     getRaffles: builder.query<
@@ -129,6 +133,7 @@ export const api = createApi({
         return rafflesAdapter.addMany(rafflesAdapter.getInitialState(), res);
       },
       keepUnusedDataFor: 1,
+      providesTags: ["raffles"],
       forceRefetch: ({ currentArg, previousArg }) => {
         return (
           currentArg?.page != previousArg?.page ||
@@ -148,6 +153,13 @@ export const api = createApi({
     getAdmins: builder.query<GetAdminDto[], string>({
       query: (req) => `streamer/${req}/admins`,
     }),
+    createRaffle: builder.mutation<void, CreateRaffleRequest & { id: string }>({
+      query: (req) => ({ url: `streamer/${req.id}/raffles`, method: "POST" }),
+      invalidatesTags: ["raffles"],
+    }),
+    getAvailableConditions: builder.query<string[], void>({
+      query: () => "streamer/conditions",
+    }),
   }),
 });
 
@@ -162,4 +174,6 @@ export const {
   useSubscribeToStreamerMutation,
   useGetAvailableSocialsQuery,
   useUnSubFromStreamerMutation,
+  useCreateRaffleMutation,
+  useGetAvailableConditionsQuery,
 } = api;

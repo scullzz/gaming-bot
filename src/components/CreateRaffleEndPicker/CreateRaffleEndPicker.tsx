@@ -1,9 +1,18 @@
-import { useState } from "react";
 import DatePicker from "react-datepicker";
 
-export const CreateRaffleEndPicker = () => {
-  const [date, setDate] = useState<Date>(new Date());
-  const [time, setTime] = useState("12:00");
+interface ICreateRaffleEndPicker {
+  date: Date;
+  setDate: (v: Date) => void;
+  time: string;
+  setTime: (time: string) => void;
+}
+
+export const CreateRaffleEndPicker = ({
+  time,
+  date,
+  setDate,
+  setTime,
+}: ICreateRaffleEndPicker) => {
   return (
     <div className="create-raffle__end">
       <span>Завершится</span>

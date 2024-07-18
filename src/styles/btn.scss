@@ -54,6 +54,8 @@ button {
   border: none;
   font-size: 14px;
   font-weight: 700;
+  display: flex;
+  justify-content: center;
   line-height: 20px;
   border-radius: 6px;
   color: var(--btn-text-color);

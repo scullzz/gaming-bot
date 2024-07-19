@@ -16,7 +16,7 @@ export function combineDateTimeToUTC(date: Date, timeString: string): string {
   const utcDate = new Date(utcTime);
 
   // Форматируем строку даты и времени в формате ISO
-  const isoString = utcDate.toString();
+  const isoString = utcDate.toISOString();
 
   // Преобразуем ISO строку в нужный формат
   return isoString;

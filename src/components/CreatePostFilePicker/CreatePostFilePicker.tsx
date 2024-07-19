@@ -1,8 +1,11 @@
 import img from "/img.png";
 import "./CreatePostFilePicker.scss";
-import { useRef, useState } from "react";
-export const CreatePostFilePicker = () => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+import { useRef } from "react";
+import { IParameterPickerElementProps } from "../CreateRaffle/CreateRaffle";
+
+export const CreatePostFilePicker = ({
+  onChange,
+}: IParameterPickerElementProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleButtonClick = () => {
@@ -13,7 +16,7 @@ export const CreatePostFilePicker = () => {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
-      setSelectedFile(event.target.files[0]);
+      onChange(event.target.files[0]);
     }
   };
   return (

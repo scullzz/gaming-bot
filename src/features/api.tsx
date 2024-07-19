@@ -154,11 +154,22 @@ export const api = createApi({
       query: (req) => `streamer/${req}/admins`,
     }),
     createRaffle: builder.mutation<void, CreateRaffleRequest & { id: string }>({
-      query: (req) => ({ url: `streamer/${req.id}/raffles`, method: "POST" }),
+      query: (req) => ({
+        url: `streamer/${req.id}/raffles`,
+        method: "POST",
+        body: { ...req },
+      }),
       invalidatesTags: ["raffles"],
     }),
     getAvailableConditions: builder.query<string[], void>({
       query: () => "streamer/conditions",
+    }),
+    createPost: builder.mutation<void, { data: FormData; id: string }>({
+      query: (req) => ({
+        url: `streamer/${req.id}/posts`,
+        body: req.data,
+        method: "POST",
+      }),
     }),
   }),
 });
@@ -176,4 +187,5 @@ export const {
   useUnSubFromStreamerMutation,
   useCreateRaffleMutation,
   useGetAvailableConditionsQuery,
+  useCreatePostMutation,
 } = api;

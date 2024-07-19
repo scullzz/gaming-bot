@@ -70,7 +70,9 @@ export const CreateRaffle = () => {
       raffleConditions: raffleConditions,
       shouldNotifyUsers,
       id,
-    }).then(() => navigate(`/streamer/${id}`));
+    })
+      .unwrap()
+      .then(() => navigate(`/streamer/${id}`));
   };
   const onPreview = () => {
     const obj: GetRaffleDto = {

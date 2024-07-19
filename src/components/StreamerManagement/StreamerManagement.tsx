@@ -46,7 +46,12 @@ export const StreamerManagement = ({ id }: IStreamerDetailsViewer) => {
           >
             Создать розыгрыш
           </button>
-          <button className="attention-btn">Создать пост</button>
+          <button
+            className="attention-btn"
+            onClick={() => navigate("/create-post")}
+          >
+            Создать пост
+          </button>
         </>
       ) : streamer?.isSubscribed ? (
         <></>

@@ -1,3 +1,4 @@
+import { getInitialsByNameWithColor } from "../../functions/getInitialsByName";
 import { Avatar, AvatarProps } from "../Avatar/Avatar";
 import "./StreamerPreview.scss";
 interface IStreamerPreviewProps extends AvatarProps {
@@ -14,7 +15,11 @@ export const StreamerPreview = ({
 }: IStreamerPreviewProps) => {
   return (
     <div className="streamer__info">
-      <Avatar {...rest} isLive={isLive}></Avatar>
+      <Avatar
+        {...rest}
+        isLive={isLive}
+        initials={getInitialsByNameWithColor(name)}
+      ></Avatar>
       <span className="header-text">{name}</span>
       {details && <span className="details-text">{details}</span>}
     </div>

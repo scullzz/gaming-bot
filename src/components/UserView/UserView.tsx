@@ -1,6 +1,9 @@
 import { HTMLAttributes } from "react";
 import "./UserView.scss";
 import cover from "/cover.png";
+import { Avatar } from "../Avatar/Avatar";
+import { getInitials } from "../../functions/getInitials";
+import { getInitialsByNameWithColor } from "../../functions/getInitialsByName";
 
 export interface IUserViewProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "id"> {
@@ -32,13 +35,11 @@ export const UserView = ({
       key={id}
       onClick={onClick}
     >
-      <img
-        src={cover}
-        alt="Изображение"
-        className={`streamer-view__avatar ${
-          !isStreamer && "streamer-view__avatar-user"
-        }`}
-      />
+      <Avatar
+        initials={getInitialsByNameWithColor(name)}
+        size={isStreamer ? 60 : 40}
+      ></Avatar>
+
       <div className="streamer-view__info">
         <div className="streamer-view__info-header">
           <div className="streamer-view__info-header-description">

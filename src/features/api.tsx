@@ -171,6 +171,21 @@ export const api = createApi({
         method: "POST",
       }),
     }),
+    doParticipantInRaffle: builder.mutation<
+      void,
+      { raffleId: number; userId: string; streamerId: string }
+    >({
+      query: (req) => ({
+        url: `streamer/${req.streamerId}/raffles/${req.raffleId}/participants/${req.userId}`,
+        method: "PUT",
+      }),
+    }),
+    getRaffleById: builder.query<
+      GetRaffleDto,
+      { streamerId: string; raffleId: number }
+    >({
+      query: (req) => `streamer/${req.streamerId}/raffles/${req.raffleId}`,
+    }),
   }),
 });
 
@@ -187,5 +202,7 @@ export const {
   useUnSubFromStreamerMutation,
   useCreateRaffleMutation,
   useGetAvailableConditionsQuery,
+  useGetRaffleByIdQuery,
+  useDoParticipantInRaffleMutation,
   useCreatePostMutation,
 } = api;

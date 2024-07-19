@@ -1,16 +1,20 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { RaffleResultPreview } from "../RaffleResultPreview/RaffleResultPreview";
 import { RaffleResultWinnerGenerator } from "../RaffleResultWinnerGenerator/RaffleResultWinnerGenerator";
 import { RaffleResultWinners } from "../RaffleResultWinners/RaffleResultWinners";
 import { SectionHeader } from "../SectionHeader/SectionHeader";
 import "./RaffleResult.scss";
-import { useGetRaffleByIdQuery } from "../../features/api";
+import { useGetAdminsQuery, useGetRaffleByIdQuery } from "../../features/api";
 import { Details } from "../Details/Details";
 import { useQueryError } from "../../functions/useQueryError";
 import { formatRaffleDate } from "../../functions/formatRaffleDate";
+import { useCheckStreamerYourself } from "../../functions/useCheckStreamerYourself";
+import { getNameId } from "../../functions/getValueFromJwt";
 
 export const RaffleResult = () => {
   const { id } = useParams();
+  const location = useLocation();
+  const { streamerId } = location.state;
   const {
     data: raffle,
     isLoading: raffleLoading,
@@ -21,6 +25,8 @@ export const RaffleResult = () => {
   const navigate = useNavigate();
   const { errorText: raffleEt, setErrorText: setRaffleEt } =
     useQueryError(raffleError);
+  const { data: admins } = useGetAdminsQuery(streamerId);
+  const isStreamerYourself = useCheckStreamerYourself(getNameId(), admins);
   return (
     <div className="section raffle-result">
       <Details
@@ -33,7 +39,10 @@ export const RaffleResult = () => {
         left={<span onClick={() => navigate(-1)}>Закрыть</span>}
       ></SectionHeader>
       <div className="mt" style={{ minHeight: "21px" }}></div>
-      <RaffleResultPreview {...raffle}></RaffleResultPreview>
+      <RaffleResultPreview
+        {...raffle}
+        streamerId={streamerId || ""}
+      ></RaffleResultPreview>
       <div
         className="raffle-result__header"
         style={{
@@ -45,16 +54,22 @@ export const RaffleResult = () => {
       >
         Сгенерировать новых победителей
       </div>
-      <RaffleResultWinnerGenerator></RaffleResultWinnerGenerator>
-      <div className="raffle-result__subs-header">
-        <div className="raffle-result__header" style={{ marginBottom: 0 }}>
-          Победили:
-        </div>
-        <div className="raffle-result__time">
-          {formatRaffleDate(raffle?.endTime || new Date().toISOString())}
-        </div>
-      </div>
-      <RaffleResultWinners></RaffleResultWinners>
+      {isStreamerYourself && (
+        <RaffleResultWinnerGenerator></RaffleResultWinnerGenerator>
+      )}
+      {raffle?.showWinners && (
+        <>
+          <div className="raffle-result__subs-header">
+            <div className="raffle-result__header" style={{ marginBottom: 0 }}>
+              Победили:
+            </div>
+            <div className="raffle-result__time">
+              {formatRaffleDate(raffle?.endTime || new Date().toISOString())}
+            </div>
+          </div>
+          <RaffleResultWinners></RaffleResultWinners>
+        </>
+      )}
     </div>
   );
 };

@@ -66,7 +66,7 @@ export const StreamerPrizes = ({ id }: IStreamerDetailsViewer) => {
           </div>
         }
         {raffles.map((t) => {
-          return <Prize {...t} onClick={() => {}}></Prize>;
+          return <Prize {...t} streamerId={id}></Prize>;
         })}
       </div>
     </div>

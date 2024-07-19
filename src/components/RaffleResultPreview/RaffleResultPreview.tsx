@@ -1,16 +1,24 @@
+import { useGetAdminsQuery } from "../../features/api";
 import { formatRaffleDate } from "../../functions/formatRaffleDate";
+import { getNameId } from "../../functions/getValueFromJwt";
+import { useCheckStreamerYourself } from "../../functions/useCheckStreamerYourself";
 import { GetRaffleDto } from "../../types/getRaffleDto";
 import "./RaffleResultPreview.scss";
 import prize from "/prize.png";
 
-interface IRaffleResultPreviewProps extends Partial<GetRaffleDto> {}
+interface IRaffleResultPreviewProps extends Partial<GetRaffleDto> {
+  streamerId: string;
+}
 
 export const RaffleResultPreview = ({
   amountOfWinners,
   amountOfParticipants,
   id,
+  streamerId,
   endTime,
 }: IRaffleResultPreviewProps) => {
+  const { data: admins } = useGetAdminsQuery(streamerId);
+  const isStreamerYourself = useCheckStreamerYourself(getNameId(), admins);
   return (
     <div className="raffle-result__preview">
       <div className="raffle-result__preview-info">
@@ -27,7 +35,9 @@ export const RaffleResultPreview = ({
           <div className="label">{amountOfParticipants || 0} участников</div>
         </div>
       </div>
-      <button className="raffle-result__button">Скачать результаты</button>
+      {isStreamerYourself && (
+        <button className="raffle-result__button">Скачать результаты</button>
+      )}
     </div>
   );
 };

@@ -8,6 +8,7 @@ import { GetRaffleDto } from "../types/getRaffleDto";
 import { GetRafflesRequest } from "../types/getRafflesRequest";
 import { GetAdminDto } from "../types/getAdminDto";
 import { CreateRaffleRequest } from "../types/CreateRaffleRequest";
+import { GenerateWinnersRequest } from "../types/generateWinnersRequest";
 
 export const subscribersAdapter = createEntityAdapter<GetSubscriberDto>();
 
@@ -191,6 +192,17 @@ export const api = createApi({
       query: (id) => `raffle/${id}/winners`,
       providesTags: (res, e, id) => [{ type: "winners", id }],
     }),
+    generateWinners: builder.mutation<
+      void,
+      GenerateWinnersRequest & { id: number }
+    >({
+      query: (req) => ({
+        url: `raffle/${req.id}/winners`,
+        body: { ...req },
+        method: "POST",
+      }),
+      invalidatesTags: [{ type: "winners", id: "LIST" }],
+    }),
   }),
 });
 
@@ -211,4 +223,5 @@ export const {
   useDoParticipantInRaffleMutation,
   useCreatePostMutation,
   useGetRaffleWinnersQuery,
+  useGenerateWinnersMutation,
 } = api;

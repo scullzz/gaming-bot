@@ -3,13 +3,32 @@ import "./RaffleResultWinnerGenerator.scss";
 
 import Switch from "react-switch";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useGenerateWinnersMutation } from "../../features/api";
+import { Details } from "../Details/Details";
+import { handleError } from "../../functions/handleError";
 export const RaffleResultWinnerGenerator = () => {
   const [sliderValue, setSliderValue] = useState(4);
   const [switchValue, setSwitchValue] = useState(false);
+  const { id } = useParams();
+  const [generateWinners, { isLoading, error, reset }] =
+    useGenerateWinnersMutation();
+  const errorText = handleError(error);
   const marks = [1, 10, 20, 30, 40, 50];
-
+  const onGenerate = () => {
+    generateWinners({
+      id: parseInt(id || "1"),
+      exceptRepeats: switchValue,
+      amountOfWinners: sliderValue,
+    });
+  };
   return (
     <div className="raffle-result__winner-generator">
+      <Details
+        isLoading={isLoading}
+        error={errorText}
+        onClose={() => reset()}
+      ></Details>
       <div className="raffle-result__winner-generator__header">
         Победителей:{" "}
         {
@@ -98,7 +117,10 @@ export const RaffleResultWinnerGenerator = () => {
         Включите, если хотите чтобы уже победившие в этом розыгрыше участники
         больше не побеждали.
       </span>
-      <button className="raffle-result__winner-generator__button">
+      <button
+        className="raffle-result__winner-generator__button"
+        onClick={onGenerate}
+      >
         Сгенерировать
       </button>
     </div>

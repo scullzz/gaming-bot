@@ -17,7 +17,7 @@ import { Details } from "../Details/Details";
 import { GetRaffleDto } from "../../types/getRaffleDto";
 import { useMemoryState } from "../../functions/useMemoryState";
 import { useEffect } from "react";
-import { distinct } from "../../functions/distinct";
+import { distinct, hasDuplicates } from "../../functions/distinct";
 
 export interface IParameterPickerElementProps {
   value: any;
@@ -54,7 +54,8 @@ export const CreateRaffle = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    setRaffleConditions((prev) => distinct(prev));
+    if (hasDuplicates(raffleConditions))
+      setRaffleConditions((prev) => distinct(prev));
   }, [raffleConditions]);
   const [
     createRaffle,
@@ -83,6 +84,7 @@ export const CreateRaffle = () => {
       id: 1,
       isCreator: false,
       isParticipant: false,
+      showWinners: false,
       raffleConditions: raffleConditions.map((t) => ({
         isDone: false,
         description: "Уточнение..",
@@ -117,7 +119,11 @@ export const CreateRaffle = () => {
       <div className="create-raffle__details details-text details-text_add">
         Выберите, сколько победителей должно быть определено в розыгрыше.
       </div>
-      <Checker value={showWinners} onChange={setShowWinners}></Checker>
+      <Checker
+        value={showWinners}
+        onChange={setShowWinners}
+        text="Показывать победителей"
+      ></Checker>
       <div className="create-raffle__details details-text details-text_add">
         Выберите, будет ли по окончании розыгрыша опубликован список
         победителей.
@@ -170,6 +176,7 @@ export const CreateRaffle = () => {
       <Checker
         value={shouldNotifyUsers}
         onChange={setShouldNotifyUsers}
+        text="Оповестить всех подписчиков"
       ></Checker>
       <div className="create-raffle__details details-text details-text_add">
         Включите, если хотите чтобы все ваши подписчики получили уведомление о

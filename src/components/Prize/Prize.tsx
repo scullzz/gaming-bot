@@ -44,7 +44,7 @@ export const Prize = ({
     const available = new Date(endTime) > new Date();
     const canParticipate = !isParticipant && !isCreator && available;
     if (canParticipate) {
-      doParticipant({ raffleId: id, userId });
+      doParticipant({ raffleId: id, userId }).unwrap();
     }
     if (!available) navigate(`/raffle/${id}`, { state: { streamerId } });
   };

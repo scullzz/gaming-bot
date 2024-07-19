@@ -1,12 +1,14 @@
 import Switch from "react-switch";
 import { IParameterPickerElementProps } from "../CreateRaffle/CreateRaffle";
 
-interface ICheckerProps extends IParameterPickerElementProps {}
+interface ICheckerProps extends IParameterPickerElementProps {
+  text: string;
+}
 
-export const Checker = ({ value, onChange }: ICheckerProps) => {
+export const Checker = ({ value, onChange, text }: ICheckerProps) => {
   return (
     <div className="create-raffle__winner-generator-slider">
-      <span>Показывать победителей:</span>
+      <span>{text}:</span>
       <Switch
         onChange={onChange}
         checked={value}

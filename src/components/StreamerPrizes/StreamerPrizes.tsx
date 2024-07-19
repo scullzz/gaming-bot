@@ -13,7 +13,7 @@ export const StreamerPrizes = ({ id }: IStreamerDetailsViewer) => {
   const { page, pageSize, handleScroll } = useScrollPagination();
   const userId = getNameId();
   const [type, setType] = useState("active");
-  const { raffles, isLoading, error } = useGetRafflesQuery(
+  const { raffles, isLoading, error, refetch } = useGetRafflesQuery(
     { page, pageSize, type, id, userId },
     {
       refetchOnMountOrArgChange: true,
@@ -66,7 +66,7 @@ export const StreamerPrizes = ({ id }: IStreamerDetailsViewer) => {
           </div>
         }
         {raffles.map((t) => {
-          return <Prize {...t} streamerId={id}></Prize>;
+          return <Prize {...t} streamerId={id} update={refetch}></Prize>;
         })}
       </div>
     </div>

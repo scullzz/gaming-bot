@@ -8,23 +8,51 @@ import { formatRaffleTimeRemaining } from "../../functions/formatRaffleTimeRemai
 import { GetRaffleConditionDto } from "../../types/getRaffleConditionDto";
 import correct from "/corrrect-green.png";
 import { NotAvailable } from "../NotAvailable.tsx/NotAvailable";
+import { useDoParticipantInRaffleMutation } from "../../features/api";
+import { getNameId } from "../../functions/getValueFromJwt";
+import { Details } from "../Details/Details";
+import { handleError } from "../../functions/handleError";
+import { useNavigate } from "react-router-dom";
 
-export interface IPrizeProps extends GetRaffleDto {
-  onClick: () => void;
-}
+export interface IPrizeProps extends GetRaffleDto {}
 export const Prize = ({
   description,
+  id,
   amountOfWinners,
   amountOfParticipants,
   raffleConditions,
   isCreator,
-  onClick,
   isParticipant,
   endTime,
 }: IPrizeProps) => {
   const available = new Date(endTime) > new Date();
+  const userId = getNameId();
+  const navigate = useNavigate();
+  const [
+    doParticipant,
+    {
+      isLoading: doParticipantLoading,
+      error: participantError,
+      reset: resetParticipantError,
+    },
+  ] = useDoParticipantInRaffleMutation();
+  const participantErrorText = handleError(participantError);
+  const onClick = () => {
+    const available = new Date(endTime) > new Date();
+    const canParticipate = !isParticipant && !isCreator && available;
+    const alreadyParticipant = isParticipant && available;
+    if (canParticipate) {
+      doParticipant({ raffleId: id, userId });
+    }
+    if (!alreadyParticipant && available) navigate(`/raffle/${id}`);
+  };
   return (
     <div className="prize">
+      <Details
+        isLoading={doParticipantLoading}
+        error={participantErrorText}
+        onClose={() => resetParticipantError()}
+      ></Details>
       {isParticipant && (
         <div className="prize__partipiciant-count">
           Участников: {amountOfParticipants}
@@ -74,7 +102,7 @@ export const Prize = ({
           onClick={onClick}
           className="attention-opacity-btn"
           style={{
-            backgroundColor: "#48F955",
+            backgroundColor: "#edfeee",
             color: "#35C759",
             marginTop: "20px",
             columnGap: "20px",

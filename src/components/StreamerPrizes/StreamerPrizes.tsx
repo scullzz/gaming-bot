@@ -30,6 +30,7 @@ export const StreamerPrizes = ({ id }: IStreamerDetailsViewer) => {
   const onTypeSwtich = () => {
     setType((prev) => (prev === "active" ? "notactive" : "active"));
   };
+
   return (
     <div className="streamer__prizes">
       {
@@ -64,9 +65,9 @@ export const StreamerPrizes = ({ id }: IStreamerDetailsViewer) => {
             ></NotAvailable>
           </div>
         }
-        {raffles.map((t) => (
-          <Prize {...t} onClick={() => {}}></Prize>
-        ))}
+        {raffles.map((t) => {
+          return <Prize {...t} onClick={() => {}}></Prize>;
+        })}
       </div>
     </div>
   );

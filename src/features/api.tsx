@@ -18,7 +18,7 @@ export const streamersAdapter = createEntityAdapter<GetStreamerDto>();
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: "/api/" }),
-  tagTypes: ["streamers", "raffles", "subscribers"],
+  tagTypes: ["streamers", "raffles", "subscribers", "winners"],
   endpoints: (builder) => ({
     checkAuth: builder.query<void, void>({
       query: () => `auth`,
@@ -173,18 +173,23 @@ export const api = createApi({
     }),
     doParticipantInRaffle: builder.mutation<
       void,
-      { raffleId: number; userId: string; streamerId: string }
+      { raffleId: number; userId: string }
     >({
       query: (req) => ({
-        url: `streamer/${req.streamerId}/raffles/${req.raffleId}/participants/${req.userId}`,
+        url: `raffle/${req.raffleId}/participants/${req.userId}`,
         method: "PUT",
       }),
+      invalidatesTags: ["raffles"],
     }),
-    getRaffleById: builder.query<
-      GetRaffleDto,
-      { streamerId: string; raffleId: number }
-    >({
-      query: (req) => `streamer/${req.streamerId}/raffles/${req.raffleId}`,
+    getRaffleById: builder.query<GetRaffleDto, { raffleId: number }>({
+      query: (req) => `raffle/${req.raffleId}`,
+      providesTags: (res, er, { raffleId }) => [
+        { type: "raffles", id: raffleId },
+      ],
+    }),
+    getRaffleWinners: builder.query<GetSubscriberDto[], number>({
+      query: (id) => `raffle/${id}/winners`,
+      providesTags: (res, e, id) => [{ type: "winners", id }],
     }),
   }),
 });
@@ -205,4 +210,5 @@ export const {
   useGetRaffleByIdQuery,
   useDoParticipantInRaffleMutation,
   useCreatePostMutation,
+  useGetRaffleWinnersQuery,
 } = api;

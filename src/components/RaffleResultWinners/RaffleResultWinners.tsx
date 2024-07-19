@@ -1,14 +1,32 @@
+import { useParams } from "react-router-dom";
+import { useGetRaffleWinnersQuery } from "../../features/api";
 import { UserView } from "../UserView/UserView";
 import "./RaffleResultWinners.scss";
-const template = {
-  name: "Peter parker",
-  detailsText: "Подписан с 22 февраля 2024 г",
-};
+import { useQueryError } from "../../functions/useQueryError";
+import { Details } from "../Details/Details";
+import { formatRaffleDate } from "../../functions/formatRaffleDate";
 export const RaffleResultWinners = () => {
+  const { id } = useParams();
+  const {
+    data: winers,
+    isLoading: winnersLoading,
+    error: winnersError,
+  } = useGetRaffleWinnersQuery(parseInt(id || "0"));
+  const { errorText, setErrorText } = useQueryError(winnersError);
   return (
     <div className="raffle-result__winners">
-      {[1, 2, 3].map((t) => (
-        <UserView {...template} id={4}></UserView>
+      <Details
+        isLoading={!winers && winnersLoading}
+        error={errorText}
+        onClose={() => setErrorText(undefined)}
+      ></Details>
+      {winers?.map((t) => (
+        <UserView
+          {...t}
+          id={4}
+          name={t.firstName}
+          detailsText={`Подписан с ${formatRaffleDate(t.subscribeTime)}`}
+        ></UserView>
       ))}
     </div>
   );

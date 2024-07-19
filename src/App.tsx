@@ -32,7 +32,10 @@ export const App = () => {
             path="/streamer-edit/:id"
             element={<StreamerEditPage></StreamerEditPage>}
           ></Route>
-          <Route path="/raffle" element={<RaffleResult></RaffleResult>}></Route>
+          <Route
+            path="/raffle/:id"
+            element={<RaffleResult></RaffleResult>}
+          ></Route>
           <Route
             path="/create-raffle"
             element={<CreateRaffle></CreateRaffle>}

@@ -1,15 +1,12 @@
 import ReactSlider from "react-slider";
 import "./RaffleResultWinnerGenerator.scss";
-import { useState } from "react";
-import Switch from "react-switch";
-export const RaffleResultWinnerGenerator = () => {
-  const [sliderValue, setSliderValue] = useState(50);
-  const marks = [1, 10, 20, 30, 40, 50];
-  const [checked, setChecked] = useState(false);
 
-  const handleChange = (nextChecked: boolean) => {
-    setChecked(nextChecked);
-  };
+import Switch from "react-switch";
+import { useState } from "react";
+export const RaffleResultWinnerGenerator = () => {
+  const [sliderValue, setSliderValue] = useState(4);
+  const [switchValue, setSwitchValue] = useState(false);
+  const marks = [1, 10, 20, 30, 40, 50];
 
   return (
     <div className="raffle-result__winner-generator">
@@ -17,7 +14,7 @@ export const RaffleResultWinnerGenerator = () => {
         Победителей:{" "}
         {
           <span className="raffle-result__winner-generator__header_count">
-            4
+            {sliderValue}
           </span>
         }
       </div>
@@ -39,7 +36,7 @@ export const RaffleResultWinnerGenerator = () => {
         )}
         min={1}
         max={50}
-        marks={marks} // Преобразуем массив в объект для корректного отображения меток
+        marks={marks}
         renderMark={(props) => {
           const { key, style } = props;
           const markPosition = Number(key);
@@ -78,12 +75,12 @@ export const RaffleResultWinnerGenerator = () => {
       <div className="raffle-result__winner-generator-slider">
         <span>Исключить повторения:</span>
         <Switch
-          onChange={handleChange}
-          checked={checked}
+          onChange={setSwitchValue}
+          checked={switchValue}
           onColor="#35C759"
           offColor="#B0B0B0"
-          onHandleColor="var(--main-color)"
-          offHandleColor="var(--main-color)"
+          onHandleColor="#fff"
+          offHandleColor="#fff"
           handleDiameter={15}
           uncheckedIcon={false}
           checkedIcon={false}

@@ -81,7 +81,7 @@ const StreamersView = () => {
                 ? () => navigate(`/streamer/${s.tgId}`)
                 : () => subscribeToStreamer({ userId, streamerId: s.tgId })
             }
-            isSubscribed={s.isSubscribed}
+            isSubscribed={s.isSubscribed || s.tgId == getNameId()}
             detailsText={`${s.amountOfSubscribers} подписчиков`}
           ></UserView>
         ))}

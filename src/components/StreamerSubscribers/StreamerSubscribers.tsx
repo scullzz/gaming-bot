@@ -80,7 +80,7 @@ export const StreamerSubscribers = ({ id }: IStreamerDetailsViewer) => {
             ></NotAvailable>
           }
           {subscribers.map((t) => (
-            <UserView {...mapSubscriberToUserView(t)}></UserView>
+            <UserView {...mapSubscriberToUserView(t)} key={t.tgId}></UserView>
           ))}
         </div>
       </div>

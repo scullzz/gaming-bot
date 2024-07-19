@@ -15,7 +15,6 @@ export const StreamerFrame: React.FC<StreamerFrameProps> = ({
   height,
 }) => {
   const youTubeVideoId = extractYouTubeVideoId(url);
-  const twitchChannel = extractTwitchChannel(url);
 
   if (youTubeVideoId) {
     return (
@@ -32,10 +31,10 @@ export const StreamerFrame: React.FC<StreamerFrameProps> = ({
         style={{ borderRadius: "7px" }}
       ></iframe>
     );
-  } else if (twitchChannel) {
+  } else {
     return (
       <iframe
-        src={`https://player.twitch.tv/?channel=${twitchChannel}&parent=www.example.com`}
+        src={`${url}`}
         frameBorder="0"
         allowFullScreen
         scrolling="no"
@@ -43,7 +42,5 @@ export const StreamerFrame: React.FC<StreamerFrameProps> = ({
         width={width}
       ></iframe>
     );
-  } else {
-    return <p>Unsupported platform or invalid URL</p>;
   }
 };

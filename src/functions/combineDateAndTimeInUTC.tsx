@@ -10,16 +10,14 @@ export function combineDateTimeToUTC(date: Date, timeString: string): string {
 
   // Получаем время в миллисекундах с учетом смещения для московского времени (UTC+3)
   const mskTime = date.getTime();
-  const utcTime = mskTime - 3 * 60 * 60 * 1000;
+  const utcTime = mskTime;
 
   // Создаем новый объект Date с временем в UTC
   const utcDate = new Date(utcTime);
 
   // Форматируем строку даты и времени в формате ISO
-  const isoString = utcDate.toISOString();
+  const isoString = utcDate.toString();
 
   // Преобразуем ISO строку в нужный формат
-  const formattedDate = isoString.replace("T", " ").substring(0, 16);
-
-  return formattedDate;
+  return isoString;
 }

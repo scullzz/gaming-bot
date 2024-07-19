@@ -101,12 +101,12 @@ export const Prize = ({
 };
 
 interface IPrizeConditionProps extends GetRaffleConditionDto {}
-const PrizeCondition = ({ isDone, description }: IPrizeConditionProps) => {
+const PrizeCondition = ({ isDone, title }: IPrizeConditionProps) => {
   return (
     <li className="prize__condition">
       <img src={isDone ? Done : notDone} className="icon" />
       <span className="details-text" style={{ marginTop: 0 }}>
-        {description}
+        {title}
       </span>
     </li>
   );

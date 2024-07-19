@@ -40,7 +40,9 @@ export const StreamerManagement = ({ id }: IStreamerDetailsViewer) => {
         <>
           <button
             className="attention-btn"
-            onClick={() => navigate("/create-raffle")}
+            onClick={() =>
+              navigate("/create-raffle", { state: { streamerId: id } })
+            }
           >
             Создать розыгрыш
           </button>

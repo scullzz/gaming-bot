@@ -12,7 +12,7 @@ import { useCreateRaffleMutation } from "../../features/api";
 import { handleError } from "../../functions/handleError";
 import { combineDateTimeToUTC } from "../../functions/combineDateAndTimeInUTC";
 import { getNameId } from "../../functions/getValueFromJwt";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Details } from "../Details/Details";
 import { GetRaffleDto } from "../../types/getRaffleDto";
 import { useMemoryState } from "../../functions/useMemoryState";
@@ -26,6 +26,8 @@ export interface IParameterPickerElementProps {
 
 export const CreateRaffle = () => {
   const id = getNameId();
+  const location = useLocation();
+  const { streamerId } = location.state;
 
   const [amountOfWinners, setAmountOfWinners] = useMemoryState(
     4,
@@ -96,7 +98,13 @@ export const CreateRaffle = () => {
         error={raffleErrorText}
         onClose={() => resetRaffleError()}
       ></Details>
-      <SectionHeader left={<span>Закрыть</span>}></SectionHeader>
+      <SectionHeader
+        left={
+          <span onClick={() => navigate(`/streamer/${streamerId}`)}>
+            Закрыть
+          </span>
+        }
+      ></SectionHeader>
       <div className="mt" style={{ minHeight: "31px" }}></div>
       <span className="create-raffle__header">Создать розыгрыш</span>
 

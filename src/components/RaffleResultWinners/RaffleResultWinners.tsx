@@ -5,13 +5,14 @@ import "./RaffleResultWinners.scss";
 import { useQueryError } from "../../functions/useQueryError";
 import { Details } from "../Details/Details";
 import { formatRaffleDate } from "../../functions/formatRaffleDate";
+import { NotAvailable } from "../NotAvailable.tsx/NotAvailable";
 export const RaffleResultWinners = () => {
   const { id } = useParams();
   const {
     data: winers,
     isLoading: winnersLoading,
     error: winnersError,
-  } = useGetRaffleWinnersQuery(parseInt(id || "0"));
+  } = useGetRaffleWinnersQuery(parseInt(id || "0"), { pollingInterval: 10000 });
   const { errorText, setErrorText } = useQueryError(winnersError);
   return (
     <div className="raffle-result__winners">
@@ -20,6 +21,12 @@ export const RaffleResultWinners = () => {
         error={errorText}
         onClose={() => setErrorText(undefined)}
       ></Details>
+      {
+        <NotAvailable
+          text="Победители еще не определены или слишком мало участников"
+          available={winers != undefined && winers.length > 0}
+        ></NotAvailable>
+      }
       {winers?.map((t) => (
         <UserView
           {...t}

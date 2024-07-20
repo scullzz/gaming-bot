@@ -4,32 +4,42 @@ import { StreamerPreview } from "../StreamerPreview/StreamerPreview";
 import { StreamerSocialsAdding } from "../StreamerSocialsAdding/StreamerSocialsAdding";
 import "./StreamerEditPage.scss";
 import { StreamerEditAddedSocials } from "../StreamerEditAddedSocials/StreamerEditAddedSocials";
-import { ParticipiantErrorModal } from "../ParticipiantModalError/ParticipiantErrorModal";
 import { SectionHeader } from "../SectionHeader/SectionHeader";
+import { useGetStreamerQuery } from "../../features/api";
+import { getNameId } from "../../functions/getValueFromJwt";
+import { useQueryError } from "../../functions/useQueryError";
+import { Details } from "../Details/Details";
 
 export const StreamerEditPage = () => {
   const { id } = useParams();
+  const userId = getNameId();
+  const {
+    data: streamer,
+    isLoading,
+    error,
+  } = useGetStreamerQuery({ tgId: id || "", userId });
+  const { errorText, setErrorText } = useQueryError(error);
   if (!id) return <div>Not found</div>;
   return (
     <div className="section streamer-edit">
-      {/* <ParticipiantErrorModal
-        conditions={[
-          { isDone: true, description: "Сделать 100 отжиманий" },
-          { isDone: false, description: "Уйти" },
-        ]}
-        onClose={() => {}}
-        onBlank={() => {}}
-      ></ParticipiantErrorModal> */}
+      <Details
+        isLoading={isLoading && !streamer}
+        error={errorText}
+        onClose={() => setErrorText(undefined)}
+      ></Details>
       <SectionHeader
-        center="Профиль"
-        right="Готово"
-        left="Отмена"
+        center={<span>Профиль</span>}
+        right={<span>Готово</span>}
+        left={<span>Отмена</span>}
       ></SectionHeader>
       <div className="mt" style={{ minHeight: "31px" }}></div>
-      <StreamerPreview name="Mellstroy" isLive={false}></StreamerPreview>
+      <StreamerPreview
+        name={streamer?.name || "Стример"}
+        isLive={false}
+      ></StreamerPreview>
       <StreamerEditAdmins id={id}></StreamerEditAdmins>
-      <StreamerSocialsAdding></StreamerSocialsAdding>
-      <StreamerEditAddedSocials></StreamerEditAddedSocials>
+      <StreamerSocialsAdding id={id}></StreamerSocialsAdding>
+      <StreamerEditAddedSocials id={id}></StreamerEditAddedSocials>
     </div>
   );
 };

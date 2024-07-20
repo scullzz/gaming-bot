@@ -1,15 +1,10 @@
 import { jwtDecode } from "jwt-decode";
 
-const env = "LOCAL";
 interface DecodedToken {
   [key: string]: any;
 }
 export function getValueFromJWT(key: string): string {
   const cookieString = document.cookie;
-  if (env == "LOCAL") {
-    if (key == "NameId") return "272";
-    if (key == "Name") return "Peter";
-  }
   function getCookieValue(cookieString: string, name: string): string {
     const value = `; ${cookieString}`;
     const parts = value.split(`; ${name}=`);

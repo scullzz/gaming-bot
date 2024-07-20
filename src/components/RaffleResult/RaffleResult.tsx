@@ -27,6 +27,11 @@ export const RaffleResult = () => {
     useQueryError(raffleError);
   const { data: admins } = useGetAdminsQuery(streamerId);
   const isStreamerYourself = useCheckStreamerYourself(getNameId(), admins);
+  const showWinners = isStreamerYourself
+    ? true
+    : raffle?.showWinners
+    ? true
+    : false;
   return (
     <div className="section raffle-result">
       <Details
@@ -57,7 +62,7 @@ export const RaffleResult = () => {
       {isStreamerYourself && (
         <RaffleResultWinnerGenerator></RaffleResultWinnerGenerator>
       )}
-      {raffle?.showWinners && (
+      {showWinners && (
         <>
           <div className="raffle-result__subs-header">
             <div className="raffle-result__header" style={{ marginBottom: 0 }}>

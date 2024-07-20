@@ -5,16 +5,22 @@ import "./AuthChecker.scss";
 import { getTgAuthData } from "../../types/getTgAuthDate";
 import { useNavigate } from "react-router-dom";
 export const AuthChecker = () => {
-  const { isError, isSuccess } = useCheckAuthQuery();
+  const { isSuccess } = useCheckAuthQuery();
   const navigate = useNavigate();
   const [getAuth] = useGetAuthMutation();
   useEffect(() => {
-    if (isError) {
-      const tgData = getTgAuthData();
-      getAuth(tgData);
-    }
     if (isSuccess) navigate("/streamers");
-  }, [isError]);
+    const tgData = getTgAuthData();
+    let timer = setInterval(() => {
+      getAuth(tgData)
+        .unwrap()
+        .then(() => navigate("/streamers"));
+    }, 2000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
   return (
     <div className="auth-checker">
       <Spinner></Spinner>

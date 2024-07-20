@@ -8,7 +8,7 @@ import {
   useGetStreamersQuery,
   useSubscribeToStreamerMutation,
 } from "../../features/api";
-import { getNameId } from "../../functions/getValueFromJwt";
+import { getFirstName, getNameId } from "../../functions/getValueFromJwt";
 import { NotAvailable } from "../NotAvailable.tsx/NotAvailable";
 import { useQueryError } from "../../functions/useQueryError";
 import { Details } from "../Details/Details";

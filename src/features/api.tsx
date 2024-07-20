@@ -9,6 +9,7 @@ import { GetRafflesRequest } from "../types/getRafflesRequest";
 import { GetAdminDto } from "../types/getAdminDto";
 import { CreateRaffleRequest } from "../types/CreateRaffleRequest";
 import { GenerateWinnersRequest } from "../types/generateWinnersRequest";
+import { GetSocialDto } from "../types/GetSocialDto";
 
 export const subscribersAdapter = createEntityAdapter<GetSubscriberDto>();
 
@@ -19,13 +20,20 @@ export const streamersAdapter = createEntityAdapter<GetStreamerDto>();
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: "/api/" }),
-  tagTypes: ["streamers", "raffles", "subscribers", "winners"],
+  tagTypes: [
+    "streamers",
+    "raffles",
+    "subscribers",
+    "winners",
+    "socials",
+    "admins",
+  ],
   endpoints: (builder) => ({
     checkAuth: builder.query<void, void>({
       query: () => `auth`,
     }),
     getAuth: builder.mutation<void, TelegramAuthDateDto>({
-      query: (req) => ({ url: "auth", method: "POST", body: req }),
+      query: (req) => ({ url: "auth/local-enter", method: "POST", body: req }),
     }),
     getStreamers: builder.query<
       EntityState<GetStreamerDto, number>,
@@ -153,6 +161,7 @@ export const api = createApi({
     }),
     getAdmins: builder.query<GetAdminDto[], string>({
       query: (req) => `streamer/${req}/admins`,
+      providesTags: ["admins"],
     }),
     createRaffle: builder.mutation<void, CreateRaffleRequest & { id: string }>({
       query: (req) => ({
@@ -203,6 +212,24 @@ export const api = createApi({
       }),
       invalidatesTags: [{ type: "winners", id: "LIST" }],
     }),
+    getStreamerSocials: builder.query<GetSocialDto[], string>({
+      query: (req) => `streamer/${req}/socials`,
+      providesTags: ["socials"],
+    }),
+    addSocial: builder.mutation<void, GetSocialDto & { id: string }>({
+      query: (req) => ({
+        url: `streamer/${req.id}/socials`,
+        body: { ...req },
+        method: "POST",
+      }),
+    }),
+    addAdmins: builder.mutation<void, { streamerId: string; adminId: string }>({
+      query: (req) => ({
+        url: `streamer/${req.streamerId}/admins/${req.adminId}`,
+        method: "POST",
+      }),
+      invalidatesTags: ["admins"],
+    }),
   }),
 });
 
@@ -224,4 +251,6 @@ export const {
   useCreatePostMutation,
   useGetRaffleWinnersQuery,
   useGenerateWinnersMutation,
+  useGetStreamerSocialsQuery,
+  useAddSocialMutation,
 } = api;

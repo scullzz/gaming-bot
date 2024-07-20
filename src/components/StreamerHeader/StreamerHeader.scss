@@ -1,8 +1,25 @@
 .streamer {
+  &__header {
+    position: relative;
+  }
   &__socials {
     margin-top: 21px;
     justify-content: center;
     display: flex;
     column-gap: 14px;
+  }
+  &__edit-btn {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    border-radius: 30px;
+    background-color: var(--main-color);
+    color: var(--btn-text-color);
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    padding-inline: 15px;
+    font-size: 14px;
+    font-weight: 400;
   }
 }

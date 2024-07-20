@@ -2,6 +2,7 @@ import { SocialItem } from "../SocialItem/SocialItem";
 import "./StreamerHeader.scss";
 import { StreamerPreview } from "../StreamerPreview/StreamerPreview";
 import {
+  useGetAdminsQuery,
   useGetStreamerQuery,
   useUnSubFromStreamerMutation,
 } from "../../features/api";
@@ -12,6 +13,7 @@ import { IStreamerDetailsViewer } from "../StreamerPage/StreamerPage";
 import { getNameId } from "../../functions/getValueFromJwt";
 import { handleError } from "../../functions/handleError";
 import { useNavigate } from "react-router-dom";
+import { useCheckStreamerYourself } from "../../functions/useCheckStreamerYourself";
 
 export const StreamerHeader = ({ id }: IStreamerDetailsViewer) => {
   const tgId = id;
@@ -42,18 +44,27 @@ export const StreamerHeader = ({ id }: IStreamerDetailsViewer) => {
     () => {},
     streamer?.isSubscribed ? () => onUnsub() : undefined
   );
+  const { data: admins } = useGetAdminsQuery(id);
+  const isStreamerYourself = useCheckStreamerYourself(getNameId(), admins);
   return (
     <div className="streamer__header">
-      {
-        <Details
-          isLoading={(!streamer && isLoading) || unsubingFromStreamer}
-          error={errorText || unsubErrorText}
-          onClose={() => {
-            setErrorText(undefined);
-            clearUnsubError();
-          }}
-        ></Details>
-      }
+      {isStreamerYourself && (
+        <button
+          className="streamer__edit-btn"
+          onClick={() => navigate(`/streamer-edit/${id}`)}
+        >
+          Изменить
+        </button>
+      )}
+      <Details
+        isLoading={(!streamer && isLoading) || unsubingFromStreamer}
+        error={errorText || unsubErrorText}
+        onClose={() => {
+          setErrorText(undefined);
+          clearUnsubError();
+        }}
+      ></Details>
+
       <StreamerPreview
         name={streamer?.name || "Стример"}
         details={`${streamer?.amountOfSubscribers || 0} подписчиков`}

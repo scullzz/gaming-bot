@@ -1,3 +1,4 @@
+import { tg } from "../../App";
 import { useGetStreamerSocialsQuery } from "../../features/api";
 import { useQueryError } from "../../functions/useQueryError";
 import { AddedSocialView } from "../AddedSocialView/AddedSocialView";
@@ -9,7 +10,11 @@ interface IStreamerEditAddedSocialsProps {
 export const StreamerEditAddedSocials = ({
   id,
 }: IStreamerEditAddedSocialsProps) => {
-  const { data: socials, isLoading, error } = useGetStreamerSocialsQuery(id);
+  const {
+    data: socials,
+    isLoading,
+    error,
+  } = useGetStreamerSocialsQuery(id, { pollingInterval: 10000 });
   const { errorText, setErrorText } = useQueryError(error);
   return (
     <div className="streamer-edit__added-socials">
@@ -26,7 +31,10 @@ export const StreamerEditAddedSocials = ({
       </span>
       <div className="streamer-edit__added-socials-body">
         {socials?.map((t) => (
-          <AddedSocialView {...t}></AddedSocialView>
+          <AddedSocialView
+            {...t}
+            onClick={() => tg.openLink(t.link)}
+          ></AddedSocialView>
         ))}
       </div>
     </div>

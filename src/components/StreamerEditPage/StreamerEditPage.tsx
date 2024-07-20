@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { StreamerEditAdmins } from "../StreamerEditAdmins/StreamerEditAdmins";
 import { StreamerPreview } from "../StreamerPreview/StreamerPreview";
 import { StreamerSocialsAdding } from "../StreamerSocialsAdding/StreamerSocialsAdding";
@@ -13,12 +13,14 @@ import { Details } from "../Details/Details";
 export const StreamerEditPage = () => {
   const { id } = useParams();
   const userId = getNameId();
+  const navigate = useNavigate();
   const {
     data: streamer,
     isLoading,
     error,
   } = useGetStreamerQuery({ tgId: id || "", userId });
   const { errorText, setErrorText } = useQueryError(error);
+  const goToCover = () => navigate(`/streamer/${id}`);
   if (!id) return <div>Not found</div>;
   return (
     <div className="section streamer-edit">
@@ -29,8 +31,8 @@ export const StreamerEditPage = () => {
       ></Details>
       <SectionHeader
         center={<span>Профиль</span>}
-        right={<span>Готово</span>}
-        left={<span>Отмена</span>}
+        right={<span onClick={goToCover}>Готово</span>}
+        left={<span onClick={goToCover}>Отмена</span>}
       ></SectionHeader>
       <div className="mt" style={{ minHeight: "31px" }}></div>
       <StreamerPreview

@@ -253,4 +253,5 @@ export const {
   useGenerateWinnersMutation,
   useGetStreamerSocialsQuery,
   useAddSocialMutation,
+  useAddAdminsMutation,
 } = api;

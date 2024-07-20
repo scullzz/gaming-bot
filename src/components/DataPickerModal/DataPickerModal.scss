@@ -1,0 +1,16 @@
+.data-picker {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  padding: 10px;
+  input {
+    border-radius: 14px;
+    border: 1px solid #8e8e92;
+    color: #8e8e92;
+    padding: 5px;
+    font-size: 15px;
+    font-weight: 400;
+    padding-inline: 10px;
+  }
+  background-color: var(--main-color);
+}

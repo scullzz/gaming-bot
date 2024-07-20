@@ -1,26 +1,50 @@
-import { useGetAdminsQuery } from "../../features/api";
+import { useState } from "react";
+import { useAddAdminsMutation, useGetAdminsQuery } from "../../features/api";
+import { handleError } from "../../functions/handleError";
 import { useQueryError } from "../../functions/useQueryError";
 import { AddButton } from "../AddButton/AddButton";
 import { Details } from "../Details/Details";
 import { IStreamerDetailsViewer } from "../StreamerPage/StreamerPage";
 import { UserView } from "../UserView/UserView";
 import "./StreamerEditAdmin.scss";
-
-const template = {
-  name: "Peter parker",
-  detailsText: "Админ",
-};
+import { DataPickerModal } from "../DataPickerModal/DataPickerModal";
 
 export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
-  const { data: admins, isLoading, error } = useGetAdminsQuery(id);
+  const { data: admins, isLoading, error, refetch } = useGetAdminsQuery(id);
+  const [
+    addAdmin,
+    { isLoading: addingAdmin, error: addAdminError, reset: resetAdminError },
+  ] = useAddAdminsMutation();
+  const adminErrorText = handleError(addAdminError);
   const { errorText, setErrorText } = useQueryError(error);
+  const [showModal, setShowModal] = useState(false);
+  const [adminId, setAdmniId] = useState("");
+  const onAdd = () => {
+    addAdmin({ adminId, streamerId: id })
+      .unwrap()
+      .then(() => {
+        refetch();
+        setShowModal(false);
+      });
+  };
   return (
     <div className="streamer-edit__admins">
+      {showModal && (
+        <DataPickerModal
+          onClose={() => setShowModal(false)}
+          value={adminId}
+          onSubmit={onAdd}
+          setValue={setAdmniId}
+        ></DataPickerModal>
+      )}
       {
         <Details
-          isLoading={!admins && isLoading}
-          error={errorText}
-          onClose={() => setErrorText(undefined)}
+          isLoading={(!admins && isLoading) || addingAdmin}
+          error={errorText || adminErrorText}
+          onClose={() => {
+            setErrorText(undefined);
+            resetAdminError();
+          }}
         ></Details>
       }
       <span
@@ -30,14 +54,18 @@ export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
         Администраторы канала
       </span>
       <div className="streamer-edit__admins-body">
-        <AddButton text="Добавить администратора"></AddButton>
+        <AddButton
+          text="Добавить администратора"
+          onClick={() => setShowModal(true)}
+        ></AddButton>
         <div
           className="line"
           style={{ marginLeft: "20px", width: "calc(100% - 20px)" }}
         ></div>
-        {[1, 2, 3, 4, 6].map((t, i) => (
+        {admins?.map((t, i) => (
           <UserView
-            {...template}
+            name={t.firstName}
+            detailsText="Админ"
             id={i}
             style={{ marginTop: "15px", marginInline: "14px" }}
           ></UserView>

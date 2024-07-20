@@ -1,10 +1,12 @@
+import { HTMLAttributes } from "react";
 import "./AddButton.scss";
-interface AddButtonProps {
+interface AddButtonProps extends HTMLAttributes<HTMLButtonElement> {
   text: string;
 }
-export const AddButton = ({ text }: AddButtonProps) => {
+
+export const AddButton = ({ text, ...rest }: AddButtonProps) => {
   return (
-    <button className="add-button">
+    <button {...rest} className="add-button">
       <svg
         width="22"
         height="22"

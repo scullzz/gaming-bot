@@ -1,12 +1,20 @@
-import { useGetAvailableSocialsQuery } from "../../features/api";
+import { useState } from "react";
+import {
+  useAddSocialMutation,
+  useGetAvailableSocialsQuery,
+} from "../../features/api";
 import { useQueryError } from "../../functions/useQueryError";
 import { Details } from "../Details/Details";
 import "./StreamerSocialsAdding.scss";
 import Select from "react-select";
+import { handleError } from "../../functions/handleError";
 interface IStreamerSocialsAddingProps {
   id: string;
 }
-
+interface OptionType {
+  value: string;
+  label: string;
+}
 const customStyles = {
   control: (provided: any) => ({
     ...provided,
@@ -31,15 +39,31 @@ export const StreamerSocialsAdding = ({ id }: IStreamerSocialsAddingProps) => {
   } = useGetAvailableSocialsQuery();
   const { errorText: socialsErrorText, setErrorText: setSeT } =
     useQueryError(socialsError);
-  const options = availableSocials?.map((t) => ({ value: t, label: t }));
-  const [selectedOption, setSelectedOption] = useState(null);
+  const options: OptionType[] =
+    availableSocials?.map((t) => ({ value: t, label: t })) || [];
+  const [link, setLink] = useState<string | undefined>(undefined);
+  const [selectedOption, setSelectedOption] = useState<OptionType | null>(null);
 
+  const handleChange = (option: OptionType | null) => {
+    setSelectedOption(option);
+  };
+  const [
+    addSocial,
+    { isLoading: addingSocial, error: addSocialError, reset: resetSocialError },
+  ] = useAddSocialMutation();
+  const addSocialErrorText = handleError(addSocialError);
+  const onAdd = () => {
+    addSocial({ link: link || "", name: selectedOption?.value || "", id });
+  };
   return (
     <div className="streamer-socials-adding">
       <Details
-        isLoading={!availableSocials && socialsAdding}
-        error={socialsErrorText}
-        onClose={() => setSeT(undefined)}
+        isLoading={(!availableSocials && socialsAdding) || addingSocial}
+        error={socialsErrorText || addSocialErrorText}
+        onClose={() => {
+          setSeT(undefined);
+          resetSocialError();
+        }}
       ></Details>
       <span
         className="details-text details-text_add"
@@ -53,16 +77,25 @@ export const StreamerSocialsAdding = ({ id }: IStreamerSocialsAddingProps) => {
             placeholder="Название ссылки"
             options={options}
             value={selectedOption}
-            onChange={setSelectedOption}
+            onChange={handleChange}
             styles={customStyles}
           ></Select>
           <div
             className="line"
             style={{ width: "calc(100% - 20px)", marginLeft: "20px" }}
           ></div>
-          <input type="text" className="input" placeholder="URL ссылки" />
+          <input
+            type="text"
+            className="input"
+            placeholder="URL ссылки"
+            value={link}
+            onChange={(e) => setLink(e.currentTarget.value)}
+          />
         </div>
-        <div className="btn attention-btn streamer-socials-adding__form-btn">
+        <div
+          className="btn attention-btn streamer-socials-adding__form-btn"
+          onClick={onAdd}
+        >
           Добавить
         </div>
       </form>

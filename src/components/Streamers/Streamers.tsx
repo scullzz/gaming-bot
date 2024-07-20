@@ -8,7 +8,7 @@ import {
   useGetStreamersQuery,
   useSubscribeToStreamerMutation,
 } from "../../features/api";
-import { getFirstName, getNameId } from "../../functions/getValueFromJwt";
+import { getNameId } from "../../functions/getValueFromJwt";
 import { NotAvailable } from "../NotAvailable.tsx/NotAvailable";
 import { useQueryError } from "../../functions/useQueryError";
 import { Details } from "../Details/Details";
@@ -79,6 +79,8 @@ const StreamersView = () => {
             onButtonClick={
               s.isSubscribed
                 ? () => navigate(`/streamer/${s.tgId}`)
+                : userId == s.tgId
+                ? () => {}
                 : () => subscribeToStreamer({ userId, streamerId: s.tgId })
             }
             isSubscribed={s.isSubscribed || s.tgId == getNameId()}

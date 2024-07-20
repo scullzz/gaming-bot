@@ -8,7 +8,7 @@ import "./UserProfile.scss";
 import { useQueryError } from "../../functions/useQueryError";
 import { Details } from "../Details/Details";
 import { handleError } from "../../functions/handleError";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GetUserPayMethod } from "../../types/getUserDto";
 const TetherTRC20 = "Tether TRC20";
 const TetherERC20 = "Tether ERC20";
@@ -22,16 +22,22 @@ export const UserProfile = () => {
     error: userError,
     refetch,
   } = useGetUserQuery(id || "");
-  const [trc, setTrc] = useState<string | null | undefined>(
-    user?.userPayMethods.filter((t) => t.platform == TetherTRC20)[0].data
-  );
-  const [erc, setErc] = useState<string | null | undefined>(
-    user?.userPayMethods.filter((t) => t.platform == TetherERC20)[0].data
-  );
-  const [pstrx, setPstrx] = useState<string | null | undefined>(
-    user?.userPayMethods.filter((t) => t.platform == Piastrix)[0].data
-  );
-  const [email, setEmail] = useState<string | null | undefined>(user?.email);
+  useEffect(() => {
+    setTrc(
+      user?.userPayMethods.filter((t) => t.platform == TetherTRC20)[0].data
+    );
+    setErc(
+      user?.userPayMethods.filter((t) => t.platform == TetherERC20)[0].data
+    );
+    setPstrx(
+      user?.userPayMethods.filter((t) => t.platform == Piastrix)[0].data
+    );
+    setEmail(user?.email);
+  }, [user]);
+  const [trc, setTrc] = useState<string | null | undefined>(undefined);
+  const [erc, setErc] = useState<string | null | undefined>(undefined);
+  const [pstrx, setPstrx] = useState<string | null | undefined>(undefined);
+  const [email, setEmail] = useState<string | null | undefined>(undefined);
   const { errorText: userErrorText, setErrorText: setUserErrorText } =
     useQueryError(userError);
   const [
@@ -39,14 +45,14 @@ export const UserProfile = () => {
     { isLoading: userUpdating, error: updatingError, reset: reserUpdateError },
   ] = useUpdateUserMutation();
   const updatingErrorText = handleError(updatingError);
-  const onSub = () => {
+  const onApply = () => {
     if (user) {
       const payMethods: GetUserPayMethod[] = [
-        { platform: TetherERC20, data: erc || "" },
-        { platform: TetherTRC20, data: trc || "" },
-        { platform: Piastrix, data: pstrx || "" },
+        { platform: TetherERC20, data: erc || null },
+        { platform: TetherTRC20, data: trc || null },
+        { platform: Piastrix, data: pstrx || null },
       ];
-      updateUser({ ...user, email: email || "", userPayMethods: payMethods })
+      updateUser({ ...user, email: email || null, userPayMethods: payMethods })
         .unwrap()
         .then(() => refetch());
     }
@@ -64,7 +70,7 @@ export const UserProfile = () => {
       <SectionHeader
         left={<span onClick={() => navigate(-1)}></span>}
         center={<span>Профиль</span>}
-        right={<span onClick={onSub}>Готово</span>}
+        right={<span onClick={onApply}>Готово</span>}
       ></SectionHeader>
       <div className="mt" style={{ marginTop: "31px" }}></div>
       <StreamerPreview name="Peter Parker" isLive={false}></StreamerPreview>

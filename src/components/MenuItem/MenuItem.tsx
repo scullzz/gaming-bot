@@ -1,6 +1,7 @@
+import { HTMLAttributes } from "react";
 import { Initials } from "../../functions/getInitials";
 import "./MenuItem.scss";
-interface IMenuItemProps {
+interface IMenuItemProps extends HTMLAttributes<HTMLDivElement> {
   icon?: string;
   label: string;
   isProfile?: boolean;
@@ -11,9 +12,10 @@ export const MenuItem = ({
   label,
   isProfile = false,
   initials,
+  ...rest
 }: IMenuItemProps) => {
   return (
-    <div className="menu-item">
+    <div className="menu-item" {...rest}>
       {icon !== undefined ? (
         <img
           src={icon}

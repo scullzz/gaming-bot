@@ -72,6 +72,7 @@ export const api = createApi({
       { tgId: string; userId: string }
     >({
       query: (req) => `streamer/${req.tgId}?userId=${req.userId}`,
+      providesTags: (res, er, id) => [{ type: "streamers", id: id.tgId }],
     }),
     getSubscribers: builder.query<
       EntityState<GetSubscriberDto, number>,

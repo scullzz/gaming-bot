@@ -1,17 +1,33 @@
+import { useNavigate } from "react-router-dom";
 import { tg } from "../../App";
 import { getInitials } from "../../functions/getInitials";
 import { MenuItem } from "../MenuItem/MenuItem";
 import "./Menu.scss";
 import streamers from "/players.png";
+import { getNameId, getRole } from "../../functions/getValueFromJwt";
+const StreamerRole = "Streamer";
+const UserRole = "User";
 export const Menu = () => {
   const userProfileInitials = getInitials(tg.initDataUnsafe.user);
+  const navigate = useNavigate();
+  const onProfileClick = () => {
+    const role = getRole();
+
+    if (role == UserRole) navigate(`/user-profile/${getNameId()}`);
+    else navigate(`/streamer/${getNameId()}`);
+  };
   return (
     <div className="footer">
       <div className="menu">
-        <MenuItem label="Стримеры" icon={streamers}></MenuItem>
+        <MenuItem
+          label="Стримеры"
+          icon={streamers}
+          onClick={() => navigate("/streamers")}
+        ></MenuItem>
         <MenuItem
           label="Профиль"
           isProfile
+          onClick={onProfileClick}
           initials={userProfileInitials}
         ></MenuItem>
       </div>

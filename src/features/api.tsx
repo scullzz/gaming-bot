@@ -10,6 +10,7 @@ import { GetAdminDto } from "../types/getAdminDto";
 import { CreateRaffleRequest } from "../types/CreateRaffleRequest";
 import { GenerateWinnersRequest } from "../types/generateWinnersRequest";
 import { GetSocialDto } from "../types/GetSocialDto";
+import { GetUserProfile } from "../types/getUserDto";
 
 export const subscribersAdapter = createEntityAdapter<GetSubscriberDto>();
 
@@ -230,6 +231,16 @@ export const api = createApi({
       }),
       invalidatesTags: ["admins"],
     }),
+    getUser: builder.query<GetUserProfile, string>({
+      query: (id) => `user/${id}`,
+    }),
+    updateUser: builder.mutation<void, GetUserProfile>({
+      query: (req) => ({
+        url: `user/${req.id}`,
+        body: req,
+        method: "POST",
+      }),
+    }),
   }),
 });
 
@@ -254,4 +265,6 @@ export const {
   useGetStreamerSocialsQuery,
   useAddSocialMutation,
   useAddAdminsMutation,
+  useGetUserQuery,
+  useUpdateUserMutation,
 } = api;

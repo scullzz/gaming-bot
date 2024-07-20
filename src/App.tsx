@@ -49,11 +49,11 @@ export const App = () => {
             element={<CreatePost></CreatePost>}
           ></Route>
           <Route
-            path="user-profile"
+            path="user-profile/:id"
             element={<UserProfile></UserProfile>}
           ></Route>
           <Route
-            path="subscriber-profile"
+            path="subscriber-profile/:id"
             element={<SubscriberProfile></SubscriberProfile>}
           ></Route>
         </Routes>

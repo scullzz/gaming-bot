@@ -14,6 +14,7 @@ import { NotAvailable } from "../NotAvailable.tsx/NotAvailable";
 import { IStreamerDetailsViewer } from "../StreamerPage/StreamerPage";
 import { UserView } from "../UserView/UserView";
 import "./StreamerSubscribers.scss";
+import { useStickyRef } from "../../functions/useStickyRef";
 export const StreamerSubscribers = ({ id }: IStreamerDetailsViewer) => {
   const { page, pageSize, handleScroll } = useScrollPagination();
 
@@ -48,6 +49,7 @@ export const StreamerSubscribers = ({ id }: IStreamerDetailsViewer) => {
     if (isStreamerYourself)
       navigate(`/subscriber-profile/${userId}?streamerId=${id}`);
   };
+  const stickyRef = useStickyRef();
   return (
     <div className="streamer__subscribers">
       {
@@ -73,6 +75,7 @@ export const StreamerSubscribers = ({ id }: IStreamerDetailsViewer) => {
 
         <div
           className="streamer__subscribers-users"
+          ref={stickyRef}
           onScroll={
             isLoading || subscribers.length % pageSize !== 0
               ? () => {}

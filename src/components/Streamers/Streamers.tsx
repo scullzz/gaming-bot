@@ -15,11 +15,11 @@ import { Details } from "../Details/Details";
 import { UserView } from "../UserView/UserView";
 import { handleError } from "../../functions/handleError";
 import { useNavigate } from "react-router-dom";
+import { useStickyRef } from "../../functions/useStickyRef";
 
 const StreamersView = () => {
-  const streamersRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
-  useStickyScroll(streamersRef);
+  const stickyRef = useStickyRef();
   const { page, pageSize, handleScroll } = useScrollPagination();
   const userId = getNameId();
   const { streamers, isLoading, error } = useGetStreamersQuery(
@@ -60,7 +60,7 @@ const StreamersView = () => {
       }
       <div
         className="streamers-wrapper"
-        ref={streamersRef}
+        ref={stickyRef}
         onScroll={isLoading ? () => {} : handleScroll}
         style={{ height: "auto" }}
       >

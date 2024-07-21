@@ -4,6 +4,7 @@
   padding: 0;
   background-color: var(--main-color);
   margin: 0;
+  max-height: 130px;
   margin-top: 10px;
   border-radius: 14px;
   flex-direction: column;
@@ -42,6 +43,12 @@
           border-radius: 4px;
           font-weight: 700;
           padding-inline: 5px;
+          &-winner {
+            background-color: #35c759;
+          }
+          &-participant {
+            display: none;
+          }
         }
         display: flex;
         column-gap: 10px;

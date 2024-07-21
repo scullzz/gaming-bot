@@ -5,10 +5,12 @@ interface IDataPickerModalProps extends Omit<DefaultModalProps, "children"> {
   setValue: (v: any) => void;
   placeholderText?: string;
   btnText?: string;
+  compact?: boolean;
 }
 export const DataPickerModal = ({
   value,
   setValue,
+  compact = true,
   onSubmit,
   btnText,
   placeholderText,
@@ -17,12 +19,21 @@ export const DataPickerModal = ({
   return (
     <ModalWindow {...rest}>
       <div className="data-picker">
-        <input
-          type="text"
-          value={value}
-          placeholder={placeholderText || "Введите значение"}
-          onInput={(e) => setValue(e.currentTarget.value)}
-        />
+        {compact ? (
+          <input
+            type="text"
+            value={value}
+            placeholder={placeholderText || "Введите значение"}
+            onInput={(e) => setValue(e.currentTarget.value)}
+          />
+        ) : (
+          <textarea
+            value={value}
+            placeholder={placeholderText || "Введите значение"}
+            onInput={(e) => setValue(e.currentTarget.value)}
+          ></textarea>
+        )}
+
         <div
           className="btn attention-btn streamer-socials-adding__form-btn"
           onClick={onSubmit}

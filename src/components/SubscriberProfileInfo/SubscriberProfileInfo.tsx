@@ -2,6 +2,7 @@ import copy from "/copy.png";
 import "./SubscriberProfileInfo.scss";
 import { truncateValue } from "../../functions/truncateValue";
 import { NotAvailable } from "../NotAvailable.tsx/NotAvailable";
+import toast from "react-hot-toast";
 
 export const SubscriberProfileInfo = ({
   obj,
@@ -43,7 +44,9 @@ const SingleProfileInfoEntry = ({
 }: SingleProfileInfoEntryProps) => {
   const onClick = () => {
     if (navigator.clipboard) {
-      navigator.clipboard.writeText(value);
+      navigator.clipboard
+        .writeText(value)
+        .then((t) => toast.success("Скопировано"));
     }
   };
   return (

@@ -12,10 +12,12 @@ import { RafflePreview } from "./components/RafflePreview/RafflePreview";
 import { CreatePost } from "./components/CreatePost/CreatePost";
 import { UserProfile } from "./components/UserProfile/UserProfile";
 import { SubscriberProfile } from "./components/SubscriberProfile/SubscriberProfile";
+import { Toaster } from "react-hot-toast";
 export const tg = Telegram.WebApp;
 export const App = () => {
   return (
     <Provider store={store}>
+      <Toaster />
       <Router>
         <Routes>
           <Route path="/" element={<AuthChecker></AuthChecker>}></Route>

@@ -12,6 +12,7 @@ p {
 #root,
 body {
   height: 100vh;
+  outline: none;
 }
 button,
 input {

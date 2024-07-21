@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { SectionHeader } from "../SectionHeader/SectionHeader";
 import { StreamerPreview } from "../StreamerPreview/StreamerPreview";
 import { SubscriberProfileInfo } from "../SubscriberProfileInfo/SubscriberProfileInfo";
@@ -47,6 +47,7 @@ export const SubscriberProfile = () => {
     data: sub,
     isLoading: subLoading,
     error: subError,
+    refetch,
   } = useGetSubProfileQuery({ id, streamerId });
   const { errorText: subErrorText, setErrorText: setSubErrorText } =
     useQueryError(subError);
@@ -74,7 +75,10 @@ export const SubscriberProfile = () => {
   const onApply = () => {
     editNote({ id, streamerId, note })
       .unwrap()
-      .then(() => navigate(`/streamer/${streamerId}`));
+      .then(() => {
+        navigate(`/streamer/${streamerId}`);
+        refetch();
+      });
   };
   useEffect(() => {
     if (sub) setNote(sub?.note);
@@ -83,6 +87,7 @@ export const SubscriberProfile = () => {
     <div className="subscriber-profile section">
       {showModal && (
         <DataPickerModal
+          compact={false}
           onClose={() => setShowModal(false)}
           value={message}
           placeholderText="Ваше сообщение..."
@@ -119,14 +124,13 @@ export const SubscriberProfile = () => {
         )}`}
       ></StreamerPreview>
       <button
+        onClick={() => setShowModal(true)}
         className="start-btn"
         style={{ textTransform: "none", marginTop: "20px" }}
       >
         Написать сообщение
       </button>
       <textarea
-        name=""
-        id=""
         placeholder="Заметки о пользователе"
         value={note || undefined}
         onChange={(e) => setNote(e.currentTarget.value)}
@@ -155,7 +159,10 @@ export const SubscriberProfile = () => {
       <div className="subscriber-profile__header" style={{ marginTop: "20px" }}>
         Участник розыгрышей
       </div>
-      <SubscriberRafflesParticipant></SubscriberRafflesParticipant>
+      <SubscriberRafflesParticipant
+        id={id || ""}
+        streamerId={streamerId}
+      ></SubscriberRafflesParticipant>
       <SubscriberRafflesStats {...sub?.subscriberStat}></SubscriberRafflesStats>
     </div>
   );

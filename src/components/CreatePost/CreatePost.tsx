@@ -12,8 +12,8 @@ export const CreatePost = () => {
   const navigate = useNavigate();
   const { streamerId } = location.state;
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [message, setPostMessage] = useMemoryState<string | undefined>(
-    undefined,
+  const [message, setPostMessage] = useMemoryState<string | null>(
+    null,
     "postMessage"
   );
   const [
@@ -25,7 +25,7 @@ export const CreatePost = () => {
     let data = new FormData();
     if (selectedFile != null) data.append("media", selectedFile);
 
-    if (message == undefined) return;
+    if (message == null) return;
     data.append("message", message);
     createPost({ id: streamerId as string, data })
       .unwrap()
@@ -51,7 +51,7 @@ export const CreatePost = () => {
         onChange={setSelectedFile}
       ></CreatePostFilePicker>
       <textarea
-        value={message}
+        value={message || undefined}
         onInput={(e) => setPostMessage(e.currentTarget.value)}
         placeholder="Сообщение"
         style={{ marginTop: "20px" }}

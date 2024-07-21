@@ -14,12 +14,15 @@ import { GetUserProfile } from "../types/getUserDto";
 import { GetSubscriberProfile } from "../types/getSubscriberProfile";
 import { SendSubMessageRequest } from "../types/sendSubMessageRequest";
 import { EditNoteAboutSub } from "../types/editNoteAboutSub";
+import { GetSubParticipant } from "../types/getSubParticipant";
 
 export const subscribersAdapter = createEntityAdapter<GetSubscriberDto>();
 
 export const rafflesAdapter = createEntityAdapter<GetRaffleDto>();
 
 export const streamersAdapter = createEntityAdapter<GetStreamerDto>();
+
+export const participantAdapter = createEntityAdapter<GetSubParticipant>();
 
 export const api = createApi({
   reducerPath: "api",
@@ -263,6 +266,37 @@ export const api = createApi({
         method: "POST",
       }),
     }),
+    getParticipants: builder.query<
+      EntityState<GetSubParticipant, number>,
+      { page: number; pageSize: number; id: string; streamerId: string }
+    >({
+      query: (req) =>
+        `subscriber/${req.id}/participants?streamerId=${req.streamerId}&page=${req.page}&pageSize=${req.pageSize}`,
+      transformResponse: (res: GetSubParticipant[]) => {
+        return participantAdapter.addMany(
+          participantAdapter.getInitialState(),
+          res
+        );
+      },
+      keepUnusedDataFor: 1,
+      forceRefetch: ({ currentArg, previousArg }) => {
+        return (
+          currentArg?.page != previousArg?.page ||
+          currentArg?.pageSize != previousArg?.pageSize ||
+          currentArg?.id != previousArg?.id ||
+          currentArg?.streamerId != previousArg?.streamerId
+        );
+      },
+      serializeQueryArgs: ({ queryArgs, endpointName }) => {
+        return `${endpointName}-${queryArgs.pageSize}-${queryArgs.id}-${queryArgs.id}-${queryArgs.streamerId}`;
+      },
+      merge: (current, incoming) => {
+        participantAdapter.addMany(
+          current,
+          participantAdapter.getSelectors().selectAll(incoming)
+        );
+      },
+    }),
   }),
 });
 
@@ -292,4 +326,5 @@ export const {
   useEditNoteAboutSubMutation,
   useGetSubProfileQuery,
   useSendSubMessageMutation,
+  useGetParticipantsQuery,
 } = api;

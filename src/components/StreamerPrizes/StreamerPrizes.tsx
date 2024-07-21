@@ -8,12 +8,13 @@ import { NotAvailable } from "../NotAvailable.tsx/NotAvailable";
 import { Details } from "../Details/Details";
 import { IStreamerDetailsViewer } from "../StreamerPage/StreamerPage";
 import { getNameId } from "../../functions/getValueFromJwt";
+import { useStickyRef } from "../../functions/useStickyRef";
 
 export const StreamerPrizes = ({ id }: IStreamerDetailsViewer) => {
   const { page, pageSize, handleScroll } = useScrollPagination();
   const userId = getNameId();
   const [type, setType] = useState("active");
-  const { raffles, isLoading, error, refetch } = useGetRafflesQuery(
+  const { raffles, isLoading, error } = useGetRafflesQuery(
     { page, pageSize, type, id, userId },
     {
       refetchOnMountOrArgChange: true,
@@ -30,6 +31,7 @@ export const StreamerPrizes = ({ id }: IStreamerDetailsViewer) => {
   const onTypeSwtich = () => {
     setType((prev) => (prev === "active" ? "notactive" : "active"));
   };
+  const stickyRef = useStickyRef();
 
   return (
     <div className="streamer__prizes">
@@ -53,6 +55,7 @@ export const StreamerPrizes = ({ id }: IStreamerDetailsViewer) => {
       </div>
       <div
         className="streamer__prizes-body"
+        ref={stickyRef}
         onScroll={
           isLoading || raffles.length % pageSize !== 0 ? () => {} : handleScroll
         }
@@ -66,7 +69,7 @@ export const StreamerPrizes = ({ id }: IStreamerDetailsViewer) => {
           </div>
         }
         {raffles.map((t) => {
-          return <Prize {...t} streamerId={id} update={refetch}></Prize>;
+          return <Prize {...t} streamerId={id}></Prize>;
         })}
       </div>
     </div>

@@ -1,14 +1,22 @@
 import copy from "/copy.png";
 import "./SubscriberProfileInfo.scss";
+import { truncateValue } from "../../functions/truncateValue";
+import { NotAvailable } from "../NotAvailable.tsx/NotAvailable";
 
 export const SubscriberProfileInfo = ({
   obj,
+  text,
 }: {
   obj: { [key: string]: [boolean, string] };
+  text?: string;
 }) => {
   const objKeys = Object.keys(obj).filter((l) => obj[l] != null);
   return (
     <ul className="subscriber-profile__info">
+      <NotAvailable
+        available={objKeys.length !== 0}
+        text={text || "Нет информации"}
+      ></NotAvailable>
       {objKeys.map((l, i) => (
         <SingleProfileInfoEntry
           label={l}
@@ -43,7 +51,9 @@ const SingleProfileInfoEntry = ({
       <div className="info">
         <div className="main">
           <span>{label}</span>
-          <span className={`${selected ? "selected" : ""}`}>{value}</span>
+          <span className={`${selected ? "selected" : ""}`}>
+            {truncateValue(value)}
+          </span>
         </div>
         <button onClick={onClick}>
           <img src={copy} className="icon" />

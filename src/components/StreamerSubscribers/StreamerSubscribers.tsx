@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   subscribersAdapter,
   useGetAdminsQuery,
@@ -42,6 +43,11 @@ export const StreamerSubscribers = ({ id }: IStreamerDetailsViewer) => {
     }
   );
   const { errorText, setErrorText } = useQueryError(subscribersError);
+  const navigate = useNavigate();
+  const onSubClick = (userId: string) => {
+    if (isStreamerYourself)
+      navigate(`/subscriber-profile/${userId}?streamerId=${id}`);
+  };
   return (
     <div className="streamer__subscribers">
       {
@@ -80,7 +86,11 @@ export const StreamerSubscribers = ({ id }: IStreamerDetailsViewer) => {
             ></NotAvailable>
           }
           {subscribers.map((t) => (
-            <UserView {...mapSubscriberToUserView(t)} key={t.tgId}></UserView>
+            <UserView
+              {...mapSubscriberToUserView(t)}
+              key={t.tgId}
+              onClick={() => onSubClick(t.tgId)}
+            ></UserView>
           ))}
         </div>
       </div>

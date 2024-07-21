@@ -1,8 +1,8 @@
 import { HTMLAttributes } from "react";
 import "./UserView.scss";
-import cover from "/cover.png";
+
 import { Avatar } from "../Avatar/Avatar";
-import { getInitials } from "../../functions/getInitials";
+
 import { getInitialsByNameWithColor } from "../../functions/getInitialsByName";
 
 export interface IUserViewProps

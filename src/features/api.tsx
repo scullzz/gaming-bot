@@ -11,6 +11,9 @@ import { CreateRaffleRequest } from "../types/CreateRaffleRequest";
 import { GenerateWinnersRequest } from "../types/generateWinnersRequest";
 import { GetSocialDto } from "../types/GetSocialDto";
 import { GetUserProfile } from "../types/getUserDto";
+import { GetSubscriberProfile } from "../types/getSubscriberProfile";
+import { SendSubMessageRequest } from "../types/sendSubMessageRequest";
+import { EditNoteAboutSub } from "../types/editNoteAboutSub";
 
 export const subscribersAdapter = createEntityAdapter<GetSubscriberDto>();
 
@@ -242,6 +245,24 @@ export const api = createApi({
         method: "POST",
       }),
     }),
+    getSubProfile: builder.query<
+      GetSubscriberProfile,
+      { id: string; streamerId: string }
+    >({ query: (req) => `subscriber/${req.id}?streamerId=${req.streamerId}` }),
+    sendSubMessage: builder.mutation<void, SendSubMessageRequest>({
+      query: (req) => ({
+        url: `subscriber/${req.id}/message`,
+        body: req,
+        method: "POST",
+      }),
+    }),
+    editNoteAboutSub: builder.mutation<void, EditNoteAboutSub>({
+      query: (req) => ({
+        url: `subscriber/${req.id}/note`,
+        body: req,
+        method: "POST",
+      }),
+    }),
   }),
 });
 
@@ -268,4 +289,7 @@ export const {
   useAddAdminsMutation,
   useGetUserQuery,
   useUpdateUserMutation,
+  useEditNoteAboutSubMutation,
+  useGetSubProfileQuery,
+  useSendSubMessageMutation,
 } = api;

@@ -8,7 +8,10 @@ export const NotAvailable = ({
   return (
     <>
       {!available && (
-        <span className="details-text" style={{ textAlign: "center" }}>
+        <span
+          className="details-text"
+          style={{ textAlign: "center", margin: "5px" }}
+        >
           {text}
         </span>
       )}

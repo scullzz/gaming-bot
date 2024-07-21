@@ -9,7 +9,8 @@ import { useQueryError } from "../../functions/useQueryError";
 import { Details } from "../Details/Details";
 import { NotAvailable } from "../NotAvailable.tsx/NotAvailable";
 import { GetSubParticipant } from "../../types/getSubParticipant";
-import { formatRaffleDate } from "../../functions/formatRaffleDate";
+
+import { formatDateShortly } from "../../functions/formatDateShortly";
 interface ISubscriberRafflesParticipantProps {
   id: string;
   streamerId: string;
@@ -49,7 +50,7 @@ export const SubscriberRafflesParticipant = ({
       ></Details>
       <NotAvailable
         available={participants.length !== 0}
-        text="Подписчик пока не участвлвал в Ваших розыгрышах"
+        text="Подписчик пока не участвовал в Ваших розыгрышах"
       ></NotAvailable>
       {participants.map((t) => (
         <SubscriberRafflesParticipantItem
@@ -84,7 +85,7 @@ const SubscriberRafflesParticipantItem = ({
           >
             {status === Winner ? "Выиграл" : "Абузер"}
           </div>
-          <div className="date">{formatRaffleDate(endTime)}</div>
+          <div className="date">{formatDateShortly(endTime)}</div>
           <img src={pointer} className="icon" />
         </div>
       </div>

@@ -19,7 +19,7 @@ export const SubscriberRafflesStats = ({
         <span></span>
         <span>Выигрывал в розыгрышах стримера:</span>
         <span className="amount">{wonStreamer?.amount}</span>
-        <span>{`(${wonStreamer?.percentage || 0})`}</span>
+        <span>{`(${toPercentageString(wonStreamer?.percentage || 0)})`}</span>
         <span>Замечен в абузинге стримера:</span>
         <span className="amount">{spottedInStreamerAbusing?.amount}</span>
         <span>{`(${toPercentageString(

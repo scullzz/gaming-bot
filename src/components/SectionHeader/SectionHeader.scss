@@ -30,3 +30,17 @@
     color: var(--btn-text-color);
   }
 }
+@media (max-width: 392px) {
+  .section-header {
+    span:nth-child(2) {
+      font-size: 15px;
+      font-weight: 500;
+    }
+    span:nth-child(1) {
+      font-size: 13px;
+    }
+    span:nth-child(3) {
+      font-size: 13px;
+    }
+  }
+}

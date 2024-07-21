@@ -46,7 +46,10 @@ export const Prize = ({
     if (canParticipate) {
       doParticipant({ raffleId: id, userId }).unwrap();
     }
-    if (!available) navigate(`/raffle/${id}`, { state: { streamerId } });
+    if (!available)
+      navigate(`/raffle/${id}?streamerId=${streamerId}`, {
+        state: { streamerId },
+      });
   };
   return (
     <div className="prize">
@@ -70,7 +73,7 @@ export const Prize = ({
         <div className="prize__winner-count">X{amountOfWinners}</div>
         <img src={prize} alt="Изображение приза" className="prize__img" />
       </div>
-      <span className="header-text">Розыгрыш</span>
+      <span className="header-text">Розыгрыш #{id}</span>
       <span className="details-text">
         {
           <NotAvailable

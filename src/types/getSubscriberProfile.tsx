@@ -1,4 +1,4 @@
-import { GetUserPayMethod } from "./getUserPayMethod";
+import { GetUserPayMethod } from "./getUserDto";
 import { SubscriberStat } from "./subscriberStat";
 
 export interface GetSubscriberProfile {

@@ -9,8 +9,8 @@ export const useCheckStreamerYourself = (
   const [isStreamerYourself, setIsStreamer] = useState(false);
   useLayoutEffect(() => {
     const nameId = getNameId();
-    if (nameId === id || (admins && admins.map((a) => a.tgId).includes(id)))
+    if (nameId === id || (admins && admins.map((a) => a.tgId).includes(nameId)))
       setIsStreamer(true);
-  }, []);
+  }, [admins, id]);
   return isStreamerYourself;
 };

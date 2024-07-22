@@ -5,6 +5,7 @@ export type DefaultModalProps = {
   children: React.ReactNode;
   style?: React.CSSProperties;
   onClose?: () => void;
+  onSubmit?: () => void;
 };
 export const ModalWindow = ({
   children,

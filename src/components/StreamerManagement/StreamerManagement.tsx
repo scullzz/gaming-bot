@@ -38,11 +38,7 @@ export const StreamerManagement = ({ id }: IStreamerDetailsViewer) => {
       .then(() => refetch());
   };
   return (
-    <div
-      className={`streamer__management ${
-        !isStreamerYourself && "streamer__management-user"
-      }`}
-    >
+    <div className="streamer__management-body">
       {
         <Details
           isLoading={isLoading || streamerLoading || subscribing}
@@ -54,8 +50,8 @@ export const StreamerManagement = ({ id }: IStreamerDetailsViewer) => {
           }}
         ></Details>
       }
-      {isStreamerYourself ? (
-        <>
+      {isStreamerYourself && (
+        <div className="streamer__management">
           <button
             className="attention-btn"
             onClick={() =>
@@ -72,11 +68,12 @@ export const StreamerManagement = ({ id }: IStreamerDetailsViewer) => {
           >
             Создать пост
           </button>
-        </>
-      ) : streamer?.isSubscribed ? (
+        </div>
+      )}
+      {streamer?.isSubscribed ? (
         <></>
       ) : (
-        <>
+        <div className="streamer__management-user">
           <button className="attention-btn" onClick={onSub}>
             Подписаться
           </button>
@@ -84,7 +81,7 @@ export const StreamerManagement = ({ id }: IStreamerDetailsViewer) => {
             Подпишитесь на стримера, чтобы участвовать в его розыгрышах и
             получать уведомления от него
           </span>
-        </>
+        </div>
       )}
     </div>
   );

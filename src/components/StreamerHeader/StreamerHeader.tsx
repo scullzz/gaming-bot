@@ -14,6 +14,8 @@ import { getNameId } from "../../functions/getValueFromJwt";
 import { handleError } from "../../functions/handleError";
 import { useNavigate } from "react-router-dom";
 import { useCheckStreamerYourself } from "../../functions/useCheckStreamerYourself";
+import { useState } from "react";
+import { SocialsModal } from "../SocialsModal/SocialsModal";
 
 export const StreamerHeader = ({ id }: IStreamerDetailsViewer) => {
   const tgId = id;
@@ -39,13 +41,14 @@ export const StreamerHeader = ({ id }: IStreamerDetailsViewer) => {
   };
   const unsubErrorText = handleError(unsubError);
   const { errorText, setErrorText } = useQueryError(streamerError);
+  const [showModal, setShowModal] = useState(false);
   const socials = getSocials(
     streamer?.socials || [],
-    () => {},
+    () => setShowModal(true),
     streamer?.isSubscribed ? () => onUnsub() : undefined
   );
   const { data: admins } = useGetAdminsQuery(id);
-  const isStreamerYourself = useCheckStreamerYourself(getNameId(), admins);
+  const isStreamerYourself = useCheckStreamerYourself(tgId, admins);
   return (
     <div className="streamer__header">
       {isStreamerYourself && (
@@ -55,6 +58,12 @@ export const StreamerHeader = ({ id }: IStreamerDetailsViewer) => {
         >
           Изменить
         </button>
+      )}
+      {showModal && (
+        <SocialsModal
+          socials={streamer?.socials}
+          onClose={() => setShowModal(false)}
+        ></SocialsModal>
       )}
       <Details
         isLoading={(!streamer && isLoading) || unsubingFromStreamer}

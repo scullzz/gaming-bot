@@ -1,5 +1,10 @@
 .streamer {
   &__management {
+    &-body {
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+    }
     display: flex;
     margin-top: 20px;
     column-gap: 14px;
@@ -7,6 +12,8 @@
       width: 50%;
     }
     &-user {
+      margin-top: 10px;
+      display: flex;
       align-items: center;
       row-gap: 8px;
       flex-direction: column;

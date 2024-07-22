@@ -22,12 +22,11 @@ export const getSocials = (
   socials = removeSocialsDuplicates(socials);
   const preview = socials.slice(0, 2);
   const end = socials.slice(2);
-
   let result: SocialItemProps[] = [
     ...preview.map((t) => ({
       text: t.name,
       url: `/${t.name.toLowerCase()}.png`,
-      onClick: () => tg.openLink(`https://${t.link}`),
+      onClick: () => tg.openLink(`${t.link}`),
     })),
   ];
 
@@ -47,7 +46,7 @@ export const getSocials = (
     });
   }
 
-  if (socials.length > 2 && unsunscribe) {
+  if (socials.length > 3) {
     result.push({
       text: "Ещё",
       url: burger,
@@ -55,7 +54,7 @@ export const getSocials = (
     });
   }
 
-  if (socials.length > 2) {
+  /* if (socials.length > 2) {
     result = [
       ...result,
       ...end.map((t) => ({
@@ -64,7 +63,17 @@ export const getSocials = (
         onClick: () => tg.openLink(t.link),
       })),
     ];
-  }
+  } */
 
+  return result;
+};
+export const getFullSocials = (socials: Social[]) => {
+  let result: SocialItemProps[] = [
+    ...socials.map((t) => ({
+      text: t.name,
+      url: `/${t.name.toLowerCase()}.png`,
+      onClick: () => tg.openLink(`${t.link}`),
+    })),
+  ];
   return result;
 };

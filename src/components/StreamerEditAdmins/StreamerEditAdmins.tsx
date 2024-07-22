@@ -8,6 +8,8 @@ import { IStreamerDetailsViewer } from "../StreamerPage/StreamerPage";
 import { UserView } from "../UserView/UserView";
 import "./StreamerEditAdmin.scss";
 import { DataPickerModal } from "../DataPickerModal/DataPickerModal";
+import { useCheckStreamerYourself } from "../../functions/useCheckStreamerYourself";
+import { getNameId } from "../../functions/getValueFromJwt";
 
 export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
   const { data: admins, isLoading, error, refetch } = useGetAdminsQuery(id);
@@ -54,10 +56,13 @@ export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
         Администраторы канала
       </span>
       <div className="streamer-edit__admins-body">
-        <AddButton
-          text="Добавить администратора"
-          onClick={() => setShowModal(true)}
-        ></AddButton>
+        {getNameId() == id && (
+          <AddButton
+            text="Добавить администратора"
+            onClick={() => setShowModal(true)}
+          ></AddButton>
+        )}
+
         <div
           className="line"
           style={{ marginLeft: "20px", width: "calc(100% - 20px)" }}

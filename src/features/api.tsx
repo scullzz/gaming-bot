@@ -40,7 +40,7 @@ export const api = createApi({
       query: () => `auth`,
     }),
     getAuth: builder.mutation<void, TelegramAuthDateDto>({
-      query: (req) => ({ url: "auth/local-enter", method: "POST", body: req }),
+      query: (req) => ({ url: "auth", method: "POST", body: req }),
     }),
     getStreamers: builder.query<
       EntityState<GetStreamerDto, number>,

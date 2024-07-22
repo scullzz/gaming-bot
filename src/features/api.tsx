@@ -297,6 +297,12 @@ export const api = createApi({
         );
       },
     }),
+    getStreamerReport: builder.mutation<void, string>({
+      query: (id) => ({ url: `streamer/${id}/report`, method: "POST" }),
+    }),
+    getRaffleReport: builder.mutation<void, number>({
+      query: (id) => ({ url: `raffle/${id}/report`, method: "POST" }),
+    }),
   }),
 });
 
@@ -327,4 +333,6 @@ export const {
   useGetSubProfileQuery,
   useSendSubMessageMutation,
   useGetParticipantsQuery,
+  useGetRaffleReportMutation,
+  useGetStreamerReportMutation,
 } = api;

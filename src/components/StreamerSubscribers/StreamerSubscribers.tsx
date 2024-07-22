@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import {
   subscribersAdapter,
   useGetAdminsQuery,
+  useGetStreamerReportMutation,
   useGetSubscribersQuery,
 } from "../../features/api";
 
@@ -15,6 +16,7 @@ import { IStreamerDetailsViewer } from "../StreamerPage/StreamerPage";
 import { UserView } from "../UserView/UserView";
 import "./StreamerSubscribers.scss";
 import { useStickyRef } from "../../functions/useStickyRef";
+import { handleError } from "../../functions/handleError";
 export const StreamerSubscribers = ({ id }: IStreamerDetailsViewer) => {
   const { page, pageSize, handleScroll } = useScrollPagination();
 
@@ -26,6 +28,15 @@ export const StreamerSubscribers = ({ id }: IStreamerDetailsViewer) => {
   const isStreamerYourself = useCheckStreamerYourself(id, admins);
   const { errorText: adminErrorText, setErrorText: setAdminErrorText } =
     useQueryError(adminsError);
+  const [
+    getReport,
+    {
+      isLoading: reportCreating,
+      error: createReportError,
+      reset: resetCreateReportError,
+    },
+  ] = useGetStreamerReportMutation();
+  const createReportErrorText = handleError(createReportError);
   const {
     subscribers,
     isLoading,
@@ -54,11 +65,16 @@ export const StreamerSubscribers = ({ id }: IStreamerDetailsViewer) => {
     <div className="streamer__subscribers">
       {
         <Details
-          isLoading={(subscribers.length === 0 && isLoading) || adminsLoading}
-          error={errorText || adminErrorText}
+          isLoading={
+            (subscribers.length === 0 && isLoading) ||
+            adminsLoading ||
+            reportCreating
+          }
+          error={errorText || adminErrorText || createReportErrorText}
           onClose={() => {
             setErrorText(undefined);
             setAdminErrorText(undefined);
+            resetCreateReportError();
           }}
         ></Details>
       }
@@ -67,9 +83,10 @@ export const StreamerSubscribers = ({ id }: IStreamerDetailsViewer) => {
         {isStreamerYourself && (
           <button
             className="attention-opacity-btn"
+            onClick={() => getReport(id)}
             style={{ width: "100%", marginBottom: "7px" }}
           >
-            Скачать
+            Создать отчет
           </button>
         )}
 

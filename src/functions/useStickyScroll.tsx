@@ -33,6 +33,11 @@ export const useStickyScroll = (
       passive: false,
     });
     return () => {
+      document.body.style.overflowY = "hidden";
+      document.documentElement.style.overflowY = "hidden";
+      document.body.style.marginTop = `${0}px`;
+      document.body.style.height = window.innerHeight + 0 + "px";
+      document.body.style.paddingBottom = `${0}px`;
       document.documentElement.removeEventListener("touchstart", onTouchStart);
       document.documentElement.removeEventListener("touchmove", onTouchMove);
     };

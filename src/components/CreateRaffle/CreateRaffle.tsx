@@ -92,7 +92,7 @@ export const CreateRaffle = () => {
       })),
     };
     navigate("/raffle-preview", {
-      state: { prize: obj },
+      state: { prize: obj, streamerId },
     });
   };
   return (

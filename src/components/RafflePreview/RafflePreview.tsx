@@ -5,12 +5,20 @@ import "./RafflePreview.scss";
 
 export const RafflePreview = () => {
   const location = useLocation();
-  const { prize } = location.state;
+  const { prize, streamerId } = location.state;
   const navigate = useNavigate();
   return (
     <div className="section raffle-preview">
       <SectionHeader
-        left={<span onClick={() => navigate("/create-raffle")}>Закрыть</span>}
+        left={
+          <span
+            onClick={() =>
+              navigate("/create-raffle", { state: { streamerId } })
+            }
+          >
+            Закрыть
+          </span>
+        }
       ></SectionHeader>
       <div className="mt" style={{ minHeight: "31px" }}></div>
       <div className="raffle-preview__header">Предпросмотр розыгрыша</div>

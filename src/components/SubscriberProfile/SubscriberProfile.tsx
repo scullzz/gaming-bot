@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import { handleError } from "../../functions/handleError";
 import { DataPickerModal } from "../DataPickerModal/DataPickerModal";
 import { useStickyRef } from "../../functions/useStickyRef";
+import { useClassnamedStickyScroll } from "../../functions/useStickyScroll";
 interface UserInfoProps {
   TelegramId: string;
   username: string;
@@ -84,6 +85,10 @@ export const SubscriberProfile = () => {
   useEffect(() => {
     if (sub) setNote(sub?.note);
   }, [sub]);
+  useClassnamedStickyScroll(
+    "subscriber-profile-raffles-participant",
+    "subscriber-profile"
+  );
   return (
     <div className="subscriber-profile section">
       {showModal && (

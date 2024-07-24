@@ -9,6 +9,7 @@ import { useGetStreamerQuery } from "../../features/api";
 import { getNameId } from "../../functions/getValueFromJwt";
 import { useQueryError } from "../../functions/useQueryError";
 import { Details } from "../Details/Details";
+import { useStickyRef } from "../../functions/useStickyRef";
 
 export const StreamerEditPage = () => {
   const { id } = useParams();
@@ -22,8 +23,9 @@ export const StreamerEditPage = () => {
   const { errorText, setErrorText } = useQueryError(error);
   const goToCover = () => navigate(`/streamer/${id}`);
   if (!id) return <div>Not found</div>;
+  const ref = useStickyRef();
   return (
-    <div className="section streamer-edit">
+    <div className="section streamer-edit" ref={ref}>
       <Details
         isLoading={isLoading && !streamer}
         error={errorText}

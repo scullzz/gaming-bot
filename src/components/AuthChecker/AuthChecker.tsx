@@ -13,6 +13,8 @@ export const AuthChecker = () => {
     const onClick = () => navigate("/streamers");
     tg.BackButton.onClick(onClick).show();
     tg.expand();
+    console.log(tg.initData);
+    console.log(tg.initDataUnsafe);
   }, []);
   useEffect(() => {
     if (isSuccess) navigate("/streamers");

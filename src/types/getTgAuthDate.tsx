@@ -1,23 +1,8 @@
 import { tg } from "../App";
-import { TelegramAuthDateDto } from "./TelegramAuthDateDto";
+import { AuthRequest } from "./authRequest";
 
-export const getTgAuthData = () => {
+export const getTgAuthData = (): AuthRequest => {
   let data = tg.initData;
 
-  let parts = data.split("&");
-
-  let result: any = {};
-
-  parts.forEach(function (part) {
-    var keyValue = part.split("=");
-    var key = keyValue[0];
-    var value = decodeURIComponent(keyValue[1]);
-
-    if (key === "user") {
-      result[key] = JSON.stringify(JSON.parse(value));
-    } else {
-      result[key] = value;
-    }
-  });
-  return result as TelegramAuthDateDto;
+  return { hash: data };
 };

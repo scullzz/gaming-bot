@@ -14,7 +14,7 @@ export const AuthChecker = () => {
     tg.BackButton.onClick(onClick).show();
     tg.expand();
   }, []);
-  /*  useEffect(() => {
+  useEffect(() => {
     if (isSuccess) navigate("/streamers");
     const tgData = getTgAuthData();
     let timer = setInterval(() => {
@@ -26,10 +26,9 @@ export const AuthChecker = () => {
     return () => {
       clearInterval(timer);
     };
-  }, []); */
+  }, []);
   return (
     <div className="auth-checker" style={{ overflowX: "scroll" }}>
-      <span>{tg.initData}</span>
       <Spinner></Spinner>
     </div>
   );

@@ -15,6 +15,7 @@ import { GetSubscriberProfile } from "../types/getSubscriberProfile";
 import { SendSubMessageRequest } from "../types/sendSubMessageRequest";
 import { EditNoteAboutSub } from "../types/editNoteAboutSub";
 import { GetSubParticipant } from "../types/getSubParticipant";
+import { AuthRequest } from "../types/authRequest";
 
 export const subscribersAdapter = createEntityAdapter<GetSubscriberDto>();
 
@@ -39,7 +40,7 @@ export const api = createApi({
     checkAuth: builder.query<void, void>({
       query: () => `auth`,
     }),
-    getAuth: builder.mutation<void, TelegramAuthDateDto>({
+    getAuth: builder.mutation<void, AuthRequest>({
       query: (req) => ({ url: "auth", method: "POST", body: req }),
     }),
     getStreamers: builder.query<

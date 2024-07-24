@@ -65,7 +65,10 @@ export const useClassnamedStickyScroll = (...classes: string[]) => {
           .map((s) => s.scrollTop);
         const isScrooled = allScrolls.every((s) => s <= 0);
         const te = e.changedTouches[0].clientY;
-        if (isScrooled && ts! < te) {
+        const targetNotInCollection = !elems.some(
+          (elem) => elem === e.target || elem?.contains(e.target as Node)
+        );
+        if (isScrooled && ts! < te && targetNotInCollection) {
           e.preventDefault();
         }
       } else {

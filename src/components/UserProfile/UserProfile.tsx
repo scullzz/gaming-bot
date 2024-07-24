@@ -58,9 +58,8 @@ export const UserProfile = () => {
         .then(() => refetch());
     }
   };
-  const sectionRef = useStickyRef();
   return (
-    <div className="user-profile section" ref={sectionRef}>
+    <div className="user-profile section">
       <Details
         isLoading={(!user && userLoading) || userUpdating}
         error={userErrorText || updatingErrorText}

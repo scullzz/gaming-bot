@@ -84,9 +84,8 @@ export const SubscriberProfile = () => {
   useEffect(() => {
     if (sub) setNote(sub?.note);
   }, [sub]);
-  const sectionRef = useStickyRef();
   return (
-    <div className="subscriber-profile section" ref={sectionRef}>
+    <div className="subscriber-profile section">
       {showModal && (
         <DataPickerModal
           compact={false}

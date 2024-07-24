@@ -19,7 +19,6 @@ import { useStickyRef } from "../../functions/useStickyRef";
 
 const StreamersView = () => {
   const navigate = useNavigate();
-  const stickyRef = useStickyRef();
   const { page, pageSize, handleScroll } = useScrollPagination();
   const userId = getNameId();
   const { streamers, isLoading, error } = useGetStreamersQuery(
@@ -60,7 +59,6 @@ const StreamersView = () => {
       }
       <div
         className="streamers-wrapper"
-        ref={stickyRef}
         onScroll={isLoading ? () => {} : handleScroll}
         style={{ height: "auto" }}
       >

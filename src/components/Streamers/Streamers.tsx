@@ -1,5 +1,8 @@
 import { useRef } from "react";
-import { useStickyScroll } from "../../functions/useStickyScroll";
+import {
+  useClassnamedStickyScroll,
+  useStickyScroll,
+} from "../../functions/useStickyScroll";
 import { WithMenu } from "../withMenu/withMenu";
 import ".//Streamers.scss";
 import { useScrollPagination } from "../../functions/useScrollPagination";
@@ -15,7 +18,6 @@ import { Details } from "../Details/Details";
 import { UserView } from "../UserView/UserView";
 import { handleError } from "../../functions/handleError";
 import { useNavigate } from "react-router-dom";
-import { useStickyRef } from "../../functions/useStickyRef";
 
 const StreamersView = () => {
   const navigate = useNavigate();
@@ -41,6 +43,7 @@ const StreamersView = () => {
     },
   ] = useSubscribeToStreamerMutation();
   const subscribeErrorText = handleError(subscribeError);
+  useClassnamedStickyScroll("streamers-wrapper");
   const { errorText, setErrorText } = useQueryError(error);
   return (
     <div className="section streamers">
@@ -59,7 +62,11 @@ const StreamersView = () => {
       }
       <div
         className="streamers-wrapper"
-        onScroll={isLoading ? () => {} : handleScroll}
+        onScroll={
+          isLoading || streamers.length % pageSize !== 0
+            ? () => {}
+            : handleScroll
+        }
         style={{ height: "auto" }}
       >
         {

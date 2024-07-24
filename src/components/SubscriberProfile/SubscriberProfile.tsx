@@ -18,6 +18,7 @@ import { GetUserPayMethod } from "../../types/getUserDto";
 import { useEffect, useState } from "react";
 import { handleError } from "../../functions/handleError";
 import { DataPickerModal } from "../DataPickerModal/DataPickerModal";
+import { useStickyRef } from "../../functions/useStickyRef";
 interface UserInfoProps {
   TelegramId: string;
   username: string;
@@ -83,8 +84,9 @@ export const SubscriberProfile = () => {
   useEffect(() => {
     if (sub) setNote(sub?.note);
   }, [sub]);
+  const sectionRef = useStickyRef();
   return (
-    <div className="subscriber-profile section">
+    <div className="subscriber-profile section" ref={sectionRef}>
       {showModal && (
         <DataPickerModal
           compact={false}

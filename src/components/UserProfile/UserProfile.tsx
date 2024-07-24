@@ -10,6 +10,7 @@ import { Details } from "../Details/Details";
 import { handleError } from "../../functions/handleError";
 import { useEffect, useState } from "react";
 import { GetUserPayMethod } from "../../types/getUserDto";
+import { useStickyRef } from "../../functions/useStickyRef";
 const TetherTRC20 = "Tether TRC20";
 const TetherERC20 = "Tether ERC20";
 const Piastrix = "Piastrix";
@@ -57,8 +58,9 @@ export const UserProfile = () => {
         .then(() => refetch());
     }
   };
+  const sectionRef = useStickyRef();
   return (
-    <div className="user-profile section">
+    <div className="user-profile section" ref={sectionRef}>
       <Details
         isLoading={(!user && userLoading) || userUpdating}
         error={userErrorText || updatingErrorText}
@@ -73,7 +75,10 @@ export const UserProfile = () => {
         right={<span onClick={onApply}>Готово</span>}
       ></SectionHeader>
       <div className="mt" style={{ marginTop: "31px" }}></div>
-      <StreamerPreview name="Peter Parker" isLive={false}></StreamerPreview>
+      <StreamerPreview
+        name={user?.firstName ?? "Пользователь"}
+        isLive={false}
+      ></StreamerPreview>
       <div className="user-profile__header-label" style={{ marginTop: "24px" }}>
         Платежная информация
       </div>

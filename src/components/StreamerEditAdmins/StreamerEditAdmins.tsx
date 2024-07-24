@@ -8,7 +8,6 @@ import { IStreamerDetailsViewer } from "../StreamerPage/StreamerPage";
 import { UserView } from "../UserView/UserView";
 import "./StreamerEditAdmin.scss";
 import { DataPickerModal } from "../DataPickerModal/DataPickerModal";
-import { useCheckStreamerYourself } from "../../functions/useCheckStreamerYourself";
 import { getNameId } from "../../functions/getValueFromJwt";
 
 export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
@@ -35,6 +34,7 @@ export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
         <DataPickerModal
           onClose={() => setShowModal(false)}
           value={adminId}
+          placeholderText="Введите telegram ID пользователя"
           onSubmit={onAdd}
           setValue={setAdmniId}
         ></DataPickerModal>

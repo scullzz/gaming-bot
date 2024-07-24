@@ -28,7 +28,7 @@ export const AuthChecker = () => {
     };
   }, []); */
   return (
-    <div className="auth-checker">
+    <div className="auth-checker" style={{ overflowX: "scroll" }}>
       <span>{tg.initData}</span>
       <Spinner></Spinner>
     </div>

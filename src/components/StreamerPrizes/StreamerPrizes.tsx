@@ -8,9 +8,10 @@ import { NotAvailable } from "../NotAvailable.tsx/NotAvailable";
 import { Details } from "../Details/Details";
 import { IStreamerDetailsViewer } from "../StreamerPage/StreamerPage";
 import { getNameId } from "../../functions/getValueFromJwt";
-import { useStickyRef } from "../../functions/useStickyRef";
-
-export const StreamerPrizes = ({ id }: IStreamerDetailsViewer) => {
+interface StreamerPrizesProps extends IStreamerDetailsViewer {
+  ref: React.ForwardedRef<HTMLDivElement | null>;
+}
+export const StreamerPrizes = ({ id, ref }: StreamerPrizesProps) => {
   const { page, pageSize, handleScroll } = useScrollPagination();
   const userId = getNameId();
   const [type, setType] = useState("active");
@@ -31,7 +32,6 @@ export const StreamerPrizes = ({ id }: IStreamerDetailsViewer) => {
   const onTypeSwtich = () => {
     setType((prev) => (prev === "active" ? "notactive" : "active"));
   };
-  const stickyRef = useStickyRef();
 
   return (
     <div className="streamer__prizes">
@@ -55,7 +55,7 @@ export const StreamerPrizes = ({ id }: IStreamerDetailsViewer) => {
       </div>
       <div
         className="streamer__prizes-body"
-        ref={stickyRef}
+        ref={ref}
         onScroll={
           isLoading || raffles.length % pageSize !== 0 ? () => {} : handleScroll
         }

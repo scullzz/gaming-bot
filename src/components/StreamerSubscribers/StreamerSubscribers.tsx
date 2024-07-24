@@ -17,7 +17,11 @@ import { UserView } from "../UserView/UserView";
 import "./StreamerSubscribers.scss";
 import { useStickyRef } from "../../functions/useStickyRef";
 import { handleError } from "../../functions/handleError";
-export const StreamerSubscribers = ({ id }: IStreamerDetailsViewer) => {
+import React from "react";
+interface StreamerSubscribersProps extends IStreamerDetailsViewer {
+  ref: React.ForwardedRef<HTMLDivElement | null>;
+}
+export const StreamerSubscribers = ({ id, ref }: StreamerSubscribersProps) => {
   const { page, pageSize, handleScroll } = useScrollPagination();
 
   const {
@@ -60,7 +64,6 @@ export const StreamerSubscribers = ({ id }: IStreamerDetailsViewer) => {
     if (isStreamerYourself)
       navigate(`/subscriber-profile/${userId}?streamerId=${id}`);
   };
-  const stickyRef = useStickyRef();
   return (
     <div className="streamer__subscribers">
       {
@@ -92,7 +95,7 @@ export const StreamerSubscribers = ({ id }: IStreamerDetailsViewer) => {
 
         <div
           className="streamer__subscribers-users"
-          ref={stickyRef}
+          ref={ref}
           onScroll={
             isLoading || subscribers.length % pageSize !== 0
               ? () => {}

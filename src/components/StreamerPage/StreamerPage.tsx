@@ -7,7 +7,7 @@ import { StreamerVideos } from "../StreamerVideos/StreamerVideos";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { tg } from "../../App";
-import { useStickyRef } from "../../functions/useStickyRef";
+import { useDoubleStickyRef, useStickyRef } from "../../functions/useStickyRef";
 
 export interface IStreamerDetailsViewer {
   id: string;
@@ -16,14 +16,14 @@ export interface IStreamerDetailsViewer {
 export const StreamerPage = () => {
   const { id } = useParams();
   if (id === undefined) return <div>Nothing found</div>;
-  const ref = useStickyRef();
+  const [first, second] = useDoubleStickyRef();
   return (
-    <div className="section streamer" ref={ref}>
+    <div className="section streamer">
       <StreamerHeader id={id}></StreamerHeader>
       <StreamerManagement id={id}></StreamerManagement>
       <StreamerVideos id={id}></StreamerVideos>
-      <StreamerPrizes id={id}></StreamerPrizes>
-      <StreamerSubscribers id={id}></StreamerSubscribers>
+      <StreamerPrizes id={id} ref={second}></StreamerPrizes>
+      <StreamerSubscribers id={id} ref={first}></StreamerSubscribers>
     </div>
   );
 };

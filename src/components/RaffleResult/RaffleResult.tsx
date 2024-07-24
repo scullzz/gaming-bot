@@ -10,6 +10,7 @@ import { useQueryError } from "../../functions/useQueryError";
 import { formatRaffleDate } from "../../functions/formatRaffleDate";
 import { useCheckStreamerYourself } from "../../functions/useCheckStreamerYourself";
 import { getNameId } from "../../functions/getValueFromJwt";
+import { useStickyRef } from "../../functions/useStickyRef";
 
 export const RaffleResult = () => {
   const { id } = useParams();
@@ -32,8 +33,9 @@ export const RaffleResult = () => {
     : raffle?.showWinners
     ? true
     : false;
+  const stickyRef = useStickyRef();
   return (
-    <div className="section raffle-result">
+    <div className="section raffle-result" ref={stickyRef}>
       <Details
         isLoading={raffleLoading && !raffle}
         error={raffleEt}

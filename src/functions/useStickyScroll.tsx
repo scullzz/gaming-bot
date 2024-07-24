@@ -44,10 +44,7 @@ export const useStickyScroll = (
   }, [scrollableEl]);
 };
 
-export const useDoubleStickyScroll = (
-  scrollableEl: React.MutableRefObject<HTMLDivElement | null>,
-  scrollableSecond: React.MutableRefObject<HTMLDivElement | null>
-) => {
+export const useClassnamedStickyScroll = (...classes: string[]) => {
   useEffect(() => {
     const overflow = 100;
     document.body.style.overflowY = "hidden";
@@ -61,11 +58,14 @@ export const useDoubleStickyScroll = (
       ts = e.touches[0].clientY;
     };
     const onTouchMove = (e: TouchEvent) => {
-      if (scrollableEl.current && scrollableSecond.current) {
-        const scroll = scrollableEl.current.scrollTop;
-        const scroll2 = scrollableSecond.current.scrollTop;
+      const elems = classes.map((s) => document.querySelector(`.${s}`));
+      if (!elems.includes(null)) {
+        const allScrolls = elems
+          .map((s) => s as HTMLDivElement)
+          .map((s) => s.scrollTop);
+        const isScrooled = allScrolls.every((s) => s <= 0);
         const te = e.changedTouches[0].clientY;
-        if (scroll <= 0 && ts! < te && scroll2 <= 0) {
+        if (isScrooled && ts! < te) {
           e.preventDefault();
         }
       } else {
@@ -87,5 +87,5 @@ export const useDoubleStickyScroll = (
       document.documentElement.removeEventListener("touchstart", onTouchStart);
       document.documentElement.removeEventListener("touchmove", onTouchMove);
     };
-  }, [scrollableEl]);
+  }, []);
 };

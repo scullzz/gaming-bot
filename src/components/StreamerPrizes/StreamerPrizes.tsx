@@ -8,10 +8,8 @@ import { NotAvailable } from "../NotAvailable.tsx/NotAvailable";
 import { Details } from "../Details/Details";
 import { IStreamerDetailsViewer } from "../StreamerPage/StreamerPage";
 import { getNameId } from "../../functions/getValueFromJwt";
-interface StreamerPrizesProps extends IStreamerDetailsViewer {
-  ref: React.ForwardedRef<HTMLDivElement | null>;
-}
-export const StreamerPrizes = ({ id, ref }: StreamerPrizesProps) => {
+interface StreamerPrizesProps extends IStreamerDetailsViewer {}
+export const StreamerPrizes = ({ id }: StreamerPrizesProps) => {
   const { page, pageSize, handleScroll } = useScrollPagination();
   const userId = getNameId();
   const [type, setType] = useState("active");
@@ -55,7 +53,6 @@ export const StreamerPrizes = ({ id, ref }: StreamerPrizesProps) => {
       </div>
       <div
         className="streamer__prizes-body"
-        ref={ref}
         onScroll={
           isLoading || raffles.length % pageSize !== 0 ? () => {} : handleScroll
         }

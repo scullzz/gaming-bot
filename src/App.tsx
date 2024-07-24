@@ -13,8 +13,18 @@ import { CreatePost } from "./components/CreatePost/CreatePost";
 import { UserProfile } from "./components/UserProfile/UserProfile";
 import { SubscriberProfile } from "./components/SubscriberProfile/SubscriberProfile";
 import { Toaster } from "react-hot-toast";
+import { useEffect } from "react";
 export const tg = Telegram.WebApp;
 export const App = () => {
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      console.log(tg.initData);
+      console.log(tg.initDataUnsafe);
+    }, 10000);
+    return () => {
+      clearInterval(timerId);
+    };
+  }, []);
   return (
     <Provider store={store}>
       <Toaster />

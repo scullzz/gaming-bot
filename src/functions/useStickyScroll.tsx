@@ -69,6 +69,7 @@ export const useDoubleStickyScroll = (
           e.preventDefault();
         }
       } else {
+        alert("??");
         e.preventDefault();
       }
     };

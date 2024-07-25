@@ -16,7 +16,8 @@ export const StreamerPage = () => {
   if (id === undefined) return <div>Nothing found</div>;
   useClassnamedStickyScroll(
     "streamer__subscribers-users",
-    "streamer__prizes-body"
+    "streamer__prizes-body",
+    "streamer"
   );
   return (
     <div className="section streamer">

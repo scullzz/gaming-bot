@@ -103,7 +103,6 @@ export const CreateRaffle = () => {
         error={raffleErrorText}
         onClose={() => resetRaffleError()}
       ></Details>
-      <div className="mt" style={{ minHeight: "31px" }}></div>
       <span className="create-raffle__header">Создать розыгрыш</span>
 
       <CreateRaffleWinnerCount

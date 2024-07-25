@@ -19,7 +19,14 @@ export const Menu = () => {
   };
   return (
     <div className="footer">
-      <div className="menu">
+      <div
+        className="menu"
+        style={{
+          backgroundColor: isStreamersPage
+            ? "var(--menu-color)"
+            : "var(--main-color)",
+        }}
+      >
         <MenuItem
           label="Стримеры"
           icon={streamers}

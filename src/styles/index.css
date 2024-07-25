@@ -45,7 +45,7 @@ html {
   flex-direction: column;
   padding: 10px;
   padding-inline: 15px;
-  padding-top: 30px;
+  padding-top: 15px;
 }
 .live-cicrcle {
   background-color: var(--live-color);

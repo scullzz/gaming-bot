@@ -20,15 +20,8 @@ import { SubscriberProfile } from "./components/SubscriberProfile/SubscriberProf
 import { Toaster } from "react-hot-toast";
 import { ImageLoader } from "./components/ImageLoader/ImageLoader";
 import { WithMenu } from "./components/withMenu/withMenu";
-import { useEffect } from "react";
 export const tg = Telegram.WebApp;
 export const App = () => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    const onClick = () => navigate(-1);
-    tg.BackButton.onClick(onClick).show();
-    tg.expand();
-  }, []);
   return (
     <Provider store={store}>
       <ImageLoader>

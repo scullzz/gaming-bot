@@ -14,7 +14,7 @@ const images = [
   "instagram.svg",
   "players.svg",
   "pointer-right.svg",
-  "prize.svg",
+  "prize.png",
   "question.svg",
   "telegram.svg",
   "tiktok.svg",

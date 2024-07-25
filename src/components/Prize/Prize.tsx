@@ -1,4 +1,4 @@
-import prize from "/prize.svg";
+import prize from "/prize.png";
 import "./Prize.scss";
 import Done from "/correct-green.svg";
 import notDone from "/cross-red.svg";

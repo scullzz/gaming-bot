@@ -2,7 +2,12 @@ import { StreamerEditPage } from "./components/StreamerEditPage/StreamerEditPage
 import { StreamerPage } from "./components/StreamerPage/StreamerPage";
 import { Streamers } from "./components/Streamers/Streamers";
 import "./styles/index.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./features/store";
 import { AuthChecker } from "./components/AuthChecker/AuthChecker";
@@ -15,8 +20,15 @@ import { SubscriberProfile } from "./components/SubscriberProfile/SubscriberProf
 import { Toaster } from "react-hot-toast";
 import { ImageLoader } from "./components/ImageLoader/ImageLoader";
 import { WithMenu } from "./components/withMenu/withMenu";
+import { useEffect } from "react";
 export const tg = Telegram.WebApp;
 export const App = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const onClick = () => navigate(-1);
+    tg.BackButton.onClick(onClick).show();
+    tg.expand();
+  }, []);
   return (
     <Provider store={store}>
       <ImageLoader>

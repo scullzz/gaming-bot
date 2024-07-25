@@ -5,10 +5,12 @@ import { MenuItem } from "../MenuItem/MenuItem";
 import "./Menu.scss";
 import streamers from "/players.svg";
 import { getImage, getNameId, getRole } from "../../functions/getValueFromJwt";
+import { useIsStreamersRoute } from "../../functions/useIsStreamerRoute";
 const UserRole = "User";
 export const Menu = () => {
   const userProfileInitials = getInitials(tg.initDataUnsafe.user);
   const navigate = useNavigate();
+  const isStreamersPage = useIsStreamersRoute();
   const onProfileClick = () => {
     const role = getRole();
 
@@ -31,12 +33,14 @@ export const Menu = () => {
           initials={userProfileInitials}
         ></MenuItem>
       </div>
-      <div className="ad">
-        <span className="details-text ad__text">
-          Если вы стример и хотите попасть в этот список - обращайтесь
-          <span className="details__text ad__link"> @SupportBot</span>
-        </span>
-      </div>
+      {isStreamersPage && (
+        <div className="ad">
+          <span className="details-text ad__text">
+            Если вы стример и хотите попасть в этот список - обращайтесь
+            <span className="details__text ad__link"> @SupportBot</span>
+          </span>
+        </div>
+      )}
     </div>
   );
 };

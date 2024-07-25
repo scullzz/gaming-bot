@@ -16,7 +16,6 @@ const TetherERC20 = "Tether ERC20";
 const Piastrix = "Piastrix";
 export const UserProfile = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const {
     data: user,
     isLoading: userLoading,

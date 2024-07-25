@@ -8,9 +8,9 @@ interface IHeaderProps {
 export const SectionHeader = ({ center, left, right }: IHeaderProps) => {
   return (
     <div className="section-header">
-      {left}
-      {center}
-      {right}
+      {left || <span></span>}
+      {center || <span></span>}
+      {right || <span></span>}
     </div>
   );
 };

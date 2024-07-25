@@ -76,7 +76,7 @@ export const UserProfile = () => {
       ></SectionHeader>
       <div className="mt" style={{ marginTop: "31px" }}></div>
       <StreamerPreview
-        url={user.imageUrl}
+        url={user?.imageUrl}
         name={user?.firstName ?? "Пользователь"}
         isLive={false}
       ></StreamerPreview>

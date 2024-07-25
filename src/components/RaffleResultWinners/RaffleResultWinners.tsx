@@ -40,7 +40,7 @@ export const RaffleResultWinners = () => {
       {winers?.map((t) => (
         <UserView
           {...t}
-          img={t.imageUrl}
+          img={t?.imageUrl}
           onClick={() => {
             if (isStreamerYourself)
               navigate(
@@ -48,7 +48,7 @@ export const RaffleResultWinners = () => {
               );
           }}
           id={4}
-          name={t.firstName}
+          name={t?.firstName || "Подписчик"}
           detailsText={`Подписан с ${formatRaffleDate(t.subscribeTime)}`}
         ></UserView>
       ))}

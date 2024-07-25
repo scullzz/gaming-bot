@@ -38,6 +38,7 @@ export const StreamerEditPage = () => {
       ></SectionHeader>
       <div className="mt" style={{ minHeight: "31px" }}></div>
       <StreamerPreview
+        url={streamer?.imageUrl}
         name={streamer?.name || "Стример"}
         isLive={false}
       ></StreamerPreview>

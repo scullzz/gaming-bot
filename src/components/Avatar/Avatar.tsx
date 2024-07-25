@@ -1,7 +1,8 @@
-import cover from "/cover.png";
+import cover from "/cover.svg";
 import "./Avatar.scss";
 import { IsLive } from "../IsLive/IsLive";
 import { Initials } from "../../functions/getInitials";
+import { useCheckImageCorrect } from "../../functions/useCheckImageCorrect";
 export interface AvatarProps {
   url?: string;
   isLive?: boolean;
@@ -10,12 +11,13 @@ export interface AvatarProps {
 }
 
 export const Avatar = ({ url, isLive, initials, size = 94 }: AvatarProps) => {
+  const correct = useCheckImageCorrect(url);
   return (
     <div className="avatar" style={{ width: size, height: size }}>
-      {url ? (
+      {correct ? (
         <img
           src={url}
-          alt=""
+          alt="фото профиля"
           className="avatar__body"
           style={{ width: size, height: size }}
         />

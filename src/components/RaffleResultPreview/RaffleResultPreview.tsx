@@ -9,7 +9,7 @@ import { useCheckStreamerYourself } from "../../functions/useCheckStreamerYourse
 import { GetRaffleDto } from "../../types/getRaffleDto";
 import { Details } from "../Details/Details";
 import "./RaffleResultPreview.scss";
-import prize from "/prize.png";
+import prize from "/prize.svg";
 
 interface IRaffleResultPreviewProps extends Partial<GetRaffleDto> {
   streamerId: string;

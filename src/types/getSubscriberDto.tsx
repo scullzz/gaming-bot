@@ -4,4 +4,5 @@ export interface GetSubscriberDto {
   firstName: string;
   lastName: string | null;
   subscribeTime: string;
+  imageUrl: string | null;
 }

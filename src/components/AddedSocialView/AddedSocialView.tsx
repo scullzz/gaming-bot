@@ -1,6 +1,6 @@
-import burger from "/y-burger.png";
+import burger from "/y-burger.svg";
 import "./AddedSocialView.scss";
-import pointer from "/pointer-right.png";
+import pointer from "/pointer-right.svg";
 import { GetSocialDto } from "../../types/GetSocialDto";
 import { truncateValue } from "../../functions/truncateValue";
 

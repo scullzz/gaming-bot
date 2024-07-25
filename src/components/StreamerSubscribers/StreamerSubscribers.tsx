@@ -107,6 +107,7 @@ export const StreamerSubscribers = ({ id }: StreamerSubscribersProps) => {
           }
           {subscribers.map((t) => (
             <UserView
+              img={t.imageUrl}
               {...mapSubscriberToUserView(t)}
               key={t.tgId}
               onClick={() => onSubClick(t.tgId)}

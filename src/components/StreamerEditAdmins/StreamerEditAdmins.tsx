@@ -72,6 +72,7 @@ export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
             name={t.firstName}
             detailsText="Админ"
             id={i}
+            img={t.imageUrl}
             style={{ marginTop: "15px", marginInline: "14px" }}
           ></UserView>
         ))}

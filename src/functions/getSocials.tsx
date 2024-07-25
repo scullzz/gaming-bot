@@ -1,7 +1,7 @@
 import { SocialItemProps } from "../components/SocialItem/SocialItem";
 import { Social } from "../types/social";
-import exit from "/exit.png";
-import burger from "/burger.png";
+import exit from "/exit.svg";
+import burger from "/burger.svg";
 import { tg } from "../App";
 const removeSocialsDuplicates = (items: Social[]): Social[] => {
   const seen = new Set<string>();
@@ -25,7 +25,7 @@ export const getSocials = (
   let result: SocialItemProps[] = [
     ...preview.map((t) => ({
       text: t.name,
-      url: `/${t.name.toLowerCase()}.png`,
+      url: `/${t.name.toLowerCase()}.svg`,
       onClick: () => tg.openLink(`${t.link}`),
     })),
   ];
@@ -33,7 +33,7 @@ export const getSocials = (
   if (socials.length === 3) {
     result.push({
       text: socials[2].name,
-      url: `/${socials[2].name.toLowerCase()}.png`,
+      url: `/${socials[2].name.toLowerCase()}.svg`,
       onClick: () => tg.openLink(socials[2].link),
     });
   }
@@ -59,7 +59,7 @@ export const getSocials = (
       ...result,
       ...end.map((t) => ({
         text: t.name,
-        url: `/${t.name.toLowerCase()}.png`,
+        url: `/${t.name.toLowerCase()}.svg`,
         onClick: () => tg.openLink(t.link),
       })),
     ];
@@ -71,7 +71,7 @@ export const getFullSocials = (socials: Social[]) => {
   let result: SocialItemProps[] = [
     ...socials.map((t) => ({
       text: t.name,
-      url: `/${t.name.toLowerCase()}.png`,
+      url: `/${t.name.toLowerCase()}.svg`,
       onClick: () => tg.openLink(`${t.link}`),
     })),
   ];

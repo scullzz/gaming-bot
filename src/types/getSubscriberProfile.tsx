@@ -6,6 +6,7 @@ export interface GetSubscriberProfile {
   tgId: string;
   email: string | null;
   firstName: string;
+  imageUrl: string | null;
   lastName: string | null;
   subscribeTime: string;
   note: string | null;

@@ -3,7 +3,7 @@ import { tg } from "../../App";
 import { getInitials } from "../../functions/getInitials";
 import { MenuItem } from "../MenuItem/MenuItem";
 import "./Menu.scss";
-import streamers from "/players.png";
+import streamers from "/players.svg";
 import { getNameId, getRole } from "../../functions/getValueFromJwt";
 const StreamerRole = "Streamer";
 const UserRole = "User";

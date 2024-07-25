@@ -8,4 +8,5 @@ export interface GetStreamerDto {
   isLive: boolean;
   isSubscribed: boolean;
   socials: Social[];
+  imageUrl: string | null;
 }

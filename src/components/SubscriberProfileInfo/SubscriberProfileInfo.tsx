@@ -1,4 +1,4 @@
-import copy from "/copy.png";
+import copy from "/copy.svg";
 import "./SubscriberProfileInfo.scss";
 import { truncateValue } from "../../functions/truncateValue";
 import { NotAvailable } from "../NotAvailable.tsx/NotAvailable";

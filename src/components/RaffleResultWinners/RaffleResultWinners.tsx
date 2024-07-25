@@ -40,6 +40,7 @@ export const RaffleResultWinners = () => {
       {winers?.map((t) => (
         <UserView
           {...t}
+          img={t.imageUrl}
           onClick={() => {
             if (isStreamerYourself)
               navigate(

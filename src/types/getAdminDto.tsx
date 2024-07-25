@@ -3,4 +3,5 @@ export interface GetAdminDto {
   tgId: string;
   firstName: string;
   lastName: string | null;
+  imageUrl: string | null;
 }

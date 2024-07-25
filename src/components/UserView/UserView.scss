@@ -46,6 +46,14 @@
     }
   }
   &__name {
+    align-items: center;
+    .circle {
+      background-color: #eb0400;
+      height: 8px;
+      width: 8px;
+      border-radius: 100%;
+    }
+    column-gap: 4px;
     display: flex;
   }
 }

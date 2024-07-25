@@ -1,12 +1,12 @@
-import prize from "/prize.png";
+import prize from "/prize.svg";
 import "./Prize.scss";
-import Done from "/corrrect-green.png";
-import notDone from "/cross-red.png";
+import Done from "/correct-green.svg";
+import notDone from "/cross-red.svg";
 import { GetRaffleDto } from "../../types/getRaffleDto";
 import { formatRaffleDate } from "../../functions/formatRaffleDate";
 import { formatRaffleTimeRemaining } from "../../functions/formatRaffleTimeRemaining";
 import { GetRaffleConditionDto } from "../../types/getRaffleConditionDto";
-import correct from "/corrrect-green.png";
+import correct from "/correct-green-prize.svg";
 import { NotAvailable } from "../NotAvailable.tsx/NotAvailable";
 import { useDoParticipantInRaffleMutation } from "../../features/api";
 import { getNameId } from "../../functions/getValueFromJwt";

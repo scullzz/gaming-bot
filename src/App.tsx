@@ -13,54 +13,59 @@ import { CreatePost } from "./components/CreatePost/CreatePost";
 import { UserProfile } from "./components/UserProfile/UserProfile";
 import { SubscriberProfile } from "./components/SubscriberProfile/SubscriberProfile";
 import { Toaster } from "react-hot-toast";
-import { useEffect } from "react";
+import { ImageLoader } from "./components/ImageLoader/ImageLoader";
+import { WithMenu } from "./components/withMenu/withMenu";
 export const tg = Telegram.WebApp;
 export const App = () => {
   return (
     <Provider store={store}>
-      <Toaster />
-      <Router>
-        <Routes>
-          <Route path="/" element={<AuthChecker></AuthChecker>}></Route>
-          <Route
-            path="/streamers"
-            element={<Streamers></Streamers>}
-            index
-          ></Route>
-          <Route
-            path="/streamer/:id"
-            element={<StreamerPage></StreamerPage>}
-          ></Route>
-          <Route
-            path="/streamer-edit/:id"
-            element={<StreamerEditPage></StreamerEditPage>}
-          ></Route>
-          <Route
-            path="/raffle/:id"
-            element={<RaffleResult></RaffleResult>}
-          ></Route>
-          <Route
-            path="/create-raffle"
-            element={<CreateRaffle></CreateRaffle>}
-          ></Route>
-          <Route
-            path="/raffle-preview"
-            element={<RafflePreview></RafflePreview>}
-          ></Route>
-          <Route
-            path="/create-post"
-            element={<CreatePost></CreatePost>}
-          ></Route>
-          <Route
-            path="user-profile/:id"
-            element={<UserProfile></UserProfile>}
-          ></Route>
-          <Route
-            path="subscriber-profile/:id"
-            element={<SubscriberProfile></SubscriberProfile>}
-          ></Route>
-        </Routes>
-      </Router>
+      <ImageLoader>
+        <Toaster />
+        <Router>
+          <WithMenu>
+            <Routes>
+              <Route path="/" element={<AuthChecker></AuthChecker>}></Route>
+              <Route
+                path="/streamers"
+                element={<Streamers></Streamers>}
+                index
+              ></Route>
+              <Route
+                path="/streamer/:id"
+                element={<StreamerPage></StreamerPage>}
+              ></Route>
+              <Route
+                path="/streamer-edit/:id"
+                element={<StreamerEditPage></StreamerEditPage>}
+              ></Route>
+              <Route
+                path="/raffle/:id"
+                element={<RaffleResult></RaffleResult>}
+              ></Route>
+              <Route
+                path="/create-raffle"
+                element={<CreateRaffle></CreateRaffle>}
+              ></Route>
+              <Route
+                path="/raffle-preview"
+                element={<RafflePreview></RafflePreview>}
+              ></Route>
+              <Route
+                path="/create-post"
+                element={<CreatePost></CreatePost>}
+              ></Route>
+              <Route
+                path="user-profile/:id"
+                element={<UserProfile></UserProfile>}
+              ></Route>
+              <Route
+                path="subscriber-profile/:id"
+                element={<SubscriberProfile></SubscriberProfile>}
+              ></Route>
+            </Routes>
+          </WithMenu>
+        </Router>
+      </ImageLoader>
     </Provider>
   );
 };

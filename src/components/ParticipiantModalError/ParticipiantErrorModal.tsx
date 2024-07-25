@@ -1,8 +1,8 @@
 import { GetRaffleConditionDto } from "../../types/getRaffleConditionDto";
 import { ModalWindow } from "../ModalWindow/ModalWinodw";
 import "./ParticipiantErrorModal.scss";
-import done from "/corrrect-green.png";
-import notDone from "/cross-red.png";
+import done from "/corrrect-green.svg";
+import notDone from "/cross-red.svg";
 interface ParticipiantCondition extends GetRaffleConditionDto {}
 interface IParticipiantErrorModalProps {
   onBlank: () => void;

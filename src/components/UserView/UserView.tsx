@@ -10,22 +10,26 @@ export interface IUserViewProps
   isStreamer?: boolean;
   withLine?: boolean;
   isSubscribed?: boolean;
+  withCircle?: boolean;
   name: string;
   onButtonClick?: () => void;
   id: string | number;
   detailsText?: string;
   onClick?: () => void;
+  img?: string | null;
 }
 export const UserView = ({
   isStreamer,
   name,
   id,
+  withCircle,
   onButtonClick,
   detailsText,
   onClick,
   isSubscribed,
   withLine = true,
   className,
+  img,
   ...rest
 }: IUserViewProps) => {
   return (
@@ -36,6 +40,7 @@ export const UserView = ({
       onClick={onClick}
     >
       <Avatar
+        url={img}
         initials={getInitialsByNameWithColor(name)}
         size={isStreamer ? 60 : 40}
       ></Avatar>
@@ -44,6 +49,7 @@ export const UserView = ({
         <div className="streamer-view__info-header">
           <div className="streamer-view__info-header-description">
             <div className="streamer-view__name">
+              {withCircle && <div className="circle"></div>}
               <span className="label-text">{name}</span>
             </div>
             {detailsText && <span className="details-text">{detailsText}</span>}

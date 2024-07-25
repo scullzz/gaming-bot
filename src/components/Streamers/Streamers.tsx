@@ -1,9 +1,4 @@
-import { useRef } from "react";
-import {
-  useClassnamedStickyScroll,
-  useStickyScroll,
-} from "../../functions/useStickyScroll";
-import { WithMenu } from "../withMenu/withMenu";
+import { useClassnamedStickyScroll } from "../../functions/useStickyScroll";
 import ".//Streamers.scss";
 import { useScrollPagination } from "../../functions/useScrollPagination";
 import {
@@ -19,7 +14,7 @@ import { UserView } from "../UserView/UserView";
 import { handleError } from "../../functions/handleError";
 import { useNavigate } from "react-router-dom";
 
-const StreamersView = () => {
+export const Streamers = () => {
   const navigate = useNavigate();
   const { page, pageSize, handleScroll } = useScrollPagination();
   const userId = getNameId();
@@ -80,6 +75,7 @@ const StreamersView = () => {
             onClick={() => navigate(`/streamer/${s.tgId}`)}
             name={s.name}
             isStreamer
+            withCircle={s.isLive}
             id={s.tgId}
             onButtonClick={
               s.isSubscribed
@@ -90,17 +86,10 @@ const StreamersView = () => {
             }
             isSubscribed={s.isSubscribed || s.tgId == getNameId()}
             detailsText={`${s.amountOfSubscribers} подписчиков`}
+            img={s.imageUrl}
           ></UserView>
         ))}
       </div>
     </div>
-  );
-};
-
-export const Streamers = () => {
-  return (
-    <WithMenu>
-      <StreamersView></StreamersView>
-    </WithMenu>
   );
 };

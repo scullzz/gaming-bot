@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./CreateRaffleConditions.scss";
-import checker from "/correct.png";
+import checker from "/correct.svg";
 import { Details } from "../Details/Details";
 import { useGetAvailableConditionsQuery } from "../../features/api";
 import { useQueryError } from "../../functions/useQueryError";

@@ -1,5 +1,5 @@
 import { InputHTMLAttributes } from "react";
-import question from "/question.png";
+import question from "/question.svg";
 
 interface IFormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   withLine?: boolean;

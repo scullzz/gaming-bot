@@ -1,4 +1,4 @@
-import pointer from "/pointer-right.png";
+import pointer from "/pointer-right.svg";
 import "./SubscriberRafflesParticipant.scss";
 import { useScrollPagination } from "../../functions/useScrollPagination";
 import {

@@ -5,17 +5,20 @@ interface IStreamerPreviewProps extends AvatarProps {
   details?: string;
   name: string;
   isLive: boolean;
+  img?: string | null;
 }
 
 export const StreamerPreview = ({
   name,
   details,
   isLive,
+  img,
   ...rest
 }: IStreamerPreviewProps) => {
   return (
     <div className="streamer__info">
       <Avatar
+        url={img}
         {...rest}
         isLive={isLive}
         initials={getInitialsByNameWithColor(name)}

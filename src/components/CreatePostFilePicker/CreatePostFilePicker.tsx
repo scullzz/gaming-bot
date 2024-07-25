@@ -1,4 +1,4 @@
-import img from "/img.png";
+import img from "/img.svg";
 import "./CreatePostFilePicker.scss";
 import { useRef } from "react";
 import { IParameterPickerElementProps } from "../CreateRaffle/CreateRaffle";

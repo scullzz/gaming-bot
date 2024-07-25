@@ -76,6 +76,7 @@ export const StreamerHeader = ({ id }: IStreamerDetailsViewer) => {
 
       <StreamerPreview
         name={streamer?.name || "Стример"}
+        url={streamer?.imageUrl}
         details={`${streamer?.amountOfSubscribers || 0} подписчиков`}
         isLive={streamer?.isLive || false}
       ></StreamerPreview>

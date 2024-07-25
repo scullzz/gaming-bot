@@ -4,8 +4,7 @@ import { getInitials } from "../../functions/getInitials";
 import { MenuItem } from "../MenuItem/MenuItem";
 import "./Menu.scss";
 import streamers from "/players.svg";
-import { getNameId, getRole } from "../../functions/getValueFromJwt";
-const StreamerRole = "Streamer";
+import { getImage, getNameId, getRole } from "../../functions/getValueFromJwt";
 const UserRole = "User";
 export const Menu = () => {
   const userProfileInitials = getInitials(tg.initDataUnsafe.user);
@@ -27,6 +26,7 @@ export const Menu = () => {
         <MenuItem
           label="Профиль"
           isProfile
+          icon={getImage()}
           onClick={onProfileClick}
           initials={userProfileInitials}
         ></MenuItem>

@@ -10,7 +10,7 @@ export const AuthChecker = () => {
   const navigate = useNavigate();
   const [getAuth] = useGetAuthMutation();
   useEffect(() => {
-    const onClick = () => navigate("/streamers");
+    const onClick = () => navigate(-1);
     tg.BackButton.onClick(onClick).show();
     tg.expand();
   }, []);

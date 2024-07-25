@@ -1,6 +1,7 @@
 import { HTMLAttributes } from "react";
 import { Initials } from "../../functions/getInitials";
 import "./MenuItem.scss";
+import { Avatar } from "../Avatar/Avatar";
 interface IMenuItemProps extends HTMLAttributes<HTMLDivElement> {
   icon?: string;
   label: string;
@@ -23,12 +24,7 @@ export const MenuItem = ({
           style={{ borderRadius: isProfile ? "100%" : "0px" }}
         />
       ) : (
-        <div
-          className="menu-item__icon"
-          style={{ backgroundColor: initials?.color }}
-        >
-          <span className="menu-item__text">{initials?.initials}</span>
-        </div>
+        <Avatar initials={initials} url={icon} size={27}></Avatar>
       )}
       <span className="menu-text">{label}</span>
     </div>

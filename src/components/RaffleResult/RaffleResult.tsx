@@ -41,10 +41,7 @@ export const RaffleResult = () => {
         error={raffleEt}
         onClose={() => setRaffleEt(undefined)}
       ></Details>
-      <SectionHeader
-        center={<span>Результаты</span>}
-        left={<span onClick={() => navigate(-1)}>Закрыть</span>}
-      ></SectionHeader>
+      <SectionHeader center={<span>Результаты розыгрыша</span>}></SectionHeader>
       <div className="mt" style={{ minHeight: "21px" }}></div>
       <RaffleResultPreview
         {...raffle}

@@ -70,7 +70,6 @@ export const UserProfile = () => {
         }}
       ></Details>
       <SectionHeader
-        left={<span onClick={() => navigate(-1)}></span>}
         center={<span>Профиль</span>}
         right={<span onClick={onApply}>Готово</span>}
       ></SectionHeader>

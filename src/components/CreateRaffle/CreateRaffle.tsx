@@ -6,7 +6,6 @@ import "./CreateRaffle.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import { CreateRaffleEndPicker } from "../CreateRaffleEndPicker/CreateRaffleEndPicker";
 import { Checker } from "../Checker/Checker";
-import { SectionHeader } from "../SectionHeader/SectionHeader";
 
 import { useCreateRaffleMutation } from "../../features/api";
 import { handleError } from "../../functions/handleError";
@@ -104,13 +103,6 @@ export const CreateRaffle = () => {
         error={raffleErrorText}
         onClose={() => resetRaffleError()}
       ></Details>
-      <SectionHeader
-        left={
-          <span onClick={() => navigate(`/streamer/${streamerId}`)}>
-            Закрыть
-          </span>
-        }
-      ></SectionHeader>
       <div className="mt" style={{ minHeight: "31px" }}></div>
       <span className="create-raffle__header">Создать розыгрыш</span>
 

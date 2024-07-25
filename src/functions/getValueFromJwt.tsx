@@ -35,3 +35,4 @@ const createSetter = (prop: string) => () => getValueFromJWT(prop);
 export const getNameId = createSetter("NameId");
 export const getFirstName = createSetter("Name");
 export const getRole = createSetter("Role");
+export const getImage = createSetter("Image");

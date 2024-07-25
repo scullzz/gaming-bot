@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export const useCheckImageCorrect = (url?: string | null) => {
   const [correct, setCorrect] = useState(false);
@@ -10,6 +10,7 @@ export const useCheckImageCorrect = (url?: string | null) => {
     image.onerror = () => {
       setCorrect(false);
     };
-  }, []);
+    image.src = url;
+  }, [url]);
   return correct;
 };

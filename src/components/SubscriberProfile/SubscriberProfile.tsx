@@ -113,11 +113,6 @@ export const SubscriberProfile = () => {
         }}
       ></Details>
       <SectionHeader
-        left={
-          <span onClick={() => navigate(`/streamer/${streamerId}`)}>
-            Закрыть
-          </span>
-        }
         center={<span>Профиль</span>}
         right={<span onClick={() => onApply()}>Готово</span>}
       ></SectionHeader>

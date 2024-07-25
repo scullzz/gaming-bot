@@ -1,6 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { CreatePostFilePicker } from "../CreatePostFilePicker/CreatePostFilePicker";
-import { SectionHeader } from "../SectionHeader/SectionHeader";
 import "./CreatePost.scss";
 import { useState } from "react";
 import { useMemoryState } from "../../functions/useMemoryState";
@@ -33,13 +32,6 @@ export const CreatePost = () => {
   };
   return (
     <div className="section create-post">
-      <SectionHeader
-        left={
-          <span onClick={() => navigate(`/streamer/${streamerId}`)}>
-            Закрыть
-          </span>
-        }
-      ></SectionHeader>
       <Details
         isLoading={postCreating}
         error={postErrorText}

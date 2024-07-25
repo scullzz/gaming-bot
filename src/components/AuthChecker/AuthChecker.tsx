@@ -28,7 +28,7 @@ export const AuthChecker = () => {
     };
   }, []);
   return (
-    <div className="auth-checker" style={{ overflowX: "scroll" }}>
+    <div className="auth-checker">
       <Spinner></Spinner>
     </div>
   );

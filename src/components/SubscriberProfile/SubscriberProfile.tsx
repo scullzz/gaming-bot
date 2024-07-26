@@ -18,7 +18,6 @@ import { GetUserPayMethod } from "../../types/getUserDto";
 import { useEffect, useState } from "react";
 import { handleError } from "../../functions/handleError";
 import { DataPickerModal } from "../DataPickerModal/DataPickerModal";
-import { useStickyRef } from "../../functions/useStickyRef";
 import { useClassnamedStickyScroll } from "../../functions/useStickyScroll";
 interface UserInfoProps {
   TelegramId: string;
@@ -147,7 +146,7 @@ export const SubscriberProfile = () => {
       <SubscriberProfileInfo
         obj={{
           "Telegram ID": [false, sub?.tgId || "#"],
-          "Имя пользователя": [true, sub?.firstName || "#"],
+          "Имя пользователя": [true, sub?.username || "#"],
           "Email для связи": [true, sub?.email || "Email не указан"],
         }}
       ></SubscriberProfileInfo>

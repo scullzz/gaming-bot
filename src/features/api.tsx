@@ -16,6 +16,7 @@ import { SendSubMessageRequest } from "../types/sendSubMessageRequest";
 import { EditNoteAboutSub } from "../types/editNoteAboutSub";
 import { GetSubParticipant } from "../types/getSubParticipant";
 import { AuthRequest } from "../types/authRequest";
+import { GetTgUser } from "../types/getTgUser";
 
 export const subscribersAdapter = createEntityAdapter<GetSubscriberDto>();
 
@@ -304,6 +305,9 @@ export const api = createApi({
     getRaffleReport: builder.mutation<void, number>({
       query: (id) => ({ url: `raffle/${id}/report`, method: "POST" }),
     }),
+    getTgUsers: builder.mutation<GetTgUser[], string>({
+      query: (req) => ({ url: `user/search?query=${req}`, method: "POST" }),
+    }),
   }),
 });
 
@@ -336,4 +340,5 @@ export const {
   useGetParticipantsQuery,
   useGetRaffleReportMutation,
   useGetStreamerReportMutation,
+  useGetTgUsersMutation,
 } = api;

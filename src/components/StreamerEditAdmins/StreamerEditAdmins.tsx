@@ -7,8 +7,8 @@ import { Details } from "../Details/Details";
 import { IStreamerDetailsViewer } from "../StreamerPage/StreamerPage";
 import { UserView } from "../UserView/UserView";
 import "./StreamerEditAdmin.scss";
-import { DataPickerModal } from "../DataPickerModal/DataPickerModal";
 import { getNameId } from "../../functions/getValueFromJwt";
+import { AddAdminModal } from "../AddAdminModal/AddAdminModal";
 
 export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
   const { data: admins, isLoading, error, refetch } = useGetAdminsQuery(id);
@@ -31,13 +31,12 @@ export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
   return (
     <div className="streamer-edit__admins">
       {showModal && (
-        <DataPickerModal
-          onClose={() => setShowModal(false)}
-          value={adminId}
-          placeholderText="Введите telegram ID пользователя"
+        <AddAdminModal
           onSubmit={onAdd}
+          value={adminId}
           setValue={setAdmniId}
-        ></DataPickerModal>
+          onClose={() => setShowModal(false)}
+        ></AddAdminModal>
       )}
       {
         <Details

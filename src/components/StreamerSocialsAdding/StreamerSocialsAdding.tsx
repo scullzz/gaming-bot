@@ -11,8 +11,9 @@ import { handleError } from "../../functions/handleError";
 interface IStreamerSocialsAddingProps {
   id: string;
 }
-interface OptionType {
+export interface OptionType {
   value: string;
+  imgUrl?: string;
   label: string;
 }
 const customStyles = {

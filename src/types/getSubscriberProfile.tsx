@@ -1,6 +1,5 @@
 import { GetUserPayMethod } from "./getUserDto";
 import { SubscriberStat } from "./subscriberStat";
-
 export interface GetSubscriberProfile {
   id: number;
   tgId: string;
@@ -12,4 +11,5 @@ export interface GetSubscriberProfile {
   note: string | null;
   userPayMethods: GetUserPayMethod[];
   subscriberStat: SubscriberStat;
+  username: string | null;
 }

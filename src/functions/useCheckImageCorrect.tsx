@@ -5,7 +5,14 @@ export const useCheckImageCorrect = (url?: string | null) => {
   useEffect(() => {
     const image = new Image();
     image.onload = () => {
-      setCorrect(true);
+      if (
+        url != null &&
+        url != "undefined" &&
+        url != undefined &&
+        url != "null" &&
+        url != ""
+      )
+        setCorrect(true);
     };
     image.onerror = () => {
       setCorrect(false);

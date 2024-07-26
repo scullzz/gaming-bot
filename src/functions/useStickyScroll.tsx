@@ -4,13 +4,6 @@ export const useStickyScroll = (
   scrollableEl: React.MutableRefObject<HTMLDivElement | null>
 ) => {
   useEffect(() => {
-    const overflow = 100;
-    document.body.style.overflowY = "hidden";
-    document.documentElement.style.overflowY = "hidden";
-    document.body.style.marginTop = `${overflow}px`;
-    document.body.style.height = window.innerHeight + overflow + "px";
-    document.body.style.paddingBottom = `${overflow}px`;
-    window.scrollTo(0, overflow);
     let ts: number | undefined;
     const onTouchStart = (e: TouchEvent) => {
       ts = e.touches[0].clientY;
@@ -33,11 +26,6 @@ export const useStickyScroll = (
       passive: false,
     });
     return () => {
-      document.body.style.overflowY = "hidden";
-      document.documentElement.style.overflowY = "hidden";
-      document.body.style.marginTop = `${0}px`;
-      document.body.style.height = window.innerHeight + 0 + "px";
-      document.body.style.paddingBottom = `${0}px`;
       document.documentElement.removeEventListener("touchstart", onTouchStart);
       document.documentElement.removeEventListener("touchmove", onTouchMove);
     };
@@ -46,13 +34,6 @@ export const useStickyScroll = (
 
 export const useClassnamedStickyScroll = (...classes: string[]) => {
   useEffect(() => {
-    const overflow = 100;
-    document.body.style.overflowY = "hidden";
-    document.documentElement.style.overflowY = "hidden";
-    document.body.style.marginTop = `${overflow}px`;
-    document.body.style.height = window.innerHeight + overflow + "px";
-    document.body.style.paddingBottom = `${overflow}px`;
-    window.scrollTo(0, overflow);
     let ts: number | undefined;
     const onTouchStart = (e: TouchEvent) => {
       ts = e.touches[0].clientY;
@@ -82,13 +63,22 @@ export const useClassnamedStickyScroll = (...classes: string[]) => {
       passive: false,
     });
     return () => {
-      document.body.style.overflowY = "hidden";
-      document.documentElement.style.overflowY = "hidden";
-      document.body.style.marginTop = `${0}px`;
-      document.body.style.height = window.innerHeight + 0 + "px";
-      document.body.style.paddingBottom = `${0}px`;
       document.documentElement.removeEventListener("touchstart", onTouchStart);
       document.documentElement.removeEventListener("touchmove", onTouchMove);
     };
+  }, []);
+};
+
+export const useSetup = () => {
+  useEffect(() => {
+    const overflow = 100;
+    document.body.style.overflowY = "hidden";
+    document.documentElement.style.overflowY = "hidden";
+    const root = document.querySelector("#id") as HTMLDivElement;
+    root.style.overflowY = "hidden";
+    document.body.style.marginTop = `${overflow}px`;
+    document.body.style.height = window.innerHeight + overflow + "px";
+    document.body.style.paddingBottom = `${overflow}px`;
+    window.scrollTo(0, overflow);
   }, []);
 };

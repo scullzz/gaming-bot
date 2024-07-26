@@ -15,8 +15,10 @@ import { SubscriberProfile } from "./components/SubscriberProfile/SubscriberProf
 import { Toaster } from "react-hot-toast";
 import { ImageLoader } from "./components/ImageLoader/ImageLoader";
 import { WithMenu } from "./components/withMenu/withMenu";
+import { useSetup } from "./functions/useStickyScroll";
 export const tg = Telegram.WebApp;
 export const App = () => {
+  useSetup();
   return (
     <Provider store={store}>
       <ImageLoader>

@@ -62,7 +62,6 @@ export const Streamers = () => {
             ? () => {}
             : handleScroll
         }
-        style={{ height: "auto" }}
       >
         {
           <NotAvailable

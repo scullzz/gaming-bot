@@ -1,4 +1,10 @@
 .streamers {
+  height: 100%;
+  overflow-y: hidden;
+  &-wrapper {
+    overflow-y: auto;
+    height: 100%;
+  }
   &-text {
     margin-top: 8px;
     margin-bottom: 3px;

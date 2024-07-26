@@ -29,6 +29,6 @@ export const ModalWindow = ({
     <div className="modal" style={style} ref={ref} onClick={onClick}>
       <div className="modal-form">{children}</div>
     </div>,
-    document.body
+    document.querySelector("#root")
   );
 };

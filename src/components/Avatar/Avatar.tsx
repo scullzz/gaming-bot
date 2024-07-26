@@ -12,7 +12,6 @@ export interface AvatarProps {
 
 export const Avatar = ({ url, isLive, initials, size = 94 }: AvatarProps) => {
   const correct = useCheckImageCorrect(url);
-  console.log(url);
   return (
     <div className="avatar" style={{ width: size, height: size }}>
       {correct ? (

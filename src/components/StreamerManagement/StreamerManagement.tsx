@@ -70,7 +70,7 @@ export const StreamerManagement = ({ id }: IStreamerDetailsViewer) => {
           </button>
         </div>
       )}
-      {streamer?.isSubscribed || getNameId() == id ? (
+      {streamer?.isSubscribed ? (
         <></>
       ) : (
         <div className="streamer__management-user">

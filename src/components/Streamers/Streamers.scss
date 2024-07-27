@@ -3,8 +3,7 @@
   overflow: hidden;
   &-wrapper {
     overflow-y: auto;
-    height: 100%;
-    height: auto;
+    min-height: 100%;
   }
   &-text {
     margin-top: 8px;

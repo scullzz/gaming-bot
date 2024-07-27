@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export const useDisableScroll = (classname: string) => {
+export const useDisableBounces = (classname: string) => {
   useEffect(() => {
     const streamersEl = document.querySelector(
       `.${classname}`

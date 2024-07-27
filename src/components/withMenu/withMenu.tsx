@@ -3,6 +3,7 @@ import { Menu } from "../Menu/Menu";
 import "./withMenu.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { tg } from "../../App";
+import { useDisableBounces } from "../../functions/useDisableScroll";
 export const WithMenu = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const [height, setHeight] = useState(0);
@@ -16,7 +17,7 @@ export const WithMenu = ({ children }: { children: React.ReactNode }) => {
     tg.BackButton.onClick(onClick).show();
     tg.expand();
   }, []);
-
+  useDisableBounces("layout");
   return (
     <div className="layout">
       <div

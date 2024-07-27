@@ -91,7 +91,6 @@ export const Streamers = () => {
           ></UserView>
         ))}
       </div>
-      <div className="rabbish">STAB</div>
     </div>
   );
 };

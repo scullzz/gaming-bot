@@ -38,10 +38,10 @@ export const Streamers = () => {
     },
   ] = useSubscribeToStreamerMutation();
   const subscribeErrorText = handleError(subscribeError);
-  useClassnamedStickyScroll("streamers-wrapper", "streamers");
+  useClassnamedStickyScroll("streamers-wrapper");
   const { errorText, setErrorText } = useQueryError(error);
   return (
-    <div className="section streamers">
+    <div className="section streamers" onScroll={(e) => e.preventDefault()}>
       <p className="header-text">Стримеры</p>
       {
         <Details

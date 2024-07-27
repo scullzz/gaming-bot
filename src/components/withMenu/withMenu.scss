@@ -6,6 +6,7 @@
   &-wrapper {
     height: calc(100% - 132px);
     overflow: hidden;
+    -webkit-overflow-scrolling: touch;
   }
   .menu {
     height: 60px;

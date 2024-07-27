@@ -13,6 +13,7 @@ import { Details } from "../Details/Details";
 import { UserView } from "../UserView/UserView";
 import { handleError } from "../../functions/handleError";
 import { useNavigate } from "react-router-dom";
+import { useStickyRef } from "../../functions/useStickyRef";
 
 export const Streamers = () => {
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ export const Streamers = () => {
     },
   ] = useSubscribeToStreamerMutation();
   const subscribeErrorText = handleError(subscribeError);
-  useClassnamedStickyScroll("streamers-wrapper");
+  const stickyRef = useStickyRef();
   const { errorText, setErrorText } = useQueryError(error);
   return (
     <div className="section streamers">
@@ -57,6 +58,7 @@ export const Streamers = () => {
       }
       <div
         className="streamers-wrapper"
+        ref={stickyRef}
         onScroll={
           isLoading || streamers.length % pageSize !== 0
             ? () => {}

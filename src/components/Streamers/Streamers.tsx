@@ -44,9 +44,9 @@ export const Streamers = () => {
   useEffect(() => {
     const streamersEl = document.querySelector(".streamers") as HTMLDivElement;
     const onScroll = (e) => e.preventDefault();
-    streamersEl.addEventListener("scroll", onScroll, { passive: false });
+    streamersEl.addEventListener("touchmove", onScroll, { passive: false });
     return () => {
-      streamersEl.removeEventListener("scroll", onScroll);
+      streamersEl.removeEventListener("touchmove", onScroll);
     };
   }, []);
   return (

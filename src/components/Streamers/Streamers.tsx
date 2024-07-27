@@ -41,6 +41,7 @@ export const Streamers = () => {
   const subscribeErrorText = handleError(subscribeError);
   useClassnamedStickyScroll("streamers-wrapper");
   const { errorText, setErrorText } = useQueryError(error);
+  useDisableBounces("streamers");
   return (
     <div className="section streamers">
       <p className="header-text">Стримеры</p>

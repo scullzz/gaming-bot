@@ -17,7 +17,7 @@ export const WithMenu = ({ children }: { children: React.ReactNode }) => {
     tg.BackButton.onClick(onClick).show();
     tg.expand();
   }, []);
-  useDisableBounces("layout");
+
   return (
     <div className="layout">
       <div

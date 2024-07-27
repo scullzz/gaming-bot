@@ -94,4 +94,32 @@ export const useSetup = () => {
       clearInterval(timerId);
     };
   }, []);
+  useEffect(() => {
+    const preventScroll = (e) => {
+      if (
+        e.target === document.body ||
+        e.target === document.documentElement ||
+        e.target.id === "root"
+      ) {
+        e.preventDefault();
+      }
+    };
+
+    document.body.addEventListener("scroll", preventScroll, { passive: false });
+    document.documentElement.addEventListener("scroll", preventScroll, {
+      passive: false,
+    });
+    const rootElement = document.getElementById("root");
+    if (rootElement) {
+      rootElement.addEventListener("scroll", preventScroll, { passive: false });
+    }
+
+    return () => {
+      document.body.removeEventListener("scroll", preventScroll);
+      document.documentElement.removeEventListener("scroll", preventScroll);
+      if (rootElement) {
+        rootElement.removeEventListener("scroll", preventScroll);
+      }
+    };
+  }, []);
 };

@@ -41,7 +41,7 @@ export const Streamers = () => {
   useClassnamedStickyScroll("streamers-wrapper");
   const { errorText, setErrorText } = useQueryError(error);
   return (
-    <div className="section streamers" onScroll={(e) => e.preventDefault()}>
+    <div className="section streamers">
       <p className="header-text">Стримеры</p>
       {
         <Details

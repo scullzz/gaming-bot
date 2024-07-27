@@ -6,6 +6,7 @@
 * {
   font-family: "Roboto", sans-serif;
   overscroll-behavior: none;
+  scrollbar-width: none;
 }
 p {
   margin: 0;

@@ -13,7 +13,6 @@ import { Details } from "../Details/Details";
 import { UserView } from "../UserView/UserView";
 import { handleError } from "../../functions/handleError";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { useDisableScroll } from "../../functions/useDisableScroll";
 
 export const Streamers = () => {
@@ -60,7 +59,6 @@ export const Streamers = () => {
       }
       <div
         className="streamers-wrapper"
-        onTouchMove={(e) => e.stopPropagation()}
         onScroll={
           isLoading || streamers.length % pageSize !== 0
             ? () => {}

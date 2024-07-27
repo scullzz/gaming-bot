@@ -89,10 +89,6 @@ export const Streamers = () => {
           ></UserView>
         ))}
       </div>
-      <div
-        className="rabbish"
-        style={{ marginTop: "10000px", height: "1px", width: "100%" }}
-      ></div>
     </div>
   );
 };

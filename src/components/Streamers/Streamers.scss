@@ -1,5 +1,6 @@
 .streamers {
   height: 100%;
+  overflow: hidden;
   &-wrapper {
     overflow-y: auto;
     max-height: 100%;

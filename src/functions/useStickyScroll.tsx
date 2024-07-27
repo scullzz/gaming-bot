@@ -79,47 +79,14 @@ export const useClassnamedStickyScroll = (...classes: string[]) => {
 
 export const useSetup = () => {
   useEffect(() => {
-    const timerId = setInterval(() => {
-      const overflow = 100;
-      document.body.style.overflowY = "hidden";
-      document.documentElement.style.overflowY = "hidden";
-      const root = document.querySelector("#root") as HTMLDivElement;
-      root.style.overflow = "hidden";
-      document.body.style.marginTop = `${overflow}px`;
-      document.body.style.height = window.innerHeight + overflow + "px";
-      document.body.style.paddingBottom = `${overflow}px`;
-      window.scrollTo(0, overflow);
-    }, 50);
-    return () => {
-      clearInterval(timerId);
-    };
-  }, []);
-  useEffect(() => {
-    const preventScroll = (e) => {
-      if (
-        e.target === document.body ||
-        e.target === document.documentElement ||
-        e.target.id === "root"
-      ) {
-        e.preventDefault();
-      }
-    };
-
-    document.body.addEventListener("scroll", preventScroll, { passive: false });
-    document.documentElement.addEventListener("scroll", preventScroll, {
-      passive: false,
-    });
-    const rootElement = document.getElementById("root");
-    if (rootElement) {
-      rootElement.addEventListener("scroll", preventScroll, { passive: false });
-    }
-
-    return () => {
-      document.body.removeEventListener("scroll", preventScroll);
-      document.documentElement.removeEventListener("scroll", preventScroll);
-      if (rootElement) {
-        rootElement.removeEventListener("scroll", preventScroll);
-      }
-    };
+    const overflow = 100;
+    document.body.style.overflowY = "hidden";
+    document.documentElement.style.overflowY = "hidden";
+    const root = document.querySelector("#root") as HTMLDivElement;
+    root.style.overflow = "hidden";
+    document.body.style.marginTop = `${overflow}px`;
+    document.body.style.height = window.innerHeight + overflow + "px";
+    document.body.style.paddingBottom = `${overflow}px`;
+    window.scrollTo(0, overflow);
   }, []);
 };

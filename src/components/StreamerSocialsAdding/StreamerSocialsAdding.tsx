@@ -32,6 +32,10 @@ const customStyles = {
     display: "none",
   }),
 };
+const DropdownIndicator = (props: any) => {
+  return null;
+};
+
 export const StreamerSocialsAdding = ({ id }: IStreamerSocialsAddingProps) => {
   const {
     data: availableSocials,
@@ -77,6 +81,7 @@ export const StreamerSocialsAdding = ({ id }: IStreamerSocialsAddingProps) => {
           <Select
             placeholder="Название ссылки"
             options={options}
+            components={{ DropdownIndicator }}
             value={selectedOption}
             onChange={handleChange}
             styles={customStyles}

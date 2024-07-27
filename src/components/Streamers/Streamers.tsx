@@ -88,6 +88,158 @@ export const Streamers = () => {
             img={s.imageUrl}
           ></UserView>
         ))}
+        {streamers.map((s) => (
+          <UserView
+            onClick={() => navigate(`/streamer/${s.tgId}`)}
+            name={s.name}
+            isStreamer
+            withCircle={s.isLive}
+            id={s.tgId}
+            onButtonClick={
+              s.isSubscribed
+                ? () => navigate(`/streamer/${s.tgId}`)
+                : userId == s.tgId
+                ? () => {}
+                : () => subscribeToStreamer({ userId, streamerId: s.tgId })
+            }
+            isSubscribed={s.isSubscribed || s.tgId == getNameId()}
+            detailsText={`${s.amountOfSubscribers} подписчиков`}
+            img={s.imageUrl}
+          ></UserView>
+        ))}
+        {streamers.map((s) => (
+          <UserView
+            onClick={() => navigate(`/streamer/${s.tgId}`)}
+            name={s.name}
+            isStreamer
+            withCircle={s.isLive}
+            id={s.tgId}
+            onButtonClick={
+              s.isSubscribed
+                ? () => navigate(`/streamer/${s.tgId}`)
+                : userId == s.tgId
+                ? () => {}
+                : () => subscribeToStreamer({ userId, streamerId: s.tgId })
+            }
+            isSubscribed={s.isSubscribed || s.tgId == getNameId()}
+            detailsText={`${s.amountOfSubscribers} подписчиков`}
+            img={s.imageUrl}
+          ></UserView>
+        ))}
+        {streamers.map((s) => (
+          <UserView
+            onClick={() => navigate(`/streamer/${s.tgId}`)}
+            name={s.name}
+            isStreamer
+            withCircle={s.isLive}
+            id={s.tgId}
+            onButtonClick={
+              s.isSubscribed
+                ? () => navigate(`/streamer/${s.tgId}`)
+                : userId == s.tgId
+                ? () => {}
+                : () => subscribeToStreamer({ userId, streamerId: s.tgId })
+            }
+            isSubscribed={s.isSubscribed || s.tgId == getNameId()}
+            detailsText={`${s.amountOfSubscribers} подписчиков`}
+            img={s.imageUrl}
+          ></UserView>
+        ))}
+        {streamers.map((s) => (
+          <UserView
+            onClick={() => navigate(`/streamer/${s.tgId}`)}
+            name={s.name}
+            isStreamer
+            withCircle={s.isLive}
+            id={s.tgId}
+            onButtonClick={
+              s.isSubscribed
+                ? () => navigate(`/streamer/${s.tgId}`)
+                : userId == s.tgId
+                ? () => {}
+                : () => subscribeToStreamer({ userId, streamerId: s.tgId })
+            }
+            isSubscribed={s.isSubscribed || s.tgId == getNameId()}
+            detailsText={`${s.amountOfSubscribers} подписчиков`}
+            img={s.imageUrl}
+          ></UserView>
+        ))}
+        {streamers.map((s) => (
+          <UserView
+            onClick={() => navigate(`/streamer/${s.tgId}`)}
+            name={s.name}
+            isStreamer
+            withCircle={s.isLive}
+            id={s.tgId}
+            onButtonClick={
+              s.isSubscribed
+                ? () => navigate(`/streamer/${s.tgId}`)
+                : userId == s.tgId
+                ? () => {}
+                : () => subscribeToStreamer({ userId, streamerId: s.tgId })
+            }
+            isSubscribed={s.isSubscribed || s.tgId == getNameId()}
+            detailsText={`${s.amountOfSubscribers} подписчиков`}
+            img={s.imageUrl}
+          ></UserView>
+        ))}
+        {streamers.map((s) => (
+          <UserView
+            onClick={() => navigate(`/streamer/${s.tgId}`)}
+            name={s.name}
+            isStreamer
+            withCircle={s.isLive}
+            id={s.tgId}
+            onButtonClick={
+              s.isSubscribed
+                ? () => navigate(`/streamer/${s.tgId}`)
+                : userId == s.tgId
+                ? () => {}
+                : () => subscribeToStreamer({ userId, streamerId: s.tgId })
+            }
+            isSubscribed={s.isSubscribed || s.tgId == getNameId()}
+            detailsText={`${s.amountOfSubscribers} подписчиков`}
+            img={s.imageUrl}
+          ></UserView>
+        ))}
+        {streamers.map((s) => (
+          <UserView
+            onClick={() => navigate(`/streamer/${s.tgId}`)}
+            name={s.name}
+            isStreamer
+            withCircle={s.isLive}
+            id={s.tgId}
+            onButtonClick={
+              s.isSubscribed
+                ? () => navigate(`/streamer/${s.tgId}`)
+                : userId == s.tgId
+                ? () => {}
+                : () => subscribeToStreamer({ userId, streamerId: s.tgId })
+            }
+            isSubscribed={s.isSubscribed || s.tgId == getNameId()}
+            detailsText={`${s.amountOfSubscribers} подписчиков`}
+            img={s.imageUrl}
+          ></UserView>
+        ))}
+        {streamers.map((s) => (
+          <UserView
+            onClick={() => navigate(`/streamer/${s.tgId}`)}
+            name={s.name}
+            isStreamer
+            withCircle={s.isLive}
+            id={s.tgId}
+            onButtonClick={
+              s.isSubscribed
+                ? () => navigate(`/streamer/${s.tgId}`)
+                : userId == s.tgId
+                ? () => {}
+                : () => subscribeToStreamer({ userId, streamerId: s.tgId })
+            }
+            isSubscribed={s.isSubscribed || s.tgId == getNameId()}
+            detailsText={`${s.amountOfSubscribers} подписчиков`}
+            img={s.imageUrl}
+          ></UserView>
+        ))}
       </div>
     </div>
   );

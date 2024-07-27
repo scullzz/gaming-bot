@@ -10,6 +10,7 @@ export const useStickyScroll = (
     };
     const onTouchMove = (e: TouchEvent) => {
       if (scrollableEl.current) {
+        scrollableEl.current.style.overscrollBehavior = "none";
         const scroll = scrollableEl.current.scrollTop;
         const te = e.changedTouches[0].clientY;
         if (scroll <= 0 && ts! < te) {
@@ -49,7 +50,7 @@ export const useClassnamedStickyScroll = (...classes: string[]) => {
           .forEach(
             (s) =>
               (s.style.cssText =
-                "-webkit-overflow-scrolling: touch;transform: translateZ(0);")
+                "-webkit-overflow-scrolling: touch;transform: translateZ(0);overscroll-behavior: none;")
           );
         const isScrooled = allScrolls.every((s) => s <= 0);
         const te = e.changedTouches[0].clientY;

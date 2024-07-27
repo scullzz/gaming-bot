@@ -5,6 +5,7 @@
 @import url("./input.scss");
 * {
   font-family: "Roboto", sans-serif;
+  overscroll-behavior: none;
 }
 p {
   margin: 0;

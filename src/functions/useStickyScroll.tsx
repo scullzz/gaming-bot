@@ -44,6 +44,13 @@ export const useClassnamedStickyScroll = (...classes: string[]) => {
         const allScrolls = elems
           .map((s) => s as HTMLDivElement)
           .map((s) => s.scrollTop);
+        elems
+          .map((s) => s as HTMLDivElement)
+          .forEach(
+            (s) =>
+              (s.style.cssText =
+                "-webkit-overflow-scrolling: touch;transform: translateZ(0);")
+          );
         const isScrooled = allScrolls.every((s) => s <= 0);
         const te = e.changedTouches[0].clientY;
         const targetNotInCollection = !elems.some(

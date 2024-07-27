@@ -1,6 +1,8 @@
 .layout {
   height: 100vh;
   position: relative;
+  overflow-y: hidden;
+  overscroll-behavior: none;
   &-wrapper {
     height: calc(100% - 132px);
     overflow-y: auto;

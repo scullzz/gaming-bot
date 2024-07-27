@@ -89,7 +89,7 @@ export const useSetup = () => {
       document.body.style.height = window.innerHeight + overflow + "px";
       document.body.style.paddingBottom = `${overflow}px`;
       window.scrollTo(0, overflow);
-    }, 200);
+    }, 50);
     return () => {
       clearInterval(timerId);
     };

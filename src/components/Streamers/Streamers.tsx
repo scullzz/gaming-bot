@@ -41,7 +41,7 @@ export const Streamers = () => {
   useClassnamedStickyScroll("streamers-wrapper");
   const { errorText, setErrorText } = useQueryError(error);
   return (
-    <div className="section streamers">
+    <div className="section streamers" style={{ overflow: "hidden" }}>
       <p className="header-text">Стримеры</p>
       {
         <Details
@@ -89,29 +89,6 @@ export const Streamers = () => {
           ></UserView>
         ))}
       </div>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
-      <p className="header-text">Стримеры</p>
       <p className="header-text">Стримеры</p>
     </div>
   );

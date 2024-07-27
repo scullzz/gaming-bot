@@ -60,6 +60,7 @@ export const Streamers = () => {
       }
       <div
         className="streamers-wrapper"
+        onTouchMove={(e) => e.stopPropagation()}
         onScroll={
           isLoading || streamers.length % pageSize !== 0
             ? () => {}

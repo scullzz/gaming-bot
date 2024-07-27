@@ -13,6 +13,7 @@ import { Details } from "../Details/Details";
 import { UserView } from "../UserView/UserView";
 import { handleError } from "../../functions/handleError";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export const Streamers = () => {
   const navigate = useNavigate();
@@ -40,8 +41,16 @@ export const Streamers = () => {
   const subscribeErrorText = handleError(subscribeError);
   useClassnamedStickyScroll("streamers-wrapper");
   const { errorText, setErrorText } = useQueryError(error);
+  useEffect(() => {
+    const streamersEl = document.querySelector(".streamers") as HTMLDivElement;
+    const onScroll = (e) => e.preventDefault();
+    streamersEl.addEventListener("scroll", onScroll, { passive: false });
+    return () => {
+      streamersEl.removeEventListener("scroll", onScroll);
+    };
+  }, []);
   return (
-    <div className="section streamers" style={{ overflow: "hidden" }}>
+    <div className="section streamers">
       <p className="header-text">Стримеры</p>
       {
         <Details

@@ -18,7 +18,6 @@ import { WithMenu } from "./components/withMenu/withMenu";
 import { useSetup } from "./functions/useStickyScroll";
 export const tg = Telegram.WebApp;
 export const App = () => {
-  useSetup();
   return (
     <Provider store={store}>
       <ImageLoader>

@@ -15,8 +15,6 @@ export const WithMenu = ({ children }: { children: React.ReactNode }) => {
     const onClick = () => navigate(-1);
     tg.BackButton.onClick(onClick).show();
     tg.expand();
-    const layout = document.querySelector(".layout") as HTMLDivElement;
-    layout.style.overflowY = "hidden";
   }, []);
   return (
     <div className="layout">

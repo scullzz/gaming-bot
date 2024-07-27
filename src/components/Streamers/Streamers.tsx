@@ -41,14 +41,6 @@ export const Streamers = () => {
   const subscribeErrorText = handleError(subscribeError);
   useClassnamedStickyScroll("streamers-wrapper");
   const { errorText, setErrorText } = useQueryError(error);
-  useEffect(() => {
-    const streamersEl = document.querySelector(".streamers") as HTMLDivElement;
-    const onScroll = (e) => e.preventDefault();
-    streamersEl.addEventListener("touchmove", onScroll, { passive: false });
-    return () => {
-      streamersEl.removeEventListener("touchmove", onScroll);
-    };
-  }, []);
   return (
     <div className="section streamers">
       <p className="header-text">Стримеры</p>
@@ -98,7 +90,6 @@ export const Streamers = () => {
           ></UserView>
         ))}
       </div>
-      <p className="header-text">Стримеры</p>
     </div>
   );
 };

@@ -2,8 +2,13 @@
   height: 100vh;
   position: relative;
   overflow: hidden;
+  overflow-y: auto;
   overscroll-behavior: none;
   &-wrapper {
+    .something {
+      height: 50px;
+      width: 100%;
+    }
     height: calc(100% - 132px);
     overflow: hidden;
     -webkit-overflow-scrolling: touch;

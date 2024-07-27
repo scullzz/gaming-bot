@@ -16,13 +16,27 @@ export const WithMenu = ({ children }: { children: React.ReactNode }) => {
     tg.BackButton.onClick(onClick).show();
     tg.expand();
   }, []);
+  useEffect(() => {
+    const streamersEl = document.querySelector(
+      ".layout-wrapper"
+    ) as HTMLDivElement;
+    const layoutEl = document.querySelector(".layout") as HTMLDivElement;
+    const onScroll = (e) => e.preventDefault();
+    streamersEl.addEventListener("touchmove", onScroll, { passive: false });
+    layoutEl.addEventListener("touchmove", onScroll, { passive: false });
+    return () => {
+      streamersEl.removeEventListener("touchmove", onScroll);
+      layoutEl.removeEventListener("touchmove", onScroll);
+    };
+  }, []);
   return (
     <div className="layout">
       <div
         className="layout-wrapper"
-        style={{ height: `calc(100% - ${height}px)` }}
+        style={{ minHeight: `calc(100% - ${height}px)` }}
       >
         {children}
+        <div className="something"></div>
       </div>
       <Menu></Menu>
     </div>

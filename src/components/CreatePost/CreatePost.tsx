@@ -7,6 +7,7 @@ import { useCreatePostMutation } from "../../features/api";
 import { Details } from "../Details/Details";
 import { handleError } from "../../functions/handleError";
 import { useStickyRef } from "../../functions/useStickyRef";
+import { useDisableScroll } from "../../functions/useDisableScroll";
 export const CreatePost = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ export const CreatePost = () => {
       .then(() => navigate(`/streamer/${streamerId}`));
   };
   const stickyRef = useStickyRef();
+  useDisableScroll("create-post");
   return (
     <div className="section create-post" ref={stickyRef}>
       <Details

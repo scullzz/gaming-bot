@@ -41,6 +41,10 @@ html {
 
   --live-color: #eb0400;
 }
+.rabbish {
+  height: 50px;
+  width: 100%;
+}
 .section {
   overscroll-behavior: none;
   height: 100%;

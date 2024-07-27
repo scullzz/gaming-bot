@@ -14,6 +14,7 @@ p {
 body {
   height: 100vh;
   outline: none;
+  position: relative;
   overscroll-behavior: none;
 }
 button,
@@ -36,6 +37,7 @@ html {
   --page-color: #efeff3;
   --btn-opacity: #e6f1ff;
   --green-color: #35c759;
+  position: relative;
 
   --live-color: #eb0400;
 }

@@ -1,12 +1,11 @@
 .layout {
   height: 100vh;
   position: relative;
-  overflow-y: hidden;
+  overflow: hidden;
   overscroll-behavior: none;
   &-wrapper {
     height: calc(100% - 132px);
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
   }
   .menu {
     height: 60px;

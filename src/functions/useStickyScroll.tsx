@@ -84,7 +84,7 @@ export const useSetup = () => {
       document.body.style.overflowY = "hidden";
       document.documentElement.style.overflowY = "hidden";
       const root = document.querySelector("#root") as HTMLDivElement;
-      root.style.overflowY = "hidden";
+      root.style.overflow = "hidden";
       document.body.style.marginTop = `${overflow}px`;
       document.body.style.height = window.innerHeight + overflow + "px";
       document.body.style.paddingBottom = `${overflow}px`;

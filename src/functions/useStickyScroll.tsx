@@ -71,15 +71,17 @@ export const useClassnamedStickyScroll = (...classes: string[]) => {
 
 export const useSetup = () => {
   useEffect(() => {
-    const overflow = 100;
-    document.body.style.overflowY = "hidden";
-    document.documentElement.style.overflowY = "hidden";
-    const root = document.querySelector("#root") as HTMLDivElement;
-    root.style.overflowY = "hidden";
-    document.body.style.marginTop = `${overflow}px`;
-    document.body.style.height = window.innerHeight + overflow + "px";
-    document.body.style.paddingBottom = `${overflow}px`;
-    const timerId = setInterval(() => window.scrollTo(0, overflow), 200);
+    const timerId = setInterval(() => {
+      const overflow = 100;
+      document.body.style.overflowY = "hidden";
+      document.documentElement.style.overflowY = "hidden";
+      const root = document.querySelector("#root") as HTMLDivElement;
+      root.style.overflowY = "hidden";
+      document.body.style.marginTop = `${overflow}px`;
+      document.body.style.height = window.innerHeight + overflow + "px";
+      document.body.style.paddingBottom = `${overflow}px`;
+      window.scrollTo(0, overflow);
+    }, 200);
     return () => {
       clearInterval(timerId);
     };

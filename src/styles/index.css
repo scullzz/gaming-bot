@@ -21,6 +21,10 @@ button,
 input {
   outline: none;
 }
+button:focus,
+input[type="button"]:focus {
+  outline: none;
+}
 html {
   --overscroll-behavior: none;
   --menu-border-color: #b2b2b233;

@@ -16,8 +16,6 @@ export const WithMenu = ({ children }: { children: React.ReactNode }) => {
     const onClick = () => navigate(-1);
     tg.BackButton.onClick(onClick).show();
     tg.expand();
-    tg.setHeaderColor("white");
-    tg.setBackgroundColor("white");
   }, []);
   useDisableBounces("layout-wrapper");
   return (

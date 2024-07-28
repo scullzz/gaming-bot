@@ -22,7 +22,10 @@ input {
   outline: none;
 }
 html {
-  overscroll-behavior: none;
+  --accent_text_color: "#007aff";
+  --button_color: "#007aff";
+  --link_color: "#007aff";
+  --overscroll-behavior: none;
   --menu-border-color: #b2b2b233;
   --menu-color: #f2f2f2;
   --line-color: #c6c6c866;

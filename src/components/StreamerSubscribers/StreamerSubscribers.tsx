@@ -87,7 +87,7 @@ export const StreamerSubscribers = ({ id }: StreamerSubscribersProps) => {
             style={{
               marginBottom: "7px",
               marginRight: "15px",
-              width: "calc(100%-15px)",
+              width: "calc(100% - 15px)",
             }}
           >
             Создать отчет

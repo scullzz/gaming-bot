@@ -41,7 +41,7 @@ export const StreamerManagement = ({ id }: IStreamerDetailsViewer) => {
     <div className="streamer__management-body">
       {
         <Details
-          isLoading={isLoading || streamerLoading || subscribing}
+          isLoading={(isLoading && !admins) || (streamerLoading && !streamer)}
           error={errorText || streamerErrorText || subErrorText}
           onClose={() => {
             setErrorText(undefined);

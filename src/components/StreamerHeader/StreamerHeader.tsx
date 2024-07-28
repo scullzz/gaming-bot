@@ -25,7 +25,10 @@ export const StreamerHeader = ({ id }: IStreamerDetailsViewer) => {
     data: streamer,
     isLoading,
     error: streamerError,
-  } = useGetStreamerQuery({ tgId, userId });
+  } = useGetStreamerQuery(
+    { tgId, userId },
+    { refetchOnMountOrArgChange: true }
+  );
   const [
     unsubFromStreamer,
     {
@@ -64,7 +67,7 @@ export const StreamerHeader = ({ id }: IStreamerDetailsViewer) => {
         ></SocialsModal>
       )}
       <Details
-        isLoading={(!streamer && isLoading) || unsubingFromStreamer}
+        isLoading={!streamer && isLoading}
         error={errorText || unsubErrorText}
         onClose={() => {
           setErrorText(undefined);

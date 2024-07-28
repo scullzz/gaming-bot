@@ -43,7 +43,7 @@ export const Streamers = () => {
   const { errorText, setErrorText } = useQueryError(error);
   useDisableBounces("streamers");
   return (
-    <div className="section streamers">
+    <div className="section streamers" style={{ paddingRight: 0 }}>
       <p className="header-text">Стримеры</p>
       {
         <Details
@@ -75,7 +75,7 @@ export const Streamers = () => {
           <UserView
             onClick={() => navigate(`/streamer/${s.tgId}`)}
             name={s.name}
-            infoStyles={{ paddingRight: "10px" }}
+            infoStyles={{ paddingRight: "15px" }}
             isStreamer
             withCircle={s.isLive}
             id={s.tgId}

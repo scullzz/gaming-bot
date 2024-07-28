@@ -1,8 +1,9 @@
 import { useRef } from "react";
 import "./CreateRaffleEndPicker.scss";
+import DatePicker from "react-datepicker";
 interface ICreateRaffleEndPicker {
-  date: string;
-  setDate: (v: string) => void;
+  date: Date;
+  setDate: (v: Date) => void;
   time: string;
   setTime: (time: string) => void;
 }
@@ -26,13 +27,16 @@ export const CreateRaffleEndPicker = ({
     <div className="create-raffle__end">
       <span>Завершится</span>
       <div className="create-raffle__time">
-        <input
-          ref={dateRef}
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          placeholder="дд.мм.гг"
+        <DatePicker
+          selected={date}
+          onChange={(d: Date) => setDate(d)}
+          dateFormat="dd.MM.yy"
+          placeholderText="дд.мм.гг"
+          customInput={
+            <input ref={dateRef} type="date" placeholder="дд.мм.гг" />
+          }
         />
+
         <input
           ref={timeRef}
           type="time"

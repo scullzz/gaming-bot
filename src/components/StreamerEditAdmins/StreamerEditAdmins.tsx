@@ -92,16 +92,17 @@ export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
       </span>
       <div className="streamer-edit__admins-body">
         {getNameId() == id && (
-          <AddButton
-            text="Добавить администратора"
-            onClick={() => setShowModal(true)}
-          ></AddButton>
+          <>
+            <AddButton
+              text="Добавить администратора"
+              onClick={() => setShowModal(true)}
+            ></AddButton>
+            <div
+              className="line"
+              style={{ marginLeft: "20px", width: "calc(100% - 20px)" }}
+            ></div>
+          </>
         )}
-
-        <div
-          className="line"
-          style={{ marginLeft: "20px", width: "calc(100% - 20px)" }}
-        ></div>
         {admins?.map((t, i) => (
           <UserView
             name={t.firstName}

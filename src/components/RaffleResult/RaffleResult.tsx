@@ -23,7 +23,6 @@ export const RaffleResult = () => {
   } = useGetRaffleByIdQuery({
     raffleId: parseInt(id!),
   });
-  const navigate = useNavigate();
   const { errorText: raffleEt, setErrorText: setRaffleEt } =
     useQueryError(raffleError);
   const { data: admins } = useGetAdminsQuery(streamerId);

@@ -11,6 +11,7 @@ import { NotAvailable } from "../NotAvailable.tsx/NotAvailable";
 import { GetSubParticipant } from "../../types/getSubParticipant";
 
 import { formatDateShortly } from "../../functions/formatDateShortly";
+import { useNavigate } from "react-router-dom";
 interface ISubscriberRafflesParticipantProps {
   id: string;
   streamerId: string;
@@ -32,7 +33,7 @@ export const SubscriberRafflesParticipant = ({
       }),
     }
   );
-
+  const navigate = useNavigate();
   const { errorText, setErrorText } = useQueryError(error);
   return (
     <div
@@ -54,6 +55,7 @@ export const SubscriberRafflesParticipant = ({
       ></NotAvailable>
       {participants.map((t) => (
         <SubscriberRafflesParticipantItem
+          onClick={() => navigate(`/raffle/${t.id}`, { state: { streamerId } })}
           {...t}
         ></SubscriberRafflesParticipantItem>
       ))}
@@ -63,14 +65,17 @@ export const SubscriberRafflesParticipant = ({
 
 const Abused = "Abused";
 const Winner = "Winner";
-interface ISubscriberRafflesParticipantItemProps extends GetSubParticipant {}
+interface ISubscriberRafflesParticipantItemProps extends GetSubParticipant {
+  onClick: () => void;
+}
 const SubscriberRafflesParticipantItem = ({
   id,
   endTime,
+  onClick,
   status,
 }: ISubscriberRafflesParticipantItemProps) => {
   return (
-    <li>
+    <li onClick={onClick}>
       <div className="header">
         <span className="label">Розыгрыш #{id}</span>
         <div className="extensions">

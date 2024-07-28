@@ -8,7 +8,7 @@ import { Details } from "../Details/Details";
 import { handleError } from "../../functions/handleError";
 import { useStickyRef } from "../../functions/useStickyRef";
 import { useDisableBounces } from "../../functions/useDisableScroll";
-import { useAdjustmentTextbox } from "../../functions/useAdjustmentTextbox";
+import { TextBox } from "../TextBox/TextBox";
 export const CreatePost = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -18,7 +18,6 @@ export const CreatePost = () => {
     null,
     "postMessage"
   );
-  const textBox = useAdjustmentTextbox(message);
   const [
     createPost,
     { isLoading: postCreating, error: postError, reset: resetPostError },
@@ -48,13 +47,12 @@ export const CreatePost = () => {
         value={selectedFile}
         onChange={setSelectedFile}
       ></CreatePostFilePicker>
-      <textarea
-        ref={textBox}
+      <TextBox
         value={message || undefined}
         onInput={(e) => setPostMessage(e.currentTarget.value)}
         placeholder="Сообщение"
         style={{ marginTop: "20px" }}
-      ></textarea>
+      ></TextBox>
       <span
         className="details-text details-text_add create-post__details"
         style={{ marginTop: "6px" }}

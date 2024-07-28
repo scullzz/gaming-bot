@@ -69,6 +69,7 @@ textarea {
   background-color: var(--main-color);
   min-height: 80px;
   height: auto;
+  overflow: hidden;
 }
 textarea:focus {
   color: var(--text-color);

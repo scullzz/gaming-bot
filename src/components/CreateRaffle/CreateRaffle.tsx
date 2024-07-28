@@ -18,7 +18,7 @@ import { useMemoryState } from "../../functions/useMemoryState";
 import { useEffect } from "react";
 import { distinct, hasDuplicates } from "../../functions/distinct";
 import { useStickyRef } from "../../functions/useStickyRef";
-import { useAdjustmentTextbox } from "../../functions/useAdjustmentTextbox";
+import { TextBox } from "../TextBox/TextBox";
 
 export interface IParameterPickerElementProps {
   value: any;
@@ -52,7 +52,6 @@ export const CreateRaffle = () => {
 
   const [time, setTime] = useMemoryState("12:00", "time");
   const [date, setDate] = useMemoryState(new Date(), "date");
-  const textBox = useAdjustmentTextbox(description);
   const navigate = useNavigate();
   useEffect(() => {
     if (hasDuplicates(raffleConditions))
@@ -145,13 +144,13 @@ export const CreateRaffle = () => {
       >
         Описание розыгрыша
       </span>
-      <textarea
-        ref={textBox}
+      <TextBox
         className="create-raffle__textarea"
         placeholder="Описание"
         value={description || undefined}
         onInput={(e) => setDescription(e.currentTarget.value)}
-      ></textarea>
+      ></TextBox>
+
       <div
         className="create-raffle__header-label"
         style={{ marginTop: "30px" }}

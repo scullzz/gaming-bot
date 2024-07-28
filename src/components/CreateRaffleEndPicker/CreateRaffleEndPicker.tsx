@@ -28,7 +28,6 @@ export const CreateRaffleEndPicker = ({
       <div className="create-raffle__time">
         <input
           ref={dateRef}
-          style={{ display: "none" }}
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
@@ -36,7 +35,6 @@ export const CreateRaffleEndPicker = ({
         />
         <input
           ref={timeRef}
-          style={{ display: "none" }}
           type="time"
           value={time}
           onChange={(e) => setTime(e.target.value)}

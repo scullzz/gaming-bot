@@ -75,6 +75,7 @@ export const Streamers = () => {
           <UserView
             onClick={() => navigate(`/streamer/${s.tgId}`)}
             name={s.name}
+            infoStyles={{ paddingRight: "10px" }}
             isStreamer
             withCircle={s.isLive}
             id={s.tgId}

@@ -1,4 +1,4 @@
-import { HTMLAttributes } from "react";
+import React, { HTMLAttributes } from "react";
 import "./UserView.scss";
 
 import { Avatar } from "../Avatar/Avatar";
@@ -16,12 +16,14 @@ export interface IUserViewProps
   id: string | number;
   detailsText?: string;
   onClick?: () => void;
+  infoStyles?: React.CSSProperties;
   img?: string | null;
 }
 export const UserView = ({
   isStreamer,
   name,
   id,
+  infoStyles,
   withCircle,
   onButtonClick,
   detailsText,
@@ -46,7 +48,7 @@ export const UserView = ({
       ></Avatar>
 
       <div className="streamer-view__info">
-        <div className="streamer-view__info-header">
+        <div className="streamer-view__info-header" style={infoStyles}>
           <div className="streamer-view__info-header-description">
             <div className="streamer-view__name">
               {withCircle && <div className="circle"></div>}

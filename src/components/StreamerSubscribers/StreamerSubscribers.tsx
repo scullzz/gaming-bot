@@ -84,7 +84,7 @@ export const StreamerSubscribers = ({ id }: StreamerSubscribersProps) => {
           <button
             className="attention-opacity-btn"
             onClick={() => getReport(id)}
-            style={{ width: "100%", marginBottom: "7px" }}
+            style={{ marginBottom: "7px", marginRight: "15px", width: "100%" }}
           >
             Создать отчет
           </button>

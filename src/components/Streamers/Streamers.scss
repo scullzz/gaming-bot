@@ -1,6 +1,7 @@
 .streamers {
   height: 100%;
   overflow: hidden;
+  padding-right: 0px;
   &-wrapper {
     overscroll-behavior-block: none;
     overflow-y: auto;

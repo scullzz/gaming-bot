@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { useAddAdminsMutation, useGetAdminsQuery } from "../../features/api";
+import {
+  useAddAdminsMutation,
+  useDeleteAdminMutation,
+  useGetAdminsQuery,
+} from "../../features/api";
 import { handleError } from "../../functions/handleError";
 import { useQueryError } from "../../functions/useQueryError";
 import { AddButton } from "../AddButton/AddButton";
@@ -9,6 +13,7 @@ import { UserView } from "../UserView/UserView";
 import "./StreamerEditAdmin.scss";
 import { getNameId } from "../../functions/getValueFromJwt";
 import { AddAdminModal } from "../AddAdminModal/AddAdminModal";
+import { tg } from "../../App";
 
 export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
   const { data: admins, isLoading, error, refetch } = useGetAdminsQuery(id);
@@ -16,7 +21,11 @@ export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
     addAdmin,
     { isLoading: addingAdmin, error: addAdminError, reset: resetAdminError },
   ] = useAddAdminsMutation();
+
   const adminErrorText = handleError(addAdminError);
+  const [deleteAdmin, { error: deleteAdminError, reset: resetDAdminError }] =
+    useDeleteAdminMutation();
+  const deleteAdminErrorText = handleError(deleteAdminError);
   const { errorText, setErrorText } = useQueryError(error);
   const [showModal, setShowModal] = useState(false);
   const [adminId, setAdmniId] = useState("");
@@ -27,6 +36,32 @@ export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
         refetch();
         setShowModal(false);
       });
+  };
+  const onAdminClick = (tgId: string) => {
+    setAdmniId(tgId);
+    tg.showPopup(
+      {
+        title: "Подтверждение",
+        message: `Вы уверены в удалении ${
+          admins.filter((a) => a.tgId == tgId)[0].firstName
+        } из админов?`,
+        buttons: [
+          { id: "confirm", type: "ok", text: "Ок" },
+          { id: "cancel", type: "cancel", text: "Отмена" },
+        ],
+      },
+      (buttonId) => {
+        if (buttonId === "confirm") {
+          deleteAdmin({ streamerId: id, adminId: tgId })
+            .unwrap()
+            .then(() => {
+              refetch();
+            });
+        } else if (buttonId === "cancel") {
+          console.log("Отмена нажата");
+        }
+      }
+    );
   };
   return (
     <div className="streamer-edit__admins">
@@ -41,10 +76,11 @@ export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
       {
         <Details
           isLoading={!admins && isLoading}
-          error={errorText || adminErrorText}
+          error={errorText || adminErrorText || deleteAdminErrorText}
           onClose={() => {
             setErrorText(undefined);
             resetAdminError();
+            resetDAdminError();
           }}
         ></Details>
       }
@@ -71,6 +107,7 @@ export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
             name={t.firstName}
             detailsText="Админ"
             id={i}
+            onClick={() => onAdminClick(t.tgId)}
             img={t.imageUrl}
             style={{ marginTop: "15px", marginInline: "14px" }}
           ></UserView>

@@ -240,6 +240,16 @@ export const api = createApi({
       }),
       invalidatesTags: ["admins"],
     }),
+    deleteAdmin: builder.mutation<
+      void,
+      { streamerId: string; adminId: string }
+    >({
+      query: (req) => ({
+        url: `streamer/${req.streamerId}/admins/${req.adminId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["admins"],
+    }),
     getUser: builder.query<GetUserProfile, string>({
       query: (id) => `user/${id}`,
     }),
@@ -341,4 +351,5 @@ export const {
   useGetRaffleReportMutation,
   useGetStreamerReportMutation,
   useGetTgUsersMutation,
+  useDeleteAdminMutation,
 } = api;

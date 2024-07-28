@@ -4,6 +4,7 @@ import "./withMenu.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { tg } from "../../App";
 import { useDisableBounces } from "../../functions/useDisableScroll";
+import useApplyTelegramTheme from "../../functions/useApplyTelegramTheme";
 export const WithMenu = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const [height, setHeight] = useState(0);
@@ -11,15 +12,7 @@ export const WithMenu = ({ children }: { children: React.ReactNode }) => {
     const elem = document.querySelector(".footer") as HTMLDivElement;
     if (elem != null) setHeight(elem.offsetHeight);
   }, [location]);
-  const navigate = useNavigate();
-  useEffect(() => {
-    const onClick = () => navigate(-1);
-    tg.BackButton.onClick(onClick).show();
-    tg.expand();
-    tg.disableVerticalSwipes();
-    tg.setHeaderColor("#fff");
-    tg.setBackgroundColor("#fff");
-  }, []);
+  useApplyTelegramTheme();
   useDisableBounces("layout-wrapper");
   return (
     <div className="layout">

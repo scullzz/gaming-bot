@@ -1,9 +1,18 @@
+import { useRef } from "react";
+
 interface ICreateRaffleEndPicker {
   date: string;
   setDate: (v: string) => void;
   time: string;
   setTime: (time: string) => void;
 }
+export const formatDate = (date: Date): string => {
+  const day = date.getDate().toString().padStart(2, "0");
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const year = date.getFullYear().toString().slice(-2);
+
+  return `${day}.${month}.${year}`;
+};
 
 export const CreateRaffleEndPicker = ({
   time,
@@ -11,17 +20,29 @@ export const CreateRaffleEndPicker = ({
   setDate,
   setTime,
 }: ICreateRaffleEndPicker) => {
+  const dateRef = useRef<HTMLInputElement | null>(null);
+  const timeRef = useRef<HTMLInputElement | null>(null);
   return (
     <div className="create-raffle__end">
       <span>Завершится</span>
       <div className="create-raffle__time">
+        <div className="fake-input" onClick={() => dateRef.current?.click()}>
+          {formatDate(new Date(date))}
+        </div>
+        <div className="fake-input" onClick={() => timeRef.current?.click()}>
+          {time}
+        </div>
         <input
+          ref={dateRef}
+          style={{ display: "none" }}
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
           placeholder="дд.мм.гг"
         />
         <input
+          ref={timeRef}
+          style={{ display: "none" }}
           type="time"
           value={time}
           onChange={(e) => setTime(e.target.value)}

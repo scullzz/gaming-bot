@@ -21,7 +21,7 @@ const customStyles = {
     ...provided,
     border: "none",
     boxShadow: "none",
-    marginLeft: "10px",
+    marginInline: "10px",
   }),
   dropdownIndicator: (provided: any) => ({
     ...provided,

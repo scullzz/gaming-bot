@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import { handleError } from "../../functions/handleError";
 import { DataPickerModal } from "../DataPickerModal/DataPickerModal";
 import { useClassnamedStickyScroll } from "../../functions/useStickyScroll";
+import { useAdjustmentTextbox } from "../../functions/useAdjustmentTextbox";
 interface UserInfoProps {
   TelegramId: string;
   username: string;
@@ -56,6 +57,7 @@ export const SubscriberProfile = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [note, setNote] = useState<string | null>(null);
+  const textBox = useAdjustmentTextbox(note);
   const [message, setMessage] = useState<string | null>(null);
   const [
     sendMessage,
@@ -132,6 +134,7 @@ export const SubscriberProfile = () => {
         Написать сообщение
       </button>
       <textarea
+        ref={textBox}
         placeholder="Заметки о пользователе"
         value={note || undefined}
         onChange={(e) => setNote(e.currentTarget.value)}

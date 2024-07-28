@@ -50,6 +50,7 @@ export const RaffleResultWinners = () => {
           id={4}
           name={t?.firstName || "Подписчик"}
           detailsText={`Подписан с ${formatRaffleDate(t.subscribeTime)}`}
+          infoStyles={{ paddingRight: "14px" }}
         ></UserView>
       ))}
     </div>

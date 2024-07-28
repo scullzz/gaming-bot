@@ -1,8 +1,6 @@
-import DatePicker from "react-datepicker";
-
 interface ICreateRaffleEndPicker {
-  date: Date;
-  setDate: (v: Date) => void;
+  date: string;
+  setDate: (v: string) => void;
   time: string;
   setTime: (time: string) => void;
 }
@@ -17,12 +15,11 @@ export const CreateRaffleEndPicker = ({
     <div className="create-raffle__end">
       <span>Завершится</span>
       <div className="create-raffle__time">
-        <DatePicker
-          selected={date}
-          onChange={(d: Date) => setDate(d)}
-          dateFormat="dd.MM.yy"
-          placeholderText="дд.мм.гг"
-          customInput={<input id="dateInput" />}
+        <input
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          placeholder="дд.мм.гг"
         />
         <input
           type="time"

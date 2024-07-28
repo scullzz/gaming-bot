@@ -41,7 +41,7 @@ export const RaffleResultPreview = ({
         <div className="raffle-result__details">
           <div className="header">Розыгрыш #{id || 0}</div>
           <div className="details">
-            Дата завершения:
+            Дата завершения:{" "}
             {formatRaffleDate(endTime || new Date().toISOString())}
           </div>
           <div className="label">{amountOfParticipants || 0} участников</div>

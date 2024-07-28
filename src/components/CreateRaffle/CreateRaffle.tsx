@@ -51,7 +51,7 @@ export const CreateRaffle = () => {
   );
 
   const [time, setTime] = useMemoryState("12:00", "time");
-  const [date, setDate] = useMemoryState(new Date(), "date");
+  const [date, setDate] = useMemoryState("2017-06-01", "date");
   const navigate = useNavigate();
   useEffect(() => {
     if (hasDuplicates(raffleConditions))
@@ -67,7 +67,7 @@ export const CreateRaffle = () => {
       amountOfWinners,
       showWinners,
       description: description || "",
-      endTime: combineDateTimeToUTC(date, time),
+      endTime: combineDateTimeToUTC(new Date(date), time),
       raffleConditions: raffleConditions,
       shouldNotifyUsers,
       id,
@@ -80,7 +80,7 @@ export const CreateRaffle = () => {
       amountOfParticipants: 999,
       amountOfWinners: amountOfWinners,
       description: description || "",
-      endTime: combineDateTimeToUTC(date, time),
+      endTime: combineDateTimeToUTC(new Date(date), time),
       id: 1,
       isCreator: false,
       isParticipant: false,

@@ -25,10 +25,7 @@ export const StreamerHeader = ({ id }: IStreamerDetailsViewer) => {
     data: streamer,
     isLoading,
     error: streamerError,
-  } = useGetStreamerQuery(
-    { tgId, userId },
-    { refetchOnMountOrArgChange: true }
-  );
+  } = useGetStreamerQuery({ tgId, userId });
   const [
     unsubFromStreamer,
     {

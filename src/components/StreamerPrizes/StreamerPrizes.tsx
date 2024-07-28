@@ -16,7 +16,6 @@ export const StreamerPrizes = ({ id }: StreamerPrizesProps) => {
   const { raffles, isLoading, error, refetch } = useGetRafflesQuery(
     { page, pageSize, type, id, userId },
     {
-      refetchOnMountOrArgChange: true,
       pollingInterval: 5000,
       selectFromResult: ({ data, ...other }) => ({
         raffles: rafflesAdapter

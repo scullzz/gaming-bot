@@ -35,9 +35,7 @@ export const StreamerHeader = ({ id }: IStreamerDetailsViewer) => {
     },
   ] = useUnSubFromStreamerMutation();
   const onUnsub = () => {
-    unsubFromStreamer({ streamerId: streamer?.tgId || "", userId })
-      .unwrap()
-      .then(() => navigate("/streamers"));
+    unsubFromStreamer({ streamerId: streamer?.tgId || "", userId }).unwrap();
   };
   const unsubErrorText = handleError(unsubError);
   const { errorText, setErrorText } = useQueryError(streamerError);

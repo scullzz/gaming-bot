@@ -29,7 +29,6 @@ export const CreateRaffleEndPicker = ({
       <div className="create-raffle__time">
         <DatePicker
           selected={date}
-          onChange={(d: Date) => setDate(d)}
           dateFormat="dd.MM.yy"
           placeholderText="дд.мм.гг"
           customInput={

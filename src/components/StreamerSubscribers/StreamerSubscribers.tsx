@@ -104,12 +104,13 @@ export const StreamerSubscribers = ({ id }: StreamerSubscribersProps) => {
               text="Нет подписчиков"
             ></NotAvailable>
           }
-          {subscribers.map((t) => (
+          {subscribers.map((t, i) => (
             <UserView
               img={t.imageUrl}
               {...mapSubscriberToUserView(t)}
               key={t.tgId}
               onClick={() => onSubClick(t.tgId)}
+              withLine={i != subscribers.length - 1}
             ></UserView>
           ))}
         </div>

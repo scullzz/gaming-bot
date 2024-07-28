@@ -12,6 +12,16 @@
     object-fit: contain;
     position: relative;
   }
+  &__label {
+    color: var(--btn-text-color);
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+    &_active {
+      color: var(--btn-text-color);
+    }
+  }
   &__text {
     position: absolute;
     left: 50%;

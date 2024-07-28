@@ -68,4 +68,13 @@ textarea {
   border-radius: 14px;
   background-color: var(--main-color);
   min-height: 80px;
+  height: auto;
+}
+textarea:focus {
+  color: var(--text-color);
+  outline: none;
+}
+input:focus {
+  color: var(--text-color);
+  outline: none;
 }

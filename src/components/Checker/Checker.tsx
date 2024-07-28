@@ -16,11 +16,11 @@ export const Checker = ({ value, onChange, text }: ICheckerProps) => {
         offColor="#B0B0B0"
         onHandleColor="#fff"
         offHandleColor="#fff"
-        handleDiameter={15}
+        handleDiameter={26}
         uncheckedIcon={false}
         checkedIcon={false}
-        height={28}
-        width={56}
+        height={30}
+        width={49}
         className="react-switch"
         activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
         borderRadius={20}

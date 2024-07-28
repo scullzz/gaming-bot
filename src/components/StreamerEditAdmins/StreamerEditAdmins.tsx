@@ -40,7 +40,7 @@ export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
       )}
       {
         <Details
-          isLoading={(!admins && isLoading) || addingAdmin}
+          isLoading={!admins && isLoading}
           error={errorText || adminErrorText}
           onClose={() => {
             setErrorText(undefined);

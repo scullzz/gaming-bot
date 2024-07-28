@@ -33,7 +33,12 @@ export const CreateRaffleEndPicker = ({
           dateFormat="dd.MM.yy"
           placeholderText="дд.мм.гг"
           customInput={
-            <input ref={dateRef} type="date" placeholder="дд.мм.гг" />
+            <input
+              ref={dateRef}
+              type="date"
+              value={date.toDateString()}
+              onChange={(e) => setDate(new Date(e.target.value))}
+            />
           }
         />
 

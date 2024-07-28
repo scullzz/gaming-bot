@@ -1,4 +1,7 @@
 .create-raffle__time {
+  .react-datepicker-popper {
+    display: none;
+  }
   input {
     background-color: #efefef;
     padding: 7px 12px;

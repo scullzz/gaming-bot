@@ -1,5 +1,5 @@
 import { useRef } from "react";
-
+import "./CreateRaffleEndPicker.scss";
 interface ICreateRaffleEndPicker {
   date: string;
   setDate: (v: string) => void;
@@ -26,12 +26,6 @@ export const CreateRaffleEndPicker = ({
     <div className="create-raffle__end">
       <span>Завершится</span>
       <div className="create-raffle__time">
-        <div className="fake-input" onClick={() => dateRef.current?.click()}>
-          {formatDate(new Date(date))}
-        </div>
-        <div className="fake-input" onClick={() => timeRef.current?.click()}>
-          {time}
-        </div>
         <input
           ref={dateRef}
           style={{ display: "none" }}

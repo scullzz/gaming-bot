@@ -110,7 +110,11 @@ export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
             id={i}
             onClick={() => onAdminClick(t.tgId)}
             img={t.imageUrl}
-            style={{ marginTop: "15px", marginInline: "14px" }}
+            style={{
+              marginTop: "15px",
+              marginLeft: "14px",
+              width: "calc(100% - 14px)",
+            }}
           ></UserView>
         ))}
       </div>

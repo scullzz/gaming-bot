@@ -22,9 +22,13 @@ export const useDisableBounces = (classname: string) => {
         e.preventDefault();
       }
     };
-    streamersEl.addEventListener("touchmove", onScroll, { passive: false });
+    if (streamersEl != null) {
+      streamersEl.addEventListener("touchmove", onScroll, { passive: false });
+    }
     return () => {
-      streamersEl.removeEventListener("touchmove", onScroll);
+      if (streamersEl != null) {
+        streamersEl.removeEventListener("touchmove", onScroll);
+      }
     };
   }, []);
 };

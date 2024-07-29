@@ -25,6 +25,7 @@ export const FilePreview = ({ file, style }: IFilePreviewProps) => {
       handledFiles.forEach((e) => {
         if (!React.isValidElement(e)) {
           const el = e as HTMLElement;
+          if (el.nodeName === "VIDEO") el.setAttribute("autoplay", "true");
           el.classList.add("cover");
         }
       });

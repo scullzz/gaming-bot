@@ -26,8 +26,9 @@ export const Menu = () => {
       {isStreamersPage && (
         <div className="ad">
           <span className="details-text ad__text">
-            Если вы стример и хотите попасть в этот список - обращайтесь
-            <span className="details__text ad__link"> @SupportBot</span>
+            Cтримеры и модераторы стримеров - обращайтесь к{" "}
+            <span className="details__text ad__link">@SupportBot</span> для
+            получения доступов к полному функционалу бота
           </span>
         </div>
       )}

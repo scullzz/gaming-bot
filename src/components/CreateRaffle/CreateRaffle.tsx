@@ -83,7 +83,6 @@ export const CreateRaffle = () => {
       description: description || "",
       endTime: combineDateTimeToUTC(new Date(date), time),
       id: 1,
-      update: () => {},
       forPreview: true,
       isCreator: false,
       isParticipant: false,

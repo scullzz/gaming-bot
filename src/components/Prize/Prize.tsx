@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 export interface IPrizeProps extends GetRaffleDto {
   streamerId?: string;
-  update: () => void;
+  update?: () => void;
   forPreview?: boolean | undefined;
 }
 export const Prize = ({
@@ -50,7 +50,9 @@ export const Prize = ({
     if (canParticipate) {
       doParticipant({ raffleId: id, userId })
         .unwrap()
-        .then(() => update());
+        .then(() => {
+          if (update) update();
+        });
     }
     if (!available)
       navigate(`/raffle/${id}?streamerId=${streamerId}`, {

@@ -31,8 +31,8 @@ const TelegramPost = ({ message, file }: ITelegramPostProps) => {
   }
   return (
     <div className="telegram-post">
-      {file && handledFiles[0]}
-      <div className="details-text">{message}</div>
+      {file ? handledFiles[0] : null}
+      <div className="details-text">{message || "Нет текста"}</div>
     </div>
   );
 };

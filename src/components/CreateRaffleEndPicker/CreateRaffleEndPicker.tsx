@@ -1,9 +1,8 @@
-import { useRef } from "react";
+import { setDefaultLocale } from "react-datepicker";
 import "./CreateRaffleEndPicker.scss";
-import DatePicker from "react-datepicker";
 interface ICreateRaffleEndPicker {
-  date: Date;
-  setDate: (v: Date) => void;
+  date: string;
+  setDate: (v: string) => void;
   time: string;
   setTime: (time: string) => void;
 }
@@ -21,32 +20,26 @@ export const CreateRaffleEndPicker = ({
   setDate,
   setTime,
 }: ICreateRaffleEndPicker) => {
-  const dateRef = useRef<HTMLInputElement | null>(null);
-  const timeRef = useRef<HTMLInputElement | null>(null);
   return (
     <div className="create-raffle__end">
       <span>Завершится</span>
       <div className="create-raffle__time">
-        <DatePicker
-          selected={date}
-          dateFormat="dd.MM.yy"
-          placeholderText="дд.мм.гг"
-          customInput={
-            <input
-              ref={dateRef}
-              type="date"
-              value={date.toDateString()}
-              onChange={(e) => setDate(new Date(e.target.value))}
-            />
-          }
-        />
-
-        <input
-          ref={timeRef}
-          type="time"
-          value={time}
-          onChange={(e) => setTime(e.target.value)}
-        />
+        <div className="input-wrapper">
+          <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+          <div className="fake-input">{formatDate(new Date(date))}</div>
+        </div>
+        <div className="input-wrapper">
+          <input
+            type="time"
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+          />
+          <div className="fake-input">{time}</div>
+        </div>
       </div>
     </div>
   );

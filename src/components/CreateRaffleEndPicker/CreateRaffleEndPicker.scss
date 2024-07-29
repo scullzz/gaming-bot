@@ -2,13 +2,23 @@
   .react-datepicker-popper {
     display: none;
   }
-  input {
+  .fake-input {
     background-color: #efefef;
     padding: 7px 12px;
     font-size: 16px;
     font-weight: 400;
     border-radius: 8px;
     color: var(--text-color);
+  }
+  .input-wrapper {
+    position: relative;
+    input {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1000;
+      opacity: 0;
+    }
   }
   input[type="time"]::-webkit-calendar-picker-indicator {
     background: none;

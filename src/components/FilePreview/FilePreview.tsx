@@ -13,6 +13,7 @@ export const FilePreview = ({ file, style }: IFilePreviewProps) => {
   useEffect(() => {
     if (file) {
       handledFiles = handleFiles([file]);
+      setElemNode(null);
       if (ref.current) {
         ref.current.childNodes.forEach((child) => {
           if (child.nodeName === "VIDEO" || child.nodeName === "IMG") {

@@ -39,10 +39,14 @@
         align-items: flex-start;
         .main {
           display: flex;
+          row-gap: 6px;
           .selected {
             color: var(--btn-text-color);
           }
           span {
+            &:nth-child(1) {
+              line-height: 1;
+            }
             &:nth-child(2) {
               font-size: 16px;
             }

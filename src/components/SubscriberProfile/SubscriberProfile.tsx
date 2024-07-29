@@ -18,7 +18,6 @@ import { GetUserPayMethod } from "../../types/getUserDto";
 import { useEffect, useState } from "react";
 import { handleError } from "../../functions/handleError";
 import { DataPickerModal } from "../DataPickerModal/DataPickerModal";
-import { useClassnamedStickyScroll } from "../../functions/useStickyScroll";
 import { TextBox } from "../TextBox/TextBox";
 interface UserInfoProps {
   TelegramId: string;
@@ -86,10 +85,7 @@ export const SubscriberProfile = () => {
   useEffect(() => {
     if (sub) setNote(sub?.note);
   }, [sub]);
-  useClassnamedStickyScroll(
-    "subscriber-profile-raffles-participant",
-    "subscriber-profile"
-  );
+
   return (
     <div className="subscriber-profile section">
       {showModal && (

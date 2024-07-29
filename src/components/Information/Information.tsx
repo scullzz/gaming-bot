@@ -13,7 +13,7 @@ export const Information = ({
   onClose,
 }: IInformationProps) => {
   return (
-    <div className="info">
+    <>
       {isLoading && (
         <ModalWindow style={{ backgroundColor: "var(--main-color)" }}>
           <Spinner style={{ marginInline: "auto", display: "block" }}></Spinner>
@@ -29,6 +29,6 @@ export const Information = ({
           </div>
         </ModalWindow>
       )}
-    </div>
+    </>
   );
 };

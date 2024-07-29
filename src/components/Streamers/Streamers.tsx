@@ -1,4 +1,3 @@
-import { useClassnamedStickyScroll } from "../../functions/useStickyScroll";
 import ".//Streamers.scss";
 import { useScrollPagination } from "../../functions/useScrollPagination";
 import {
@@ -38,7 +37,7 @@ export const Streamers = () => {
     },
   ] = useSubscribeToStreamerMutation();
   const subscribeErrorText = handleError(subscribeError);
-  useClassnamedStickyScroll("streamers-wrapper");
+
   const { errorText, setErrorText } = useQueryError(error);
   return (
     <div className="section streamers" style={{ paddingRight: 0 }}>

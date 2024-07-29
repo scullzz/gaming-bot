@@ -15,7 +15,7 @@ import { NotAvailable } from "../NotAvailable.tsx/NotAvailable";
 import { IStreamerDetailsViewer } from "../StreamerPage/StreamerPage";
 import { UserView } from "../UserView/UserView";
 import "./StreamerSubscribers.scss";
-import { useStickyRef } from "../../functions/useStickyRef";
+
 import { handleError } from "../../functions/handleError";
 import React from "react";
 interface StreamerSubscribersProps extends IStreamerDetailsViewer {}

@@ -7,6 +7,7 @@ import { useCreatePostMutation } from "../../features/api";
 import { Details } from "../Details/Details";
 import { handleError } from "../../functions/handleError";
 import { TextBox } from "../TextBox/TextBox";
+import { ITelegramPostProps } from "../TelegramPostPreview/TelegramPostPreview";
 export const CreatePost = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -31,6 +32,11 @@ export const CreatePost = () => {
       .unwrap()
       .then(() => navigate(`/streamer/${streamerId}`));
   };
+  function onPreview(): void {
+    const post: ITelegramPostProps = { message, file: selectedFile };
+    navigate("/telegram-post-preview", { state: { post } });
+  }
+
   return (
     <div className="section create-post">
       <Details
@@ -56,6 +62,9 @@ export const CreatePost = () => {
         Сообщение получат все ваши подписчики, у которых бот включен.
       </span>
       <div className="create-post__buttons">
+        <button className="preview-btn" onClick={onPreview}>
+          Предпросмотр
+        </button>
         <button className="start-btn" onClick={onPostCreate}>
           Опубликовать
         </button>

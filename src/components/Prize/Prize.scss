@@ -3,6 +3,12 @@
     display: flex;
     column-gap: 15px;
     align-items: center;
+    &-dot {
+      height: 1px;
+      width: 1px;
+      background-color: var(--text-color);
+      border-radius: 100%;
+    }
   }
   margin-top: 10px;
   &__available-time {
@@ -80,7 +86,6 @@
     }
     margin: 0;
     padding: 0;
-    padding-left: 22px;
     display: flex;
     flex-direction: column;
   }

@@ -13,12 +13,13 @@ import { combineDateTimeToUTC } from "../../functions/combineDateAndTimeInUTC";
 import { getNameId } from "../../functions/getValueFromJwt";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Details } from "../Details/Details";
-import { GetRaffleDto } from "../../types/getRaffleDto";
+
 import { useMemoryState } from "../../functions/useMemoryState";
 import { useEffect } from "react";
 import { distinct, hasDuplicates } from "../../functions/distinct";
 
 import { TextBox } from "../TextBox/TextBox";
+import { IPrizeProps } from "../Prize/Prize";
 
 export interface IParameterPickerElementProps {
   value: any;
@@ -76,12 +77,14 @@ export const CreateRaffle = () => {
       .then(() => navigate(`/streamer/${id}`));
   };
   const onPreview = () => {
-    const obj: GetRaffleDto = {
+    const obj: IPrizeProps = {
       amountOfParticipants: 999,
       amountOfWinners: amountOfWinners,
       description: description || "",
       endTime: combineDateTimeToUTC(new Date(date), time),
       id: 1,
+      update: () => {},
+      forPreview: true,
       isCreator: false,
       isParticipant: false,
       showWinners: false,

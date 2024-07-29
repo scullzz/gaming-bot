@@ -15,6 +15,7 @@ import { SubscriberProfile } from "./components/SubscriberProfile/SubscriberProf
 import { Toaster } from "react-hot-toast";
 import { ImageLoader } from "./components/ImageLoader/ImageLoader";
 import { WithMenu } from "./components/withMenu/withMenu";
+import { TelegramPostPreview } from "./components/TelegramPostPreview/TelegramPostPreview";
 export const tg = Telegram.WebApp;
 export const App = () => {
   return (
@@ -50,6 +51,10 @@ export const App = () => {
               <Route
                 path="/raffle-preview"
                 element={<RafflePreview></RafflePreview>}
+              ></Route>
+              <Route
+                path="/telegram-post-preview"
+                element={<TelegramPostPreview></TelegramPostPreview>}
               ></Route>
               <Route
                 path="/create-post"

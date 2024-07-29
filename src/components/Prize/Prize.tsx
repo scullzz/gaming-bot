@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 export interface IPrizeProps extends GetRaffleDto {
   streamerId?: string;
   update: () => void;
+  forPreview?: boolean | undefined;
 }
 export const Prize = ({
   description,
@@ -27,6 +28,7 @@ export const Prize = ({
   isCreator,
   streamerId,
   update,
+  forPreview,
   isParticipant,
   endTime,
 }: IPrizeProps) => {
@@ -94,7 +96,11 @@ export const Prize = ({
           text="Нет специальных условий"
         ></NotAvailable>
         {raffleConditions.map((t, i) => (
-          <PrizeCondition {...t} key={i}></PrizeCondition>
+          <PrizeCondition
+            {...t}
+            key={i}
+            forPreview={forPreview}
+          ></PrizeCondition>
         ))}
       </ul>
       <div className="header-text">Дата окончания</div>
@@ -144,11 +150,21 @@ export const Prize = ({
   );
 };
 
-interface IPrizeConditionProps extends GetRaffleConditionDto {}
-const PrizeCondition = ({ isDone, title }: IPrizeConditionProps) => {
+interface IPrizeConditionProps extends GetRaffleConditionDto {
+  forPreview?: boolean | undefined;
+}
+const PrizeCondition = ({
+  isDone,
+  title,
+  forPreview,
+}: IPrizeConditionProps) => {
   return (
     <li className="prize__condition">
-      <img src={isDone ? Done : notDone} className="icon" />
+      {forPreview ? (
+        <div className="prize__condition-dot"></div>
+      ) : (
+        <img src={isDone ? Done : notDone} className="icon" />
+      )}
       <span className="details-text" style={{ marginTop: 0 }}>
         {title}
       </span>

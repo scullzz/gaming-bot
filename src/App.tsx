@@ -16,8 +16,10 @@ import { Toaster } from "react-hot-toast";
 import { ImageLoader } from "./components/ImageLoader/ImageLoader";
 import { WithMenu } from "./components/withMenu/withMenu";
 import { TelegramPostPreview } from "./components/TelegramPostPreview/TelegramPostPreview";
+import { useDisableBounces } from "./functions/useDisableScroll";
 export const tg = Telegram.WebApp;
 export const App = () => {
+  useDisableBounces("parker");
   return (
     <Provider store={store}>
       <ImageLoader>

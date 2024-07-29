@@ -26,7 +26,7 @@ export const TelegramPost = ({ message, file }: ITelegramPostProps) => {
   useEffect(() => {
     if (file) {
       handledFiles = handleFiles([file]);
-      console.log(handledFiles);
+
       handledFiles.forEach((e) => {
         if (!React.isValidElement(e)) {
           const el = e as HTMLElement;

@@ -9,18 +9,14 @@ export const useDisableBounces = (classname: string) => {
       return el.scrollHeight > el.clientHeight;
     };
     const onScroll = (e: TouchEvent) => {
-      if (e.target === streamersEl) {
-        e.preventDefault();
-      } else {
-        let target = e.target as HTMLElement;
-        while (target && target !== streamersEl) {
-          if (canScroll(target)) {
-            return;
-          }
-          target = target.parentNode as HTMLElement;
+      let target = e.target as HTMLElement;
+      while (target && target !== streamersEl) {
+        if (canScroll(target)) {
+          return;
         }
-        e.preventDefault();
+        target = target.parentNode as HTMLElement;
       }
+      e.preventDefault();
     };
     if (streamersEl != null) {
       streamersEl.addEventListener("touchmove", onScroll, { passive: false });

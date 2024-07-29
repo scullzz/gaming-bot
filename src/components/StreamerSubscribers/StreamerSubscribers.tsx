@@ -90,7 +90,7 @@ export const StreamerSubscribers = ({ id }: StreamerSubscribersProps) => {
               width: "calc(100% - 15px)",
             }}
           >
-            Создать отчет
+            Скачать
           </button>
         )}
 

@@ -9,7 +9,8 @@ export const WithMenu = ({ children }: { children: React.ReactNode }) => {
     const elem = document.querySelector(".footer") as HTMLDivElement;
     if (elem != null) {
       const section = document.querySelector(".section") as HTMLDivElement;
-      section.style.minHeight = `calc(100vh - ${elem.offsetHeight}px)`;
+      if (section != null)
+        section.style.minHeight = `calc(100vh - ${elem.offsetHeight}px)`;
     }
   }, [location]);
   useApplyTelegramTheme();

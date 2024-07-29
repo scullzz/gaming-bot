@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 export const useDisableBounces = (classname: string) => {
-  const location = useLocation();
   useEffect(() => {
     const streamersEl = document.querySelector(
       `.${classname}`
@@ -28,5 +27,5 @@ export const useDisableBounces = (classname: string) => {
         streamersEl.removeEventListener("touchmove", onScroll);
       }
     };
-  }, [location.pathname]);
+  }, []);
 };

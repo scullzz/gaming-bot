@@ -10,7 +10,6 @@ import { Details } from "../Details/Details";
 import { handleError } from "../../functions/handleError";
 import { useEffect, useState } from "react";
 import { GetUserPayMethod } from "../../types/getUserDto";
-import { useClassnamedStickyScroll } from "../../functions/useStickyScroll";
 const TetherTRC20 = "Tether TRC20";
 const TetherERC20 = "Tether ERC20";
 const Piastrix = "Piastrix";
@@ -57,7 +56,7 @@ export const UserProfile = () => {
         .then(() => refetch());
     }
   };
-  useClassnamedStickyScroll("user-profile");
+
   return (
     <div className="user-profile section">
       <Details

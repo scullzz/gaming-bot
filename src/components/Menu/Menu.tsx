@@ -7,7 +7,7 @@ import streamers from "/players.svg";
 import streamersOn from "/players-on.svg";
 import { getImage, getNameId, getRole } from "../../functions/getValueFromJwt";
 import { useIsStreamersRoute } from "../../functions/useIsStreamerRoute";
-import { useDisableBounces } from "../../functions/useDisableScroll";
+
 const UserRole = "User";
 export const Menu = () => {
   const userProfileInitials = getInitials(tg.initDataUnsafe.user);
@@ -20,7 +20,7 @@ export const Menu = () => {
     if (role == UserRole) navigate(`/user-profile/${getNameId()}`);
     else navigate(`/streamer/${getNameId()}`);
   };
-  useDisableBounces("footer");
+
   return (
     <div className="footer">
       {isStreamersPage && (

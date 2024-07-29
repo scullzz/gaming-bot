@@ -17,7 +17,7 @@ import { GetRaffleDto } from "../../types/getRaffleDto";
 import { useMemoryState } from "../../functions/useMemoryState";
 import { useEffect } from "react";
 import { distinct, hasDuplicates } from "../../functions/distinct";
-import { useStickyRef } from "../../functions/useStickyRef";
+
 import { TextBox } from "../TextBox/TextBox";
 
 export interface IParameterPickerElementProps {
@@ -95,9 +95,9 @@ export const CreateRaffle = () => {
       state: { prize: obj, streamerId },
     });
   };
-  const stickyRef = useStickyRef();
+
   return (
-    <div className="create-raffle section" ref={stickyRef}>
+    <div className="create-raffle section">
       <Details
         isLoading={raffleCreating}
         error={raffleErrorText}

@@ -6,8 +6,6 @@ import { useMemoryState } from "../../functions/useMemoryState";
 import { useCreatePostMutation } from "../../features/api";
 import { Details } from "../Details/Details";
 import { handleError } from "../../functions/handleError";
-import { useStickyRef } from "../../functions/useStickyRef";
-import { useDisableBounces } from "../../functions/useDisableScroll";
 import { TextBox } from "../TextBox/TextBox";
 export const CreatePost = () => {
   const location = useLocation();
@@ -33,10 +31,8 @@ export const CreatePost = () => {
       .unwrap()
       .then(() => navigate(`/streamer/${streamerId}`));
   };
-  const stickyRef = useStickyRef();
-  useDisableBounces("create-post");
   return (
-    <div className="section create-post" ref={stickyRef}>
+    <div className="section create-post">
       <Details
         isLoading={postCreating}
         error={postErrorText}

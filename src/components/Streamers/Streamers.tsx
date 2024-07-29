@@ -13,7 +13,6 @@ import { Details } from "../Details/Details";
 import { UserView } from "../UserView/UserView";
 import { handleError } from "../../functions/handleError";
 import { useNavigate } from "react-router-dom";
-import { useDisableBounces } from "../../functions/useDisableScroll";
 
 export const Streamers = () => {
   const navigate = useNavigate();
@@ -41,7 +40,6 @@ export const Streamers = () => {
   const subscribeErrorText = handleError(subscribeError);
   useClassnamedStickyScroll("streamers-wrapper");
   const { errorText, setErrorText } = useQueryError(error);
-  useDisableBounces("streamers");
   return (
     <div className="section streamers" style={{ paddingRight: 0 }}>
       <p className="header-text">Стримеры</p>

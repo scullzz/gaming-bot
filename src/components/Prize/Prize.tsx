@@ -102,7 +102,14 @@ export const Prize = ({
         {formatRaffleDate(endTime)}
       </span>
       {!isParticipant && !isCreator && available && (
-        <button className="attention-btn" onClick={onClick}>
+        <button
+          className="attention-btn"
+          onClick={onClick}
+          style={{
+            marginTop: "20px",
+            textTransform: "uppercase",
+          }}
+        >
           Участвовать
         </button>
       )}

@@ -49,7 +49,7 @@ export const RaffleResultPreview = ({
       </div>
       {isStreamerYourself && (
         <button
-          className="raffle-result__button"
+          className="attention-opacity-btn"
           onClick={() => getReport(id || 0)}
         >
           Создать результаты

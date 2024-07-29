@@ -3,6 +3,7 @@ import { Menu } from "../Menu/Menu";
 import "./withMenu.scss";
 import { useLocation } from "react-router-dom";
 import useApplyTelegramTheme from "../../functions/useApplyTelegramTheme";
+import { useDisableBounces } from "../../functions/useDisableScroll";
 export const WithMenu = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   useEffect(() => {
@@ -14,7 +15,7 @@ export const WithMenu = ({ children }: { children: React.ReactNode }) => {
     }
   }, [location]);
   useApplyTelegramTheme();
-
+  useDisableBounces("section");
   return (
     <>
       {children}

@@ -110,6 +110,7 @@ export const StreamerSubscribers = ({ id }: StreamerSubscribersProps) => {
           }
           {subscribers.map((t, i) => (
             <UserView
+              style={{ position: "fixed" }}
               img={t.imageUrl}
               {...mapSubscriberToUserView(t)}
               key={t.tgId}

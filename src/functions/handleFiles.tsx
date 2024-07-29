@@ -2,8 +2,9 @@ import { DocumentPreview } from "../components/DocumentPreview/DocumentPreview";
 
 export function handleFiles(
   files: File[]
-): (HTMLImageElement | HTMLVideoElement | JSX.Element)[] {
-  const elements: (HTMLImageElement | HTMLVideoElement | JSX.Element)[] = [];
+): (HTMLImageElement | HTMLVideoElement | React.ReactNode)[] {
+  const elements: (HTMLImageElement | HTMLVideoElement | React.ReactNode)[] =
+    [];
 
   files.forEach((file) => {
     if (file.type.startsWith("image/")) {

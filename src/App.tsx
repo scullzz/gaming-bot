@@ -22,7 +22,6 @@ export const App = () => {
     <Provider store={store}>
       <ImageLoader>
         <Toaster />
-
         <Router>
           <WithMenu>
             <Routes>

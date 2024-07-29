@@ -147,7 +147,7 @@ export const SubscriberProfile = () => {
       <SubscriberProfileInfo
         obj={{
           "Telegram ID": [false, sub?.tgId || "#none"],
-          "Имя пользователя": [true, `$@{sub?.username || "#none"}`],
+          "Имя пользователя": [true, `@${sub?.username || "#none"}`],
           "Email для связи": [true, sub?.email || "Email не указанnone"],
         }}
       ></SubscriberProfileInfo>

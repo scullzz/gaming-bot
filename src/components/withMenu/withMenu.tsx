@@ -10,7 +10,7 @@ export const WithMenu = ({ children }: { children: React.ReactNode }) => {
     const elem = document.querySelector(".footer") as HTMLDivElement;
     if (elem != null) setHeight(elem.offsetHeight);
   }, [location]);
-
+  useApplyTelegramTheme();
   useDisableBounces("layout-wrapper");
   return (
     <div className="layout">

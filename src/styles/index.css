@@ -49,7 +49,6 @@ html {
 }
 .section {
   overscroll-behavior: none;
-  min-height: calc(100vh - 125px);
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;

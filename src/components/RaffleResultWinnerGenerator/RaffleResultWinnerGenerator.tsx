@@ -117,7 +117,11 @@ export const RaffleResultWinnerGenerator = () => {
         Включите, если хотите чтобы уже победившие в этом розыгрыше участники
         больше не побеждали.
       </span>
-      <button className="attention-btn" onClick={onGenerate}>
+      <button
+        className="attention-btn"
+        onClick={onGenerate}
+        style={{ marginTop: "30px" }}
+      >
         Сгенерировать
       </button>
     </div>

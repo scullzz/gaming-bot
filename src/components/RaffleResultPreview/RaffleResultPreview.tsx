@@ -49,10 +49,11 @@ export const RaffleResultPreview = ({
       </div>
       {isStreamerYourself && (
         <button
+          style={{ marginTop: "16px" }}
           className="attention-opacity-btn"
           onClick={() => getReport(id || 0)}
         >
-          Создать результаты
+          Скачать результаты
         </button>
       )}
     </div>

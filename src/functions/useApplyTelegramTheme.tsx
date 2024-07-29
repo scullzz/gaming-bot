@@ -10,6 +10,7 @@ const useApplyTelegramTheme = () => {
     tg.BackButton.onClick(onClick).show();
     tg.expand();
     tg.disableVerticalSwipes();
+    tg.enableClosingConfirmation();
     tg.setHeaderColor("#fff");
     tg.setBackgroundColor("#fff");
     root.style.setProperty("--tg-theme-accent-text-color", "#007aff");

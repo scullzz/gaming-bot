@@ -12,12 +12,7 @@ const useApplyTelegramTheme = () => {
     tg.enableClosingConfirmation();
     tg.setHeaderColor("#fff");
     tg.setBackgroundColor("#fff");
-    const id = setInterval(() => {
-      if (tg.isVerticalSwipesEnabled) alert("Ошибка");
-    }, 1000);
-    return () => {
-      clearInterval(id);
-    };
+    console.log(tg.isVerticalSwipesEnabled, "f");
   }, []);
 };
 

@@ -13,9 +13,7 @@ p {
 }
 #root,
 body {
-  height: 100vh;
   outline: none;
-  overscroll-behavior: none;
 }
 button,
 input {

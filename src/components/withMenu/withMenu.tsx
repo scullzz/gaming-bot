@@ -10,19 +10,15 @@ export const WithMenu = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const elem = document.querySelector(".footer") as HTMLDivElement;
     if (elem != null) setHeight(elem.offsetHeight);
+    const root = document.querySelector("#root") as HTMLDivElement;
+    root.style.paddingBottom = `${height}px`;
   }, [location]);
   useApplyTelegramTheme();
   useDisableBounces("layout-wrapper");
   return (
-    <div className="layout">
-      <div
-        className="layout-wrapper"
-        style={{ minHeight: `calc(100% - ${height}px)` }}
-      >
-        {children}
-        <div className="something"></div>
-      </div>
+    <>
+      {children}
       <Menu></Menu>
-    </div>
+    </>
   );
 };

@@ -14,6 +14,7 @@ p {
 #root,
 body {
   outline: none;
+  width: 100%;
 }
 button,
 input {
@@ -32,6 +33,7 @@ html {
   --menu-text: #959595;
   --input-color: #c8c8cd;
   --text-color: #000000;
+  --border-radius: 13px;
   --btn-text-color: #007aff;
   --secondary-color: #eeeeef;
   --txt-2ry-color: #8a8a8e;
@@ -47,7 +49,7 @@ html {
 }
 .section {
   overscroll-behavior: none;
-  min-height: 100vh;
+  min-height: calc(100vh - 125px);
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;

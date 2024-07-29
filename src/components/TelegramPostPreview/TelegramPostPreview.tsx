@@ -3,6 +3,7 @@ import { handleFiles } from "../../functions/handleFiles";
 import { Preview } from "../Preview/Preview";
 import "./TelegramPostPreview.scss";
 import { useLocation } from "react-router-dom";
+import { FilePreview } from "../FilePreview/FilePreview";
 export const TelegramPostPreview = () => {
   const location = useLocation();
   const { post } = location.state;
@@ -19,32 +20,9 @@ export interface ITelegramPostProps {
   file?: File | undefined;
 }
 export const TelegramPost = ({ message, file }: ITelegramPostProps) => {
-  const ref = useRef<HTMLDivElement | null>(null);
-
-  let handledFiles = [];
-  const [elemNode, setElemNode] = useState<React.ReactNode | null>(null);
-  useEffect(() => {
-    if (file) {
-      handledFiles = handleFiles([file]);
-
-      handledFiles.forEach((e) => {
-        if (!React.isValidElement(e)) {
-          const el = e as HTMLElement;
-          el.classList.add("telegram-post__cover");
-        }
-      });
-      const elem = handledFiles[0];
-
-      if (React.isValidElement(elem)) {
-        setElemNode(elem);
-      } else {
-        if (ref.current) ref.current.prepend(elem);
-      }
-    }
-  }, [file]);
   return (
-    <div className="telegram-post" ref={ref}>
-      {elemNode}
+    <div className="telegram-post">
+      <FilePreview file={file}></FilePreview>
       <div className="details-text">{message || "Нет текста"}</div>
     </div>
   );

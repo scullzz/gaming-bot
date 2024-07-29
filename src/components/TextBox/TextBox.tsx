@@ -9,7 +9,7 @@ export const TextBox = ({ ...rest }: ITextBoxProps) => {
     const textarea = textareaRef.current;
     if (textarea) {
       textarea.style.height = "auto";
-      textarea.style.minHeight = `${textarea.scrollHeight}px`;
+      textarea.style.height = `${textarea.scrollHeight}px`;
     }
   }, [rest.value]);
   return <textarea {...rest} ref={textareaRef} rows={1}></textarea>;

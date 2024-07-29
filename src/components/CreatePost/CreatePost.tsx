@@ -8,6 +8,7 @@ import { handleError } from "../../functions/handleError";
 import { TextBox } from "../TextBox/TextBox";
 import { ITelegramPostProps } from "../TelegramPostPreview/TelegramPostPreview";
 import { useEffect, useState } from "react";
+import { FilePreview } from "../FilePreview/FilePreview";
 let File: File | null = null;
 export const CreatePost = () => {
   const location = useLocation();
@@ -73,6 +74,12 @@ export const CreatePost = () => {
           Опубликовать
         </button>
       </div>
+      {
+        <FilePreview
+          file={selectedFile}
+          style={{ marginTop: "15px" }}
+        ></FilePreview>
+      }
     </div>
   );
 };

@@ -14,7 +14,6 @@ export const WithMenu = ({ children }: { children: React.ReactNode }) => {
     root.style.paddingBottom = `${height}px`;
   }, [location]);
   useApplyTelegramTheme();
-  useDisableBounces("layout-wrapper");
   return (
     <>
       {children}

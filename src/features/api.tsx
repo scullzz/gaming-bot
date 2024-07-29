@@ -57,7 +57,6 @@ export const api = createApi({
         );
       },
       providesTags: [{ type: "streamers", id: "LIST" } as const],
-      keepUnusedDataFor: 1,
       forceRefetch: ({ currentArg, previousArg }) => {
         return (
           currentArg?.page != previousArg?.page ||
@@ -95,7 +94,6 @@ export const api = createApi({
         );
       },
       providesTags: ["subscribers"],
-      keepUnusedDataFor: 1,
       forceRefetch: ({ currentArg, previousArg }) => {
         return (
           currentArg?.page != previousArg?.page ||
@@ -151,7 +149,6 @@ export const api = createApi({
       transformResponse: (res: GetRaffleDto[]) => {
         return rafflesAdapter.addMany(rafflesAdapter.getInitialState(), res);
       },
-      keepUnusedDataFor: 1,
       providesTags: ["raffles"],
       forceRefetch: ({ currentArg, previousArg }) => {
         return (
@@ -290,7 +287,6 @@ export const api = createApi({
           res
         );
       },
-      keepUnusedDataFor: 1,
       forceRefetch: ({ currentArg, previousArg }) => {
         return (
           currentArg?.page != previousArg?.page ||

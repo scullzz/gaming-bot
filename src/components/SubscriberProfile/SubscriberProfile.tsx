@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import { handleError } from "../../functions/handleError";
 import { DataPickerModal } from "../DataPickerModal/DataPickerModal";
 import { TextBox } from "../TextBox/TextBox";
+import { tg } from "../../App";
 interface UserInfoProps {
   TelegramId: string;
   username: string;
@@ -85,7 +86,9 @@ export const SubscriberProfile = () => {
   useEffect(() => {
     if (sub) setNote(sub?.note);
   }, [sub]);
-
+  const onSendMessage = () => {
+    tg.openTelegramLink(`https://t.me/${sub.username}`);
+  };
   return (
     <div className="subscriber-profile section">
       {showModal && (
@@ -123,7 +126,7 @@ export const SubscriberProfile = () => {
         )}`}
       ></StreamerPreview>
       <button
-        onClick={() => setShowModal(true)}
+        onClick={onSendMessage}
         className="start-btn"
         style={{ textTransform: "none", marginTop: "20px" }}
       >
@@ -143,9 +146,9 @@ export const SubscriberProfile = () => {
       <div className="mt" style={{ marginTop: "37px" }}></div>
       <SubscriberProfileInfo
         obj={{
-          "Telegram ID": [false, sub?.tgId || "#"],
-          "Имя пользователя": [true, sub?.username || "#"],
-          "Email для связи": [true, sub?.email || "Email не указан"],
+          "Telegram ID": [false, sub?.tgId || "#none"],
+          "Имя пользователя": [true, `$@{sub?.username || "#none"}`],
+          "Email для связи": [true, sub?.email || "Email не указанnone"],
         }}
       ></SubscriberProfileInfo>
       <div className="subscriber-profile__header" style={{ marginTop: "20px" }}>

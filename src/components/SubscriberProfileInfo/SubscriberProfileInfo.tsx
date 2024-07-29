@@ -49,19 +49,23 @@ const SingleProfileInfoEntry = ({
         .then((t) => toast.success("Скопировано"));
     }
   };
+  const isNone = value.includes("none");
+  const formattedValue = value.replace("none", "");
   return (
     <li>
       <div className="info">
         <div className="main">
           <span>{label}</span>
           <span className={`${selected ? "selected" : ""}`}>
-            {truncateValue(value)}
+            {truncateValue(formattedValue)}
           </span>
         </div>
-        <button onClick={onClick}>
-          <img src={copy} className="icon" />
-          Copy
-        </button>
+        {isNone ? null : (
+          <button onClick={onClick}>
+            <img src={copy} className="icon" />
+            Copy
+          </button>
+        )}
       </div>
       {withLine && <div className="line"></div>}
     </li>

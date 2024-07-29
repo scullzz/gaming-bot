@@ -79,7 +79,7 @@ export const useClassnamedStickyScroll = (...classes: string[]) => {
 
 export const useSetup = () => {
   useEffect(() => {
-    const overflow = 100;
+    const overflow = 1;
     document.body.style.overflowY = "hidden";
     document.documentElement.style.overflowY = "hidden";
     const root = document.querySelector("#root") as HTMLDivElement;

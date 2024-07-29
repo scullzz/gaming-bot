@@ -30,15 +30,18 @@ export const CreateRaffleEndPicker = ({
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
-          <div className="fake-input">{formatDate(new Date(date))}</div>
+          <div className="fake-input">
+            {formatDate(new Date(date)) || "dd.MM.yy"}
+          </div>
         </div>
         <div className="input-wrapper">
           <input
             type="time"
+            placeholder="HH:mm"
             value={time}
             onChange={(e) => setTime(e.target.value)}
           />
-          <div className="fake-input">{time}</div>
+          <div className="fake-input">{time || "HH:mm"}</div>
         </div>
       </div>
     </div>

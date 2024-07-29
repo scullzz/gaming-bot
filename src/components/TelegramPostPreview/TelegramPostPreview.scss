@@ -7,7 +7,7 @@
   row-gap: 15px;
   background-color: var(--main-color);
   &__cover {
-    width: 100%;
+    max-width: 100%;
     max-height: 350px;
     object-fit: contain;
     margin-inline: auto;

@@ -3,6 +3,7 @@ import { Menu } from "../Menu/Menu";
 import "./withMenu.scss";
 import { useLocation } from "react-router-dom";
 import { useDisableBounces } from "../../functions/useDisableScroll";
+import useApplyTelegramTheme from "../../functions/useApplyTelegramTheme";
 export const WithMenu = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const [height, setHeight] = useState(0);

@@ -1,7 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { CreatePostFilePicker } from "../CreatePostFilePicker/CreatePostFilePicker";
 import "./CreatePost.scss";
-import { useState } from "react";
 import { useMemoryState } from "../../functions/useMemoryState";
 import { useCreatePostMutation } from "../../features/api";
 import { Details } from "../Details/Details";
@@ -12,9 +11,12 @@ export const CreatePost = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { streamerId } = location.state;
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [message, setPostMessage] = useMemoryState<string | null>(
+  const [selectedFile, setSelectedFile] = useMemoryState<File | null>(
     null,
+    "postFile"
+  );
+  const [message, setPostMessage] = useMemoryState<string | undefined>(
+    undefined,
     "postMessage"
   );
   const [
@@ -50,7 +52,7 @@ export const CreatePost = () => {
         onChange={setSelectedFile}
       ></CreatePostFilePicker>
       <TextBox
-        value={message || undefined}
+        value={message}
         onInput={(e) => setPostMessage(e.currentTarget.value)}
         placeholder="Сообщение"
         style={{ marginTop: "20px" }}

@@ -1,5 +1,6 @@
 button {
   border: none;
+  border-radius: 13px;
 }
 .btn {
   background-color: var(--secondary-color);
@@ -44,7 +45,8 @@ button {
   font-size: 14px;
   font-weight: 700;
   line-height: 20px;
-  border-radius: 6px;
+  border-radius: 13px;
+
   background-color: var(--btn-text-color);
   color: var(--main-color);
 }

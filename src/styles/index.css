@@ -16,6 +16,9 @@ body {
   outline: none;
   width: 100%;
 }
+#root {
+  overflow: hidden;
+}
 button,
 input {
   outline: none;

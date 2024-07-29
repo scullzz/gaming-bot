@@ -15,7 +15,7 @@ export const WithMenu = ({ children }: { children: React.ReactNode }) => {
     }
   }, [location]);
   useApplyTelegramTheme();
-  useDisableBounces("section");
+
   return (
     <>
       {children}

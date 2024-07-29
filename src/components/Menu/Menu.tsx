@@ -21,7 +21,7 @@ export const Menu = () => {
     if (role == UserRole) navigate(`/user-profile/${getNameId()}`);
     else navigate(`/streamer/${getNameId()}`);
   };
-  useDisableBounces("footer");
+
   return (
     <div className="footer">
       {isStreamersPage && (

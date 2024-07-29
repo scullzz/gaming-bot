@@ -12,7 +12,6 @@ export const WithMenu = ({ children }: { children: React.ReactNode }) => {
       const section = document.querySelector(".section") as HTMLDivElement;
       if (section != null) {
         section.style.minHeight = `calc(100vh - ${elem.offsetHeight}px)`;
-        section.style.maxHeight = `calc(100vh - ${elem.offsetHeight}px)`;
         const padding = 15;
         section.style.paddingBottom = `${elem.offsetHeight + padding}px`;
       }

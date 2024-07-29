@@ -62,6 +62,7 @@ html {
   overscroll-behavior: none;
   overflow-y: auto;
   overflow-x: hidden;
+  max-height: 100vh;
   display: flex;
   width: 100%;
   flex-direction: column;

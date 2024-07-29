@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 export function useMemoryState<T>(defaultValue: T, key: string) {
-  // Функция для десериализации значения
   const deserialize = (value: string): T => {
     try {
       const parsed = JSON.parse(value);

@@ -7,22 +7,24 @@ import { Details } from "../Details/Details";
 import { handleError } from "../../functions/handleError";
 import { TextBox } from "../TextBox/TextBox";
 import { ITelegramPostProps } from "../TelegramPostPreview/TelegramPostPreview";
+import { useEffect, useState } from "react";
+let File: File | null = null;
 export const CreatePost = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { streamerId } = location.state;
-  const [selectedFile, setSelectedFile] = useMemoryState<File | null>(
-    null,
-    "postFile"
-  );
+  const [selectedFile, setSelectedFile] = useState<File | null>(File);
   const [message, setPostMessage] = useMemoryState<string | undefined>(
-    undefined,
+    "",
     "postMessage"
   );
   const [
     createPost,
     { isLoading: postCreating, error: postError, reset: resetPostError },
   ] = useCreatePostMutation();
+  useEffect(() => {
+    File = selectedFile;
+  }, [selectedFile]);
   const postErrorText = handleError(postError);
   const onPostCreate = () => {
     let data = new FormData();

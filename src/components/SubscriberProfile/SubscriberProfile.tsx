@@ -120,7 +120,7 @@ export const SubscriberProfile = () => {
       <StreamerPreview
         name={sub?.firstName || "Подписчик"}
         isLive={false}
-        headerStyles={{ marginTop: "15px" }}
+        headerStyles={{ marginTop: "15px", lineHeight: "23px" }}
         url={sub?.imageUrl}
         details={`Подписан с ${formatRaffleDate(
           sub?.subscribeTime || new Date().toISOString()

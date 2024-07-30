@@ -71,7 +71,7 @@ export const UserProfile = () => {
         center={<span>Профиль</span>}
         right={<span onClick={onApply}>Готово</span>}
       ></SectionHeader>
-      <div className="mt" style={{ marginTop: "31px" }}></div>
+      <div className="mt" style={{ marginTop: "25px" }}></div>
       <StreamerPreview
         url={user?.imageUrl}
         name={user?.firstName ?? "Пользователь"}

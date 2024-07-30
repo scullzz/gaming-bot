@@ -1,4 +1,7 @@
 .prize {
+  .prize__available-time {
+    text-transform: none;
+  }
   &__condition {
     display: flex;
     column-gap: 15px;
@@ -16,7 +19,7 @@
     bottom: unset;
     left: unset;
     top: 10px;
-    padding: 2px;
+
     right: 10px;
     transform: unset;
     font-size: 12px;
@@ -36,7 +39,7 @@
     font-weight: 700;
     line-height: 20px;
     background-color: var(--green-color);
-    padding: 2px;
+
     border-radius: 4px;
     padding-inline: 6px;
     opacity: 0px;

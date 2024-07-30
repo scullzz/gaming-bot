@@ -40,7 +40,7 @@ export const RaffleResult = () => {
         onClose={() => setRaffleEt(undefined)}
       ></Details>
       <SectionHeader center={<span>Результаты розыгрыша</span>}></SectionHeader>
-      <div className="mt" style={{ minHeight: "21px" }}></div>
+      <div className="mt" style={{ minHeight: "13px" }}></div>
       <RaffleResultPreview
         {...raffle}
         streamerId={streamerId || ""}

@@ -19,7 +19,6 @@ export const StreamerVideo = ({ url }: IStreamerVideoProps) => {
   });
   return (
     <div className="streamer__broadcast">
-      <span className="header-text">Стрим онлайн</span>
       <div className="streamer__broadcast-wrapper">
         <IsLive></IsLive>
         <StreamerFrame

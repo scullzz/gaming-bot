@@ -2,5 +2,11 @@
   &__videos {
     display: flex;
     flex-direction: column;
+    .header-text {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 20px;
+      margin-inline: 4px;
+    }
   }
 }

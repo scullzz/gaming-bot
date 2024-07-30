@@ -9,10 +9,9 @@
     flex-direction: column;
     margin-top: 30px;
     &-top {
-      margin-bottom: 5px;
+      margin-bottom: 3px;
       display: flex;
       justify-content: space-between;
-      padding-inline: 10px;
       &-header {
         color: var(--btn-text-color);
         font-size: 14px;
@@ -21,7 +20,7 @@
 
         &-active {
           color: var(--text-color);
-          font-size: 16px;
+          font-size: 18px;
           font-weight: 500;
           line-height: 20px;
         }

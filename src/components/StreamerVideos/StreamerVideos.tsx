@@ -14,9 +14,10 @@ export const StreamerVideos = ({ id }: IStreamerDetailsViewer) => {
     error: streamerError,
   } = useGetStreamerQuery({ tgId, userId });
   const { errorText, setErrorText } = useQueryError(streamerError);
-  const liveSocials = streamer?.socials.filter(
-    (s) => s.parameter.isLive && s.parameter.link != null
-  );
+  const liveSocials =
+    streamer?.socials.filter(
+      (s) => s.parameter.isLive && s.parameter.link != null
+    ) ?? [];
   return (
     <div className="streamer__videos">
       {

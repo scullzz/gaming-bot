@@ -5,6 +5,7 @@ interface IStreamerPreviewProps extends AvatarProps {
   details?: string;
   name: string;
   isLive: boolean;
+  headerStyles?: React.CSSProperties;
   img?: string | null;
 }
 
@@ -12,6 +13,7 @@ export const StreamerPreview = ({
   name,
   details,
   isLive,
+  headerStyles,
   img,
   ...rest
 }: IStreamerPreviewProps) => {
@@ -23,7 +25,9 @@ export const StreamerPreview = ({
         isLive={isLive}
         initials={getInitialsByNameWithColor(name)}
       ></Avatar>
-      <span className="header-text">{name}</span>
+      <span className="header-text" style={headerStyles}>
+        {name}
+      </span>
       {details && <span className="details-text">{details}</span>}
     </div>
   );

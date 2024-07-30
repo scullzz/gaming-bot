@@ -17,6 +17,7 @@ import { EditNoteAboutSub } from "../types/editNoteAboutSub";
 import { GetSubParticipant } from "../types/getSubParticipant";
 import { AuthRequest } from "../types/authRequest";
 import { GetTgUser } from "../types/getTgUser";
+import { AdminInviteResponse } from "../types/adminInviteResponse";
 
 export const subscribersAdapter = createEntityAdapter<GetSubscriberDto>();
 
@@ -314,12 +315,23 @@ export const api = createApi({
     getTgUsers: builder.mutation<GetTgUser[], string>({
       query: (req) => ({ url: `user/search?query=${req}`, method: "POST" }),
     }),
+    createAdminInvite: builder.mutation<
+      AdminInviteResponse,
+      { streamerId: string }
+    >({
+      query: (req) => ({
+        url: `/streamer/${req.streamerId}/admins/tg`,
+        method: "POST",
+      }),
+      invalidatesTags: ["admins"],
+    }),
   }),
 });
 
 export const {
   useCheckAuthQuery,
   useGetAuthMutation,
+  useCreateAdminInviteMutation,
   useGetStreamerQuery,
   useGetSubscribersQuery,
   useGetRafflesQuery,

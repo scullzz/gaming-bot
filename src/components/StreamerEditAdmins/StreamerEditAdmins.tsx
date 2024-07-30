@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {
-  useAddAdminsMutation,
+  useCreateAdminInviteMutation,
   useDeleteAdminMutation,
   useGetAdminsQuery,
 } from "../../features/api";
@@ -12,29 +12,23 @@ import { IStreamerDetailsViewer } from "../StreamerPage/StreamerPage";
 import { UserView } from "../UserView/UserView";
 import "./StreamerEditAdmin.scss";
 import { getNameId } from "../../functions/getValueFromJwt";
-import { AddAdminModal } from "../AddAdminModal/AddAdminModal";
 import { tg } from "../../App";
 
 export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
   const { data: admins, isLoading, error, refetch } = useGetAdminsQuery(id);
-  const [
-    addAdmin,
-    { isLoading: addingAdmin, error: addAdminError, reset: resetAdminError },
-  ] = useAddAdminsMutation();
-
+  const [createAdminInvite, { error: addAdminError, reset: resetAdminError }] =
+    useCreateAdminInviteMutation();
   const adminErrorText = handleError(addAdminError);
   const [deleteAdmin, { error: deleteAdminError, reset: resetDAdminError }] =
     useDeleteAdminMutation();
   const deleteAdminErrorText = handleError(deleteAdminError);
   const { errorText, setErrorText } = useQueryError(error);
-  const [showModal, setShowModal] = useState(false);
   const [adminId, setAdmniId] = useState("");
   const onAdd = () => {
-    addAdmin({ adminId, streamerId: id })
+    createAdminInvite({ streamerId: id })
       .unwrap()
-      .then(() => {
-        refetch();
-        setShowModal(false);
+      .then((t) => {
+        tg.openTelegramLink(t.link);
       });
   };
   const onAdminClick = (tgId: string) => {
@@ -65,14 +59,6 @@ export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
   };
   return (
     <div className="streamer-edit__admins">
-      {showModal && (
-        <AddAdminModal
-          onSubmit={onAdd}
-          value={adminId}
-          setValue={setAdmniId}
-          onClose={() => setShowModal(false)}
-        ></AddAdminModal>
-      )}
       {
         <Details
           isLoading={!admins && isLoading}
@@ -95,7 +81,7 @@ export const StreamerEditAdmins = ({ id }: IStreamerDetailsViewer) => {
           <>
             <AddButton
               text="Добавить администратора"
-              onClick={() => setShowModal(true)}
+              onClick={() => onAdd()}
             ></AddButton>
             <div
               className="line"

@@ -116,7 +116,7 @@ export const SubscriberProfile = () => {
         center={<span>Профиль</span>}
         right={<span onClick={() => onApply()}>Готово</span>}
       ></SectionHeader>
-      <div className="mt" style={{ minHeight: "31px" }}></div>
+      <div className="mt" style={{ minHeight: "25px" }}></div>
       <StreamerPreview
         name={sub?.firstName || "Подписчик"}
         isLive={false}
@@ -133,6 +133,7 @@ export const SubscriberProfile = () => {
         Написать сообщение
       </button>
       <TextBox
+        style={{ marginTop: "20px" }}
         placeholder="Заметки о пользователе"
         value={note || undefined}
         onChange={(e) => setNote(e.currentTarget.value)}
@@ -143,7 +144,7 @@ export const SubscriberProfile = () => {
       >
         Заметка, которую видит только стример и его модераторы.
       </div>
-      <div className="mt" style={{ marginTop: "37px" }}></div>
+      <div className="mt" style={{ marginTop: "30px" }}></div>
       <SubscriberProfileInfo
         obj={{
           "Telegram ID": [false, sub?.tgId || "#none"],

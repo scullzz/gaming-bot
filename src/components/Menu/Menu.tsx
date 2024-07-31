@@ -35,7 +35,13 @@ export const Menu = () => {
           </span>
         </div>
       )}
-      <div className="menu">
+      <div
+        className="menu"
+        style={{
+          borderTop: "1px solid #e6e6e6",
+          backgroundColor: "var(--menu-color)",
+        }}
+      >
         <MenuItem
           active={location.pathname == "/streamers"}
           label="Стримеры"

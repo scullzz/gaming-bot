@@ -13,7 +13,9 @@ export interface IStreamerDetailsViewer {
 
 export const StreamerPage = () => {
   const { id } = useParams();
-  const [refetch, setRefetch] = useState<() => void>(() => {});
+  const [refetch, setRefetch] = useState<() => void>(() => {
+    console.log("F");
+  });
   if (id === undefined) return <div>Nothing found</div>;
 
   return (

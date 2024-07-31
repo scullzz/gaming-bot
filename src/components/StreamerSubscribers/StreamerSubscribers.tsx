@@ -70,6 +70,7 @@ export const StreamerSubscribers = ({
   useEffect(() => {
     setRefetch(() => {
       setPageSize((pageSizePrev) => pageSizePrev + 1);
+      console.log("FF");
       refetch();
     });
   }, [setRefetch, setPageSize, refetch]);

@@ -28,7 +28,7 @@ export const MenuItem = ({
           style={{ borderRadius: isProfile ? "100%" : "0px" }}
         />
       ) : (
-        <Avatar initials={initials} url={icon} size={27}></Avatar>
+        <Avatar initials={initials} url={onIcon} size={27}></Avatar>
       )}
       <span
         className={`menu-item__label ${

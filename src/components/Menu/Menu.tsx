@@ -54,7 +54,6 @@ export const Menu = () => {
           label="Профиль"
           isProfile
           onIcon={getImage()}
-          icon={getImage()}
           onClick={onProfileClick}
           initials={userProfileInitials}
         ></MenuItem>

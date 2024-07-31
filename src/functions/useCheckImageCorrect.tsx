@@ -11,8 +11,10 @@ export const useCheckImageCorrect = (url?: string | null) => {
         url != undefined &&
         url != "null" &&
         url != ""
-      )
+      ) {
         setCorrect(true);
+        console.log(url);
+      }
     };
     image.onerror = () => {
       setCorrect(false);

@@ -7,11 +7,13 @@ import streamers from "/players.svg";
 import streamersOn from "/players-on.svg";
 import { getImage, getNameId, getRole } from "../../functions/getValueFromJwt";
 import { useIsStreamersRoute } from "../../functions/useIsStreamerRoute";
-import { useDisableBounces } from "../../functions/useDisableScroll";
+import { getInitialsByNameWithColor } from "../../functions/getInitialsByName";
 
 const UserRole = "User";
 export const Menu = () => {
-  const userProfileInitials = getInitials(tg.initDataUnsafe.user);
+  const userProfileInitials = getInitialsByNameWithColor(
+    tg.initDataUnsafe.user.first_name || "User"
+  );
   const navigate = useNavigate();
   const location = useLocation();
   const isStreamersPage = useIsStreamersRoute();

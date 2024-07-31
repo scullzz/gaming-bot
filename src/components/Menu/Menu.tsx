@@ -35,15 +35,7 @@ export const Menu = () => {
           </span>
         </div>
       )}
-      <div
-        className="menu"
-        style={{
-          borderTop: isStreamersPage ? "1px solid #e6e6e6" : "unset",
-          backgroundColor: isStreamersPage
-            ? "var(--menu-color)"
-            : "var(--main-color)",
-        }}
-      >
+      <div className="menu">
         <MenuItem
           active={location.pathname == "/streamers"}
           label="Стримеры"

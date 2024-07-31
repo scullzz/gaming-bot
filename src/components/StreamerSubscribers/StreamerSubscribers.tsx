@@ -17,10 +17,15 @@ import { UserView } from "../UserView/UserView";
 import "./StreamerSubscribers.scss";
 
 import { handleError } from "../../functions/handleError";
-import React from "react";
-interface StreamerSubscribersProps extends IStreamerDetailsViewer {}
-export const StreamerSubscribers = ({ id }: StreamerSubscribersProps) => {
-  const { page, pageSize, handleScroll } = useScrollPagination();
+import { useEffect } from "react";
+interface StreamerSubscribersProps extends IStreamerDetailsViewer {
+  setRefetch: (func: () => void) => void;
+}
+export const StreamerSubscribers = ({
+  id,
+  setRefetch,
+}: StreamerSubscribersProps) => {
+  const { page, pageSize, handleScroll, setPageSize } = useScrollPagination();
 
   const {
     data: admins,
@@ -42,6 +47,7 @@ export const StreamerSubscribers = ({ id }: StreamerSubscribersProps) => {
   const {
     subscribers,
     isLoading,
+    refetch,
     error: subscribersError,
   } = useGetSubscribersQuery(
     { page, pageSize, id },
@@ -61,6 +67,9 @@ export const StreamerSubscribers = ({ id }: StreamerSubscribersProps) => {
     if (isStreamerYourself)
       navigate(`/subscriber-profile/${userId}?streamerId=${id}`);
   };
+  useEffect(() => {
+    setRefetch(() => setPageSize((pageSizePrev) => pageSizePrev + 1));
+  }, [setRefetch]);
   return (
     <div className="streamer__subscribers">
       {

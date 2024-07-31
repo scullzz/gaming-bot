@@ -16,8 +16,10 @@ import { useNavigate } from "react-router-dom";
 import { useCheckStreamerYourself } from "../../functions/useCheckStreamerYourself";
 import { useState } from "react";
 import { SocialsModal } from "../SocialsModal/SocialsModal";
-
-export const StreamerHeader = ({ id }: IStreamerDetailsViewer) => {
+interface IStreamerHeaderProps extends IStreamerDetailsViewer {
+  refetch: () => void;
+}
+export const StreamerHeader = ({ id, refetch }: IStreamerHeaderProps) => {
   const tgId = id;
   const userId = getNameId();
   const navigate = useNavigate();
@@ -35,7 +37,11 @@ export const StreamerHeader = ({ id }: IStreamerDetailsViewer) => {
     },
   ] = useUnSubFromStreamerMutation();
   const onUnsub = () => {
-    unsubFromStreamer({ streamerId: streamer?.tgId || "", userId }).unwrap();
+    unsubFromStreamer({ streamerId: streamer?.tgId || "", userId })
+      .unwrap()
+      .then(() => {
+        refetch();
+      });
   };
   const unsubErrorText = handleError(unsubError);
   const { errorText, setErrorText } = useQueryError(streamerError);

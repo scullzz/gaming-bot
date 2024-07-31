@@ -18,6 +18,18 @@ body {
   width: 100%;
   overflow-x: hidden;
 }
+html,
+body {
+  position: fixed;
+}
+:root {
+  --vh: 1vh;
+}
+
+html.is-safari,
+html.is-safari body {
+  height: calc(var(--vh, 1vh) * 100);
+}
 #root {
   position: relative;
 }

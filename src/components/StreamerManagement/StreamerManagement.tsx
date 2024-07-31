@@ -12,7 +12,13 @@ import { Details } from "../Details/Details";
 import { getNameId } from "../../functions/getValueFromJwt";
 import { useNavigate } from "react-router-dom";
 import { handleError } from "../../functions/handleError";
-export const StreamerManagement = ({ id }: IStreamerDetailsViewer) => {
+interface IStreamerManagementProps extends IStreamerDetailsViewer {
+  refetch: () => void;
+}
+export const StreamerManagement = ({
+  id,
+  refetch: refetchSubs,
+}: IStreamerManagementProps) => {
   const { data: admins, isLoading, error } = useGetAdminsQuery(id);
   const isStreamerYourself = useCheckStreamerYourself(id, admins);
   const userId = getNameId();
@@ -35,7 +41,10 @@ export const StreamerManagement = ({ id }: IStreamerDetailsViewer) => {
   const onSub = () => {
     subscribe({ streamerId: id, userId })
       .unwrap()
-      .then(() => refetch());
+      .then(() => {
+        refetch();
+        refetchSubs();
+      });
   };
   return (
     <div className="streamer__management-body">
@@ -74,7 +83,7 @@ export const StreamerManagement = ({ id }: IStreamerDetailsViewer) => {
         <></>
       ) : (
         <div className="streamer__management-user">
-          <button className="attention-btn" onClick={onSub}>
+          <button className="attention-btn" onClick={onSub} id="sub-refetch">
             Подписаться
           </button>
           <span className="details-text details-text_add">

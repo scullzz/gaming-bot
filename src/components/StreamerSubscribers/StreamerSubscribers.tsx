@@ -68,7 +68,7 @@ export const StreamerSubscribers = ({
       navigate(`/subscriber-profile/${userId}?streamerId=${id}`);
   };
   useEffect(() => {
-    setRefetch(() => {
+    setRefetch(() => () => {
       setPageSize((pageSizePrev) => pageSizePrev + 1);
       console.log("FF");
       refetch();

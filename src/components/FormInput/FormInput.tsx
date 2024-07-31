@@ -27,7 +27,7 @@ export const FormInput = ({ withLine, ...rest }: IFormInputProps) => {
   return (
     <div className="form__cell">
       <div className="info">
-        <input type="text" {...rest} />
+        <input type="text" {...rest} ref={inputRef} />
         <img src={question} alt="" className="icon" />
       </div>
       {withLine && <div className="line"></div>}

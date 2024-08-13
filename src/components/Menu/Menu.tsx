@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { tg } from "../../App";
-import { getInitials } from "../../functions/getInitials";
+
 import { MenuItem } from "../MenuItem/MenuItem";
 import "./Menu.scss";
 import streamers from "/players.svg";
